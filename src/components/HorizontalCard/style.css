@@ -1,0 +1,197 @@
+.horizontal-card {
+  align-items: center;
+  background-color: var(--neutrallightlight);
+  border-radius: 16px;
+  display: flex;
+  position: relative;
+  width: 300px;
+}
+
+.horizontal-card .frame {
+  position: relative;
+}
+
+.horizontal-card .class {
+  height: 72px !important;
+  width: 80px !important;
+}
+
+.horizontal-card .class-2 {
+  height: 69px !important;
+  width: 80px !important;
+}
+
+.horizontal-card .instance-node {
+  height: 32px !important;
+  margin-bottom: -21.5px !important;
+  margin-left: -16px !important;
+  margin-right: -16px !important;
+  margin-top: -21.5px !important;
+  position: relative !important;
+  width: 32px !important;
+}
+
+.horizontal-card .image-4 {
+  height: 32px !important;
+  margin-bottom: -20px !important;
+  margin-left: -16px !important;
+  margin-right: -16px !important;
+  margin-top: -20px !important;
+  position: relative !important;
+  width: 32px !important;
+}
+
+.horizontal-card .heart-filled {
+  height: 20px !important;
+  position: relative !important;
+  width: 20px !important;
+}
+
+.horizontal-card .div {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+}
+
+.horizontal-card .content {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4px;
+  position: relative;
+}
+
+.horizontal-card .text-wrapper {
+  align-self: stretch;
+  color: var(--neutraldarkdarkest);
+  font-family: var(--heading-h4-font-family);
+  font-size: var(--heading-h4-font-size);
+  font-style: var(--heading-h4-font-style);
+  font-weight: var(--heading-h4-font-weight);
+  letter-spacing: var(--heading-h4-letter-spacing);
+  line-height: var(--heading-h4-line-height);
+  margin-top: -1px;
+  position: relative;
+}
+
+.horizontal-card .subtitle {
+  align-self: stretch;
+  color: var(--neutraldarklight);
+  font-family: var(--body-body-s-font-family);
+  font-size: var(--body-body-s-font-size);
+  font-style: var(--body-body-s-font-style);
+  font-weight: var(--body-body-s-font-weight);
+  letter-spacing: var(--body-body-s-letter-spacing);
+  line-height: var(--body-body-s-line-height);
+  position: relative;
+}
+
+.horizontal-card .button-secondary-instance {
+  flex: 0 0 auto !important;
+}
+
+.horizontal-card .arrow-right {
+  height: 12px !important;
+  position: relative !important;
+  width: 12px !important;
+}
+
+.horizontal-card .avatar-3 {
+  height: 40px !important;
+  position: relative !important;
+  width: 40px !important;
+}
+
+.horizontal-card .heart-filled-wrapper {
+  align-items: center;
+  background-color: var(--neutrallightmedium);
+  border-radius: 20px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  position: relative;
+  width: 40px;
+}
+
+.horizontal-card .content-2 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4px;
+  justify-content: center;
+  position: relative;
+}
+
+.horizontal-card.visuals-avatar {
+  gap: 16px;
+  padding: 16px;
+}
+
+.horizontal-card.visuals-none {
+  gap: 16px;
+  padding: 16px;
+}
+
+.horizontal-card.visuals-icon {
+  gap: 16px;
+  padding: 16px;
+}
+
+.horizontal-card.visuals-image {
+  overflow: hidden;
+}
+
+.horizontal-card.visuals-avatar .frame {
+  border-radius: 16px;
+  width: 80px;
+}
+
+.horizontal-card.visuals-none .frame {
+  border-radius: 16px;
+  width: 80px;
+}
+
+.horizontal-card.visuals-icon .frame {
+  align-items: center;
+  background-color: var(--neutrallightmedium);
+  border-radius: 20px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.horizontal-card.visuals-image .frame {
+  align-self: stretch;
+  border-radius: 16px;
+  width: 80px;
+}
+
+.horizontal-card.visuals-avatar .div {
+  align-items: center;
+  gap: 16px;
+}
+
+.horizontal-card.visuals-none .div {
+  align-items: center;
+  gap: 16px;
+}
+
+.horizontal-card.visuals-icon .div {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+.horizontal-card.visuals-image .div {
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
