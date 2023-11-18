@@ -16,11 +16,127 @@ import '../../styles/styleguide.css';
 export const Main = () => {
   const [selectedTab, setSelectedTab] = useState("section1"); // 초기 탭 "Home"
   const [selectedSection, setSelectedSection] = useState("section1"); // 초기 탭 "거래대금"
+  const [RankingData, setRankingData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const firstData = RankingData[0];
+
+  const dummyRankingData = [
+    {
+      corp_name: "Dummy Corp 1",
+      price: 1000,
+      cmpprevdd_prc: 5,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+    {
+      corp_name: "Dummy Corp 2",
+      price: 1500,
+      cmpprevdd_prc: -3,
+    },
+  ];
+
+  function addCommasToNumber(number) {
+    if (number !== undefined && number !== null) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } else {
+      return "";
+    }
+  }
+
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
   };
+
   const handleSectionChange = (section) => {
     setSelectedSection(section);
+    // setIsLoading(true);
+    // fetchData(section);
+  };
+
+  useEffect(() => {
+    setRankingData(dummyRankingData);
+    console.log("ho");
+  }, []);
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+
+  //   fetchData(selectedSection)
+  //     .then(() => {
+  //       setIsLoading(false);
+  //       // 5초(5000밀리초)마다 fetchData 함수 호출
+  //       const intervalId = setInterval(() => {
+  //         fetchData(selectedTab);
+  //       }, 5000);
+  //       // 컴포넌트가 언마운트될 때 clearInterval 호출하여 인터벌 정리
+  //       return () => clearInterval(intervalId);
+  //     })
+  //     .catch((error) => {
+  //       console.error("API 요청 실패:", error);
+  //       setIsLoading(false); // 에러 발생 시 로딩 숨김
+  //     });
+  // }, [selectedSection]);
+
+  const fetchRanking = async (selectedSection) => {
+    try {
+      let rankingData;
+      if (selectedSection === "section1") {
+        const response = await axios.get(`${window.API_BASE_URL}/main/top/amount`);
+        rankingData = response.data.payload.trading_volumes;
+      } else if (selectedSection === "section2") {
+        const response = await axios.get(`${window.API_BASE_URL}/main/top/like`);
+        rankingData = response.data.payload.popularStocks;
+      } else if (selectedSection === "section3") {
+        const response = await axios.get(`${window.API_BASE_URL}/main/top/views`);
+        rankingData = response.data.payload.popularStocks;
+      }
+      setRankingData(rankingData);
+    } catch (error) {
+      console.error("API 요청 실패:", error);
+    }
   };
 
   return (
@@ -54,25 +170,25 @@ export const Main = () => {
         {selectedTab === "section1" && (
           <>
             <div className="ranking-tab">
-              <Toggle section1Text="거래대금" section2Text="좋아요수" section3Text="조회수" onTabChange={handleSectionChange}/>
+              <Toggle section1Text="거래대금" section2Text="좋아요수" section3Text="조회수" onTabChange={handleSectionChange} />
             </div>
             <div className="ranking-content">
               <div className="rankin">
-                <div className="company">
+                <div className="products-wrapper">
                   <div className="products">
                     <div className="vertical-card">
                       <div className="company-image">
                         <div className="overlap-group">
                           <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
-                          <Tag className="rank" style="focus" text="TAG" />
+                          <Tag className="rank" style="focus" text="1" />
                         </div>
                       </div>
                       <div className="company-info">
                         <div className="title-2">
-                          <div className="company-2">기업명</div>
+                          <div className="company-2"> {firstData && firstData.corp_name ? firstData.corp_name : "로딩 중..."}</div>
                           <p className="price">
-                            <span className="span">23,000원 </span>
-                            <span className="text-wrapper-2">-2.5%</span>
+                            <span className={`stock-price ${firstData.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{firstData ? addCommasToNumber(firstData.price) : "로딩 중..."}원</span>
+                            <span className={`stock-change ${firstData.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{firstData ? `${firstData.cmpprevdd_prc}%` : "로딩 중..."}</span>
                           </p>
                         </div>
                       </div>
@@ -81,76 +197,60 @@ export const Main = () => {
                 </div>
               </div>
               <div className="rankin-etc">
-                <div className="products-wrapper">
-                  <div className="products">
-                    <div className="vertical-card">
-                      <div className="company-image">
-                        <div className="overlap-group">
-                          <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
-                          <Tag className="rank" style="focus" text="TAG" />
+                {RankingData.slice(1).map((item, index) => (
+                  <div className="products-wrapper" key={index}>
+                    <div className="products">
+                      <div className="vertical-card">
+                        <div className="company-image">
+                          <div className="overlap-group">
+                            <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
+                            <Tag className="rank" style="focus" text={index + 2} />
+                          </div>
                         </div>
-                      </div>
-                      <div className="company-info">
-                        <div className="title-2">
-                          <div className="company-2">기업명</div>
-                          <p className="price">
-                            <span className="span">23,000원 </span>
-                            <span className="text-wrapper-2">-2.5%</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="products-wrapper">
-                  <div className="products">
-                    <div className="vertical-card">
-                      <div className="company-image">
-                        <div className="overlap-group">
-                          <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
-                          <Tag className="rank" style="focus" text="TAG" />
-                        </div>
-                      </div>
-                      <div className="company-info">
-                        <div className="title-2">
-                          <div className="company-2">기업명</div>
-                          <p className="price">
-                            <span className="span">23,000원 </span>
-                            <span className="text-wrapper-2">-2.5%</span>
-                          </p>
+                        <div className="company-info">
+                          <div className="title-2">
+                            <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
+                            <p className="price">
+                              <span className={`stock-price ${item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
+                              <span className={`stock-change ${item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="products-wrapper">
-                  <div className="products">
-                    <div className="vertical-card">
-                      <div className="company-image">
-                        <div className="overlap-group">
-                          <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
-                          <Tag className="rank" style="focus" text="TAG" />
-                        </div>
-                      </div>
-                      <div className="company-info">
-                        <div className="title-2">
-                          <div className="company-2">기업명</div>
-                          <p className="price">
-                            <span className="span">23,000원 </span>
-                            <span className="text-wrapper-2">-2.5%</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </>
         )}
         {selectedTab === "section2" && (
-          <div className="hello-world">
-            <p>Hello World!</p>
+          <div className="ranking-content">
+          <div className="rankin-etc">
+            {RankingData.map((item, index) => (
+              <div className="products-wrapper" key={index}>
+                <div className="products">
+                  <div className="vertical-card">
+                    <div className="company-image">
+                      <div className="overlap-group">
+                        <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
+                        <Tag className="rank" style="focus" text={index + 1} />
+                      </div>
+                    </div>
+                    <div className="company-info">
+                      <div className="title-2">
+                        <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
+                        <p className="price">
+                          <span className={`stock-price ${item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
+                          <span className={`stock-change ${item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
           </div>
         )}
       </div>

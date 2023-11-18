@@ -9,6 +9,7 @@
     height: 1767px;
     position: relative;
     width: 600px;
+    padding-bottom: 300px;
   }
   
   .main .main-image {
@@ -174,7 +175,7 @@
     height: 1301px;
     left: 0;
     position: absolute;
-    top: 466px;
+    top: 520px;
     width: 600px;
   }
   
@@ -243,7 +244,7 @@
     left: 0 !important;
     position: absolute !important;
     top: 0 !important;
-    width: 168px !important;
+    padding: 0px;
   }
   
   .main .rank {
@@ -261,7 +262,6 @@
     gap: 16px;
     padding: 16px;
     position: relative;
-    width: 100%;
   }
   
   .main .title-2 {
@@ -278,11 +278,12 @@
   .main .company-2 {
     align-self: stretch;
     color: var(--neutraldarkdarkest);
-    font-family: "Inter", Helvetica;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.14px;
-    line-height: 16px;
+    font-family: var(--heading-h5-font-family);
+    font-size: 18px;
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
     margin-top: -1px;
     position: relative;
     text-align: center;
@@ -300,13 +301,52 @@
     text-align: center;
   }
   
-  .main .span {
-    color: #1b1546;
+  .main .stock-price-plus {
+    font-family: var(--heading-h5-font-family);
+    font-size: 18px;
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--supporterrordark);
   }
-  
-  .main .text-wrapper-2 {
-    color: #499ff7;
-    font-weight: 700;
+
+  .main .stock-price-minus {
+    font-family: var(--heading-h5-font-family);
+    font-size: 18px;
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--supportsuccessdark);
+  }
+
+  .main .stock-change-plus {
+    font-family: var(--heading-h5-font-family);
+    font-size: 14px;
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--supporterrordark);
+    background-color: var(--supporterrorlight);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+
+  .main .stock-change-minus {
+    font-family: var(--heading-h5-font-family);
+    font-size: 14px;
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--supportsuccessdark);
+    background-color: var(--supportsuccesslight);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
   }
   
   .main .rankin-etc {
