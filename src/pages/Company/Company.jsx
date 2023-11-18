@@ -59,6 +59,7 @@ export const Company = () => {
           noOfItems="three"
         />
       </div>
+      <div className="company-home-section" >
       <div className="company-detailinfo">
         <ListTitle className="list-title-instance" divClassName="list-title-2" rightControl="none" title="기업 정보" />
         <div className="infoCard">
@@ -102,7 +103,9 @@ export const Company = () => {
           <Graph></Graph>
         </div>
       </div>
-      <div className="talk-section">
+      </div>
+
+      <div className="talk-section" style={{ display: 'none' }}>
         <div className="chat-input-component">
           <div className="chat-input">
             <div className="message-input">
@@ -139,6 +142,7 @@ export const Company = () => {
           <ListTitle divClassName="list-title-2" rightControl="none" title="Talk" />
         </div>
       </div>
+      <div className="companyInfo-section" style={{ display: 'none' }}>
       <div className="news">
         <div className="news-list-component">
           <div className="news-bubble">
@@ -190,6 +194,8 @@ export const Company = () => {
             title="기업명의 최근 소식"
           />
         </div>
+      </div>
+
       </div>
 
       </div>

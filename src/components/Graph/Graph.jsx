@@ -7,13 +7,12 @@ import "./style.css";
 export const Graph = () => {
   return (
     <Chart
-      type="line"
+      type="area"
       series={[
-        { name: "Price", data: [1000, 2000, 3000] },
-        { name: "Price2", data: [1500, 1000, 2500] },
+        { name: "순위", data: [1, 3,2,5,10,20,1] },
       ]}
       options={{
-        theme: { mode: "dark" },
+        theme: { mode: "light" },
         chart: {
           height: 300,
           width: 500,
@@ -21,20 +20,36 @@ export const Graph = () => {
           background: "transparent",
         },
         stroke: { curve: "smooth", width: 4 },
-        grid: { show: false },
-        yaxis: { show: false },
-        xaxis: {
-          labels: { show: false },
-          axisTicks: { show: false },
-          axisBorder: { show: false },
-          categories: [1660004640, 1660091040, 1660177440],
-          type: "datetime",
+        markers: {size: 3,},
+        dataLabels: {
+          enabled: false
         },
+        yaxis: {
+          reversed: true, 
+        },
+        // grid: { show: false },
+        // yaxis: { show: false },
+        // xaxis: {
+        //   labels: { show: false },
+        //   axisTicks: { show: false },
+        //   axisBorder: { show: false },
+        //   categories: [1660004640, 1660091040, 1660177440],
+        //   type: "datetime",
+        // },
         fill: {
           type: "gradient",
-          gradient: { gradientToColors: ["blue"], stops: [0, 100] },
+          gradient: { 
+            shade: 'dark',
+            type: "vertical",
+            shadeIntensity: 0.5,
+            gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+            inverseColors: true,
+            opacityFrom: 0.9,
+            opacityTo: 0.5,
+            stops: [0, 50, 100],
+            colorStops: [] },
         },
-        colors: ["red"],
+        colors:['#A76BFF'],
         tooltip: {
           y: { formatter: (value) => `$ ${value.toFixed(2)}` },
         },
