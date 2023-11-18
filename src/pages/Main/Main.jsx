@@ -10,9 +10,10 @@ import { Image8 } from "../../icons/Image8";
 import "./style.css";
 import '../../styles/styleguide.css';
 
-export const Home = () => {
+
+export const Main = () => {
   return (
-    <div className="home">
+    <div className="main">
       <div className="div-2">
         <Image className="main-image" icon={<Image7 className="icon-instance-node" />} />
         <div className="home-message">
