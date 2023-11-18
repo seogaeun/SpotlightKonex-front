@@ -1,0 +1,570 @@
+@import url('./../../styles/styleguide.css');
+
+
+.company {
+  align-items: center;
+  background-color: var(--neutraldarkdarkest);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.div-2{
+  width: 600px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.company .nav-bar-instance {
+  background-color: var(--neutraldarkdarkest);
+  position:sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.company .design-component-instance-node {
+  color: var(--neutrallightlightest);
+  left: 148px;
+}
+
+.company .left-button-4 {
+  height: 20px;
+  left: 24px;
+  position: absolute;
+  top: 18px;
+  width: 20px;
+}
+
+.company .company-profile {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  padding: 28px 139px;
+  position: relative;
+  width: 90%;
+
+}
+
+.company .profile-img {
+  height: 95px;
+  position: relative;
+  width: 90px;
+}
+
+.company .overlap-group {
+  height: 100%;
+  position: relative;
+}
+
+.company .avatar-8 {
+  height: 80px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 80px;
+}
+
+.company .heart-filled {
+  position: absolute;
+  background-color: transparent;
+  left: 50px;
+  top: 60px;
+}
+
+.company .name {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  width:100%;
+}
+
+.company .text-wrapper-2 {
+  color: var(--neutrallightlightest);
+  font-family: var(--heading-h3-font-family);
+  font-size: var(--heading-h3-font-size);
+  font-style: var(--heading-h3-font-style);
+  font-weight: var(--heading-h3-font-weight);
+  letter-spacing: var(--heading-h3-letter-spacing);
+  line-height: var(--heading-h3-line-height);
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.company .text-wrapper-3 {
+  color: var(--neutrallightdark);
+  font-family: "Inter", Helvetica;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12px;
+  line-height: 16px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.company .tab {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  height: 50px;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+  position:sticky;
+  top: 5%;
+  z-index: 1;
+  width: 100%;
+  background-color: var(--neutraldarkdarkest);
+}
+
+.company .content-switcher-2 {
+  background-color: unset;
+  width: 70%;
+}
+
+.company .design-component-instance-node-2 {
+  color: var(--neutrallightlightest);
+}
+
+.company .content-switcher-3 {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--highlightlight);
+  border-radius: unset;
+  flex: 1;
+  flex-grow: 1;
+  z-company: 4;
+}
+
+.company .content-switcher-4 {
+  color: var(--neutrallightdark);
+  margin-top: -0.7px;
+}
+
+.company .content-switcher-5 {
+  border-bottom-style: solid;
+  border-bottom-width: 0.7px;
+  border-color: var(--neutraldarkdark);
+  border-radius: unset;
+  flex: 1;
+  flex-grow: 1;
+  z-company: 2;
+}
+
+.company .content-switcher-6 {
+  background-color: unset;
+  border-bottom-style: solid;
+  border-bottom-width: 0.7px;
+  border-color: var(--neutraldarkdark);
+  border-radius: unset;
+  flex: 1;
+  flex-grow: 1;
+  z-company: 0;
+}
+
+.company .company-detailinfo {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 22px;
+  position: relative;
+  width: 375px;
+}
+
+.company .list-title-instance {
+  flex: 0 0 auto;
+}
+
+.company .list-title-2 {
+  color: var(--neutrallightlightest);
+  flex: unset;
+  width: 295px;
+}
+
+.company .infoCard {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 197px;
+  position: relative;
+  width: 311px;
+}
+
+.company .list-item {
+  align-items: center;
+  background-color: var(--neutraldarkmedium);
+  border-radius: 12px;
+  display: flex;
+  gap: 16px;
+  height: 197px;
+  padding: 16px;
+  position: relative;
+  width: 311px;
+}
+
+.company .content-2 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4px;
+  position: relative;
+}
+
+.company .p {
+  align-self: stretch;
+  color: transparent;
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.company .span {
+  color: #f7f8fd;
+}
+
+.company .text-wrapper-4 {
+  color: #c5c6cc;
+}
+
+.company .rank-graph {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 10px 22px;
+  position: relative;
+  width: 375px;
+}
+
+.company .image-wrapper {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 156px;
+  position: relative;
+}
+
+.company .image {
+  height: 146px;
+  object-fit: cover;
+  position: relative;
+  width: 309px;
+}
+
+.company .talk-section {
+  height: 474px;
+  position: relative;
+  width: 375px;
+}
+
+.company .chat-input-component {
+  height: 72px;
+  left: 0;
+  position: absolute;
+  top: 392px;
+  width: 375px;
+}
+
+.company .chat-input {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+  width: 375px;
+}
+
+.company .message-input {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+  position: relative;
+  width: 100%;
+}
+
+.company .text-input {
+  align-items: center;
+  background-color: var(--neutraldarkdark);
+  border-radius: 71px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 12px;
+  height: 40px;
+  overflow: hidden;
+  padding: 8px 16px;
+  position: relative;
+}
+
+.company .text {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 1px;
+  position: relative;
+}
+
+.company .placeholder {
+  color: var(--neutrallightdarkest);
+  font-family: var(--body-body-m-font-family);
+  font-size: var(--body-body-m-font-size);
+  font-style: var(--body-body-m-font-style);
+  font-weight: var(--body-body-m-font-weight);
+  letter-spacing: var(--body-body-m-letter-spacing);
+  line-height: var(--body-body-m-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.company .icon-wrapper {
+  align-items: center;
+  background-color: var(--highlightbackground);
+  border-radius: 38px;
+  display: flex;
+  gap: 8px;
+  height: 32px;
+  justify-content: center;
+  margin-bottom: -4px;
+  margin-top: -4px;
+  overflow: hidden;
+  padding: 13px 35px;
+  position: relative;
+  width: 32px;
+}
+
+.company .icon-2 {
+  height: 12px;
+  margin-bottom: -3px;
+  margin-left: -25px;
+  margin-right: -25px;
+  margin-top: -3px;
+  position: relative;
+  width: 12px;
+}
+
+.company .chat-bubble-section {
+  height: 346px;
+  left: 0;
+  position: absolute;
+  top: 46px;
+  width: 375px;
+}
+
+.company .message-bubble {
+  align-items: flex-start;
+  background-color: var(--neutraldarkmedium);
+  border-radius: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  left: 24px;
+  padding: 12px 16px;
+  position: absolute;
+  top: 178px;
+}
+
+.company .name-2 {
+  align-self: stretch;
+  color: var(--neutraldarklight);
+  font-family: var(--heading-h5-font-family);
+  font-size: var(--heading-h5-font-size);
+  font-style: var(--heading-h5-font-style);
+  font-weight: var(--heading-h5-font-weight);
+  letter-spacing: var(--heading-h5-letter-spacing);
+  line-height: var(--heading-h5-line-height);
+  margin-top: -1px;
+  position: relative;
+}
+
+.company .message {
+  color: var(--neutrallightlightest);
+  font-family: var(--body-body-m-font-family);
+  font-size: var(--body-body-m-font-size);
+  font-style: var(--body-body-m-font-style);
+  font-weight: var(--body-body-m-font-weight);
+  letter-spacing: var(--body-body-m-letter-spacing);
+  line-height: var(--body-body-m-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.company .message-bubble-2 {
+  align-items: flex-start;
+  background-color: var(--neutraldarkmedium);
+  border-radius: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  left: 24px;
+  padding: 12px 16px;
+  position: absolute;
+  top: 262px;
+}
+
+.company .office-message {
+  align-items: flex-start;
+  background-color: var(--highlightbackground);
+  border-radius: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  left: 143px;
+  padding: 12px 16px;
+  position: absolute;
+  top: 94px;
+}
+
+.company .name-3 {
+  color: var(--neutrallightlightest);
+  font-family: var(--heading-h5-font-family);
+  font-size: var(--heading-h5-font-size);
+  font-style: var(--heading-h5-font-style);
+  font-weight: var(--heading-h5-font-weight);
+  letter-spacing: var(--heading-h5-letter-spacing);
+  line-height: var(--heading-h5-line-height);
+  margin-top: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.company .message-bubble-3 {
+  align-items: flex-start;
+  background-color: var(--neutraldarkmedium);
+  border-radius: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  left: 24px;
+  padding: 12px 16px;
+  position: absolute;
+  top: 10px;
+}
+
+.company .talk-title {
+  height: 33px;
+  left: 22px;
+  position: absolute;
+  top: 10px;
+  width: 327px;
+}
+
+.company .news {
+  height: 537px;
+  position: relative;
+  width: 375px;
+}
+
+.company .news-list-component {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  left: 32px;
+  position: absolute;
+  top: 53px;
+}
+
+.company .news-bubble {
+  align-items: flex-start;
+  background-color: var(--neutraldarkmedium);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 81px;
+  padding: 12px 16px;
+  position: relative;
+  width: 311px;
+}
+
+.company .name-4 {
+  align-self: stretch;
+  color: var(--neutrallightdarkest);
+  font-family: "Inter", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.company .message-2 {
+  color: var(--neutrallightlightest);
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-bottom: -1px;
+  position: relative;
+  width: fit-content;
+}
+
+.company .text-wrapper-5 {
+  font-weight: 700;
+}
+
+.company .text-wrapper-6 {
+  color: #ffffff;
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+}
+
+.company .news-title {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  left: 0;
+  padding: 5px 24px;
+  position: absolute;
+  top: 0;
+}
+
+.company .accordion-instance {
+  left: 225px;
+  position: absolute;
+  top: 511px;
+  width: 300px;
+}
+
+.company .accordion-2 {
+  background-color: transparent;
+}
