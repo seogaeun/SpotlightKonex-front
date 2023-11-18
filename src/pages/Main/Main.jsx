@@ -15,7 +15,9 @@ import '../../styles/styleguide.css';
 
 export const Main = () => {
   const [selectedTab, setSelectedTab] = useState("section1"); // 초기 탭 "Home"
-  const [selectedSection, setSelectedSection] = useState("section1"); // 초기 탭 "거래대금"
+  const [selectedSection, setSelectedSection] = useState("거래대금"); // 초기 탭 "거래대금"
+  const [selectedType, setSelectedType] = useState("종목"); // 초기 탭 "종목"
+  const [selectedTheme, setSelectedTheme] = useState("금속 및 화학 제조업"); // 초기 탭 "금속 및 화학 제조업"
   const [RankingData, setRankingData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const firstData = RankingData[0];
@@ -96,9 +98,20 @@ export const Main = () => {
     // fetchData(section);
   };
 
+  const handleTypeChange = (type) => {
+    setSelectedType(type);
+    // setIsLoading(true);
+    // fetchData(section);
+  };
+
+  const handleThemeChange = (theme) => {
+    setSelectedTheme(theme);
+    // setIsLoading(true);
+    // fetchData(section);
+  };
+
   useEffect(() => {
     setRankingData(dummyRankingData);
-    console.log("ho");
   }, []);
 
   // useEffect(() => {
@@ -170,7 +183,7 @@ export const Main = () => {
         {selectedTab === "section1" && (
           <>
             <div className="ranking-tab">
-              <Toggle section1Text="거래대금" section2Text="좋아요수" section3Text="조회수" onTabChange={handleSectionChange} />
+              <Toggle tabNames={['거래대금', '좋아요수', '조회수']} onTabChange={(handleSectionChange)} />
             </div>
             <div className="ranking-content">
               <div className="rankin">
@@ -187,8 +200,8 @@ export const Main = () => {
                         <div className="title-2">
                           <div className="company-2"> {firstData && firstData.corp_name ? firstData.corp_name : "로딩 중..."}</div>
                           <p className="price">
-                            <span className={`stock-price ${firstData.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{firstData ? addCommasToNumber(firstData.price) : "로딩 중..."}원</span>
-                            <span className={`stock-change ${firstData.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{firstData ? `${firstData.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                            <span className={`stock-price ${firstData && firstData.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{firstData ? addCommasToNumber(firstData.price) : "로딩 중..."}원</span>
+                            <span className={`stock-change ${firstData && firstData.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{firstData ? `${firstData.cmpprevdd_prc}%` : "로딩 중..."}</span>
                           </p>
                         </div>
                       </div>
@@ -211,8 +224,8 @@ export const Main = () => {
                           <div className="title-2">
                             <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
                             <p className="price">
-                              <span className={`stock-price ${item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
-                              <span className={`stock-change ${item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                              <span className={`stock-price ${item && item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
+                              <span className={`stock-change ${item && item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
                             </p>
                           </div>
                         </div>
@@ -224,10 +237,11 @@ export const Main = () => {
             </div>
           </>
         )}
+        
         {selectedTab === "section2" && (
           <div className="ranking-content">
           <div className="rankin-etc">
-            {RankingData.map((item, index) => (
+          {RankingData.map((item, index) => (
               <div className="products-wrapper" key={index}>
                 <div className="products">
                   <div className="vertical-card">
@@ -241,8 +255,8 @@ export const Main = () => {
                       <div className="title-2">
                         <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
                         <p className="price">
-                          <span className={`stock-price ${item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
-                          <span className={`stock-change ${item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                          <span className={`stock-price ${item && item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
+                          <span className={`stock-change ${item && item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
                         </p>
                       </div>
                     </div>
@@ -253,6 +267,101 @@ export const Main = () => {
           </div>
           </div>
         )}
+
+        {selectedTab === "section3" && (
+          <div className="search-content">
+            <div className="search-type">
+              <Toggle tabNames={['종목', '테마']} onTabChange={handleTypeChange} />
+            </div>
+            {selectedType === "종목" && (
+              <div className="brand-search">
+                <ListTitle
+                  className="home-copyright"
+                  divClassName="design-component-instance-node"
+                  rightControl="none"
+                  title="원하는 기업을 찾아보세요"
+                />
+                <input type="text" />
+                <div className="result-content"></div>
+              </div>
+            )}
+            {selectedType === "테마" && (
+              <div className="theme-search">
+                <ListTitle
+                  className="home-copyright"
+                  divClassName="design-component-instance-node"
+                  rightControl="none"
+                  title="테마별 기업을 살펴보세요"
+                />
+                <div className="theme-content">
+                  <Toggle tabNames={['금속 및 화학 제조업', '식품 및 섬유 제조업', '전자제품 및 기타 제조업', '도매업', '서비스업', '건설 및 공사업', '금융업', '전기 및 전자 관련업']} onTabChange={handleThemeChange} />
+                    <div className="theme-company">
+                    {RankingData.map((item, index) => (
+                        <div className="products-wrapper" key={index}>
+                          <div className="products">
+                            <div className="vertical-card">
+                              <div className="company-image">
+                                <div className="overlap-group">
+                                  <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
+                                  <Tag className="rank" style="focus" text={index + 1} />
+                                </div>
+                              </div>
+                              <div className="company-info">
+                                <div className="title-2">
+                                  <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
+                                  <p className="price">
+                                    <span className={`stock-price ${item && item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
+                                    <span className={`stock-change ${item && item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                </div>
+                <ListTitle
+                  className="home-copyright"
+                  divClassName="design-component-instance-node"
+                  rightControl="none"
+                  title="증권사별 PICK"
+                />
+                <div className="pick-content">
+                  <Toggle tabNames={['유진투자증권', '신한투자증권', '하이투자증권', 'IBK투자증권', '미래에셋증권', 'SK증권', '상상인증권', '한화투자증권', '대신증권', '키움증권', '하나증권', 'NH투자증권', '현대차증권', '교보증권', 'BNK투자증권', '신영증권', 'DB금융투자', '한국투자증권', 'KB증권', '한양증권', '유안타증권', '기타']} onTabChange={handleThemeChange} />
+                    <div className="pick-company">
+                    {RankingData.map((item, index) => (
+                        <div className="products-wrapper" key={index}>
+                          <div className="products">
+                            <div className="vertical-card">
+                              <div className="company-image">
+                                <div className="overlap-group">
+                                  <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
+                                  <Tag className="rank" style="focus" text={index + 1} />
+                                </div>
+                              </div>
+                              <div className="company-info">
+                                <div className="title-2">
+                                  <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
+                                  <p className="price">
+                                    <span className={`stock-price ${item && item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
+                                    <span className={`stock-change ${item && item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                </div>
+                <div></div>
+              </div>
+              
+            )}
+          </div>
+        )}
+
       </div>
     </div>
   );

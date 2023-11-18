@@ -373,10 +373,81 @@
     width: 168px;
   }
 
+  .main .search-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px 8px;
+    justify-content: center;
+    position: absolute;
+    top: 500px;
+    width: 600px;
+  }
+
   .main .hello-world {
     background-color: red;
     position:absolute;
     top: 500px;
   }
+
+  .main .theme-content {
+    display: flex;
+    width: 600px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .main .theme-content .tab-switch {
+    width: 160px;
+    flex-direction: column;
+    margin: 0px;
+  }
+
+  .main .pick-content .tab-switch {
+    align-items: center;
+    background-color: var(--highlightlightest);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    position: relative;
+    width: 600px;
+    margin-bottom: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .main .pick-content .tab-btn {
+    width: 120px;
+    flex:none !important;
+    flex-grow: unset !important;
+  }
   
+  .main .pick-content .active {
+    font-size: 14px
+  }
+
+  .main .pick-content .tab-btn {
+    font-size: 14px
+  }
+
+  .main .theme-content .active {
+    font-size: 14px
+  }
+
+  .main .theme-content .tab-btn {
+    font-size: 14px
+  }
+
+  .main .theme-company{
+    width: 420px;
+    display: flex;
+    overflow-y: scroll;
+  }
+
+  .main .pick-company{
+    width: 600px;
+    display: flex;
+    overflow-y: scroll;
+  }
   
