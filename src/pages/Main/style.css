@@ -31,13 +31,12 @@
     display: flex;
     gap: 10px;
     justify-content: center;
-    padding: 16px;
     position: absolute;
     top: 200px;
     width: 600px;
   }
   
-  .main .main-copyright {
+  .main .home-copyright {
     flex: 1 !important;
     flex-grow: 1 !important;
     width: unset !important;
@@ -51,7 +50,8 @@
     background-color: var(--neutraldarkmedium) !important;
     display: flex !important;
     height: 23px !important;
-    width: 106px !important;
+    width: 150px !important;
+    padding: 20px;
   }
   
   .main .button-primary-instance {
@@ -72,7 +72,6 @@
     gap: 10px;
     height: 100px;
     justify-content: center;
-    padding: 16px;
     position: absolute;
     top: 265px;
     width: 600px;
@@ -82,7 +81,7 @@
     justify-content: center;
     align-self: stretch !important;
     background-color: #11052e !important;
-    width: 339px !important;
+    width: 600px !important;
   }
   
   .main .horizontal-card-instance {
@@ -100,9 +99,8 @@
     gap: 10px;
     height: 50px;
     justify-content: center;
-    padding: 16px;
     position: absolute;
-    top: 365px;
+    top: 400px;
     width: 600px;
   }
   
@@ -155,47 +153,17 @@
     gap: 10px;
     height: 50px;
     justify-content: center;
-    left: 0;
-    padding: 16px;
     position: absolute;
-    top: 416px;
+    top: 470px;
     width: 600px;
   }
   
-  .main .section-tab {
+  .main .chips {
     align-items: center;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
     justify-content: center;
-    margin-bottom: -3px;
-    margin-top: -3px;
-    position: relative;
-    width: 200px;
-  }
-  
-  .main .chips {
-    height: 24px;
-    position: relative;
-    width: 183px;
-  }
-  
-  .main .tag-instance {
-    left: 65px !important;
-    position: absolute !important;
-    top: 0 !important;
-  }
-  
-  .main .tag-2 {
-    left: 130px !important;
-    position: absolute !important;
-    top: 0 !important;
-  }
-  
-  .main .tag-3 {
-    left: 0 !important;
-    position: absolute !important;
-    top: 0 !important;
+    gap: 16px;
+    width: 400px;
   }
   
   .main .ranking-content {
@@ -205,7 +173,6 @@
     gap: 10px;
     height: 1301px;
     left: 0;
-    padding: 16px;
     position: absolute;
     top: 466px;
     width: 600px;
@@ -220,7 +187,6 @@
     justify-content: center;
     margin-left: -16px;
     margin-right: -16px;
-    padding: 16px;
     position: relative;
   }
   
@@ -366,4 +332,11 @@
     position: relative;
     width: 168px;
   }
+
+  .main .hello-world {
+    background-color: red;
+    position:absolute;
+    top: 500px;
+  }
+  
   

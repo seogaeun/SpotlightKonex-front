@@ -25,6 +25,7 @@ export const NoOfItemsWrapper = ({
   contentSwitcherTitle2 = "Section 3",
   contentSwitcherSelectedFalseClassName,
 }) => {
+
   return (
     <div className={`no-of-items-wrapper ${className}`}>
       {["four", "two"].includes(noOfItems) && (
