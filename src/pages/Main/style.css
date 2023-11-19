@@ -445,9 +445,19 @@
     overflow-y: scroll;
   }
 
+  .main .theme-company .products-wrapper{
+    margin-right: 8px;
+  }
+
   .main .pick-company{
     width: 600px;
     display: flex;
     overflow-y: scroll;
   }
+
+  .main .pick-company .products-wrapper{
+    margin-right: 8px;
+  }
+
+  
   
