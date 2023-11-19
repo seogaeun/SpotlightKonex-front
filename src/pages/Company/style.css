@@ -197,7 +197,6 @@
 .company .list-title-2 {
   color: var(--neutrallightlightest);
   flex: unset;
-  width: 295px;
 }
 
 .company .infoCard {
@@ -463,6 +462,7 @@
 }
 
 .company .message-bubble-3 {
+
   align-items: flex-start;
   background-color: var(--neutraldarkmedium);
   border-radius: 20px;
@@ -476,12 +476,26 @@
 }
 
 .company .talk-title {
-  height: 33px;
-  left: 22px;
-  position: absolute;
-  top: 10px;
-  width: 327px;
+  height: 80px;
+  width: 100%;
+  margin: 10px;
 }
+
+.talk-title .checkBox{
+  color: var(--neutrallightlightest);
+  font-family: var(--heading-h5-font-family);
+  font-style: var(--heading-h5-font-style);
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.checkBox .checkLabel{
+  background-color: var(--neutraldarkmedium);
+  border-radius: 20px;
+  padding:5px;
+}
+
 
 .company .news {
   height: 537px;

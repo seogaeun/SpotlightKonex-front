@@ -1,0 +1,143 @@
+.MessageList {
+    width: 100%;
+    max-height: 346px;
+    border-radius: 10px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  
+  /*작성자가 고객일 경우*/
+
+  /* .MessageList .messageBubble {
+    width: 100%;
+    background-color: blue;
+    display: flex; 
+  }
+  
+  .messageBubble .bubbleContent {
+    width: 200px;
+    margin: 15px;
+    align-items: flex-start;
+    background-color: var(--neutraldarkmedium);
+    border-radius: 15px;
+    flex-direction: column;
+    gap: 4px;
+    left: 24px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    white-space: normal; 
+  } 
+  
+  
+  
+    
+  .bubbleContent .userName {
+    color: var(--neutraldarklight);
+    font-family: var(--heading-h5-font-family);
+    font-size: var(--heading-h5-font-size);
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    margin-top: -1px;
+    position: relative;
+  }
+  
+  .bubbleContent .bubbleText {
+    color: var(--neutrallightlightest);
+    font-family: var(--body-body-m-font-family);
+    font-size: var(--body-body-m-font-size);
+    font-style: var(--body-body-m-font-style);
+    font-weight: var(--body-body-m-font-weight);
+    letter-spacing: var(--body-body-m-letter-spacing);
+    line-height: var(--body-body-m-line-height);
+    position: relative;
+  }
+  
+  
+  
+  
+  
+  */
+
+
+/*작성자가 회사일 경우*/
+
+.MessageList .messageBubble {
+    max-width: 100%;
+    display: flex; 
+    justify-content: flex-end;
+  }
+
+.messageBubble .bubbleContent {
+    width: 200px;
+    margin: 15px;
+    align-items: flex-end;
+    background-color: var(--highlightbackground);
+    border-radius: 15px;
+    flex-direction: column;
+    gap: 4px;
+    left: 24px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    white-space: normal; 
+  }
+
+
+  
+  .bubbleContent .userName {
+    color: var(--neutrallightlightest);
+    font-family: var(--heading-h5-font-family);
+    font-size: var(--heading-h5-font-size);
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    margin-bottom: 10px;
+    position: relative;
+    text-align: right;
+  }
+  
+  
+  .bubbleContent .bubbleText {
+    color: var(--neutrallightlightest);
+    font-family: var(--body-body-m-font-family);
+    font-size: var(--body-body-m-font-size);
+    font-style: var(--body-body-m-font-style);
+    font-weight: var(--body-body-m-font-weight);
+    letter-spacing: var(--body-body-m-letter-spacing);
+    line-height: var(--body-body-m-line-height);
+    position: relative;
+    text-align: right;
+
+  }
+  
+
+
+
+
+/*  */
+
+
+
+  /* style.css */
+
+/* 기본 스크롤바를 숨김 */
+.MessageList::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+
+  /* 스크롤바의 드래그 핸들 디자인 및 색상 설정 */
+.MessageList::-webkit-scrollbar-thumb {
+    background-color: var(--neutraldarklight);
+    border-radius: 6px;    
+
+    
+  }
+  
+  
+  
+  
+  

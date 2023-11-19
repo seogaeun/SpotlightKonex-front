@@ -10,6 +10,7 @@ import { LeftButton4 } from "../../icons/LeftButton4";
 import { Graph } from "../../components/Graph";
 import { Tab } from "../../components/Tab/Tab";
 import { InfoCard } from "../../components/InfoCard";
+import { ChatBox } from "../../components/ChatBox";
 
 import "./style.css";
 
@@ -44,6 +45,12 @@ export const Company = () => {
     { x: new Date("2023-11-24").getTime(), y: 20 },
     { x: new Date("2023-11-25").getTime(), y: 1 },
   ];
+
+  const [showCompanyAnswers, setShowCompanyAnswers] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setShowCompanyAnswers(!showCompanyAnswers);
+  };
 
   return (
     <div className="company">
@@ -105,45 +112,25 @@ export const Company = () => {
 
         {selectedTab === "section2" && (
           <div className="talk-section">
-            <div className="chat-input-component">
-              <div className="chat-input">
-                <div className="message-input">
-                  <div className="text-input">
-                    <div className="text">
-                      <div className="placeholder">메세지를 입력하세요.</div>
-                    </div>
-                    <div className="icon-wrapper">
-                      <Icon2 className="icon-2" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="chat-bubble-section">
-              <div className="message-bubble">
-                <div className="name-2">가명</div>
-                <div className="message">응원합니다~</div>
-              </div>
-              <div className="message-bubble-2">
-                <div className="name-2">가명</div>
-                <div className="message">안녕하세요~~</div>
-              </div>
-              <div className="office-message">
-                <div className="name-3">기업담당자</div>
-                <div className="message">확인해보고 답변드리겠습니다.</div>
-              </div>
-              <div className="message-bubble-3">
-                <div className="name-2">가명</div>
-                <div className="message">A써밋에 해당 기업도 참여하나요?</div>
-              </div>
-            </div>
             <div className="talk-title">
               <ListTitle
                 divClassName="list-title-2"
                 rightControl="none"
                 title="Talk"
               />
+              <div className="checkBox">
+                <label className="checkLabel">
+                  <input
+                    className="checkInput"
+                    type="checkbox"
+                    checked={showCompanyAnswers}
+                    onChange={handleCheckboxChange}
+                  />
+                  기업 답변만 보기
+                </label>
+              </div>
             </div>
+            <ChatBox />
           </div>
         )}
 

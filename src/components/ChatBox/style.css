@@ -1,0 +1,11 @@
+@import url('./../../styles/styleguide.css');
+
+.ChatBox{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+
+}
