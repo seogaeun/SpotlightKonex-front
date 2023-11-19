@@ -9,6 +9,7 @@ import { Icon2 } from "../../icons/Icon2";
 import { LeftButton4 } from "../../icons/LeftButton4";
 import { Graph } from "../../components/Graph";
 import { Tab } from "../../components/Tab/Tab";
+import { InfoCard } from "../../components/InfoCard";
 
 import "./style.css";
 
@@ -23,6 +24,26 @@ export const Company = () => {
     console.log(tab); // 콘솔에 선택된 탭 출력
     setSelectedTab(tab);
   };
+
+  const companyData = {
+    name: "가상기업",
+    industry: "IT 및 소프트웨어",
+    establishmentDate: "2000-01-01",
+    listingDate: "2005-05-05",
+    capital: "10억 원",
+    address: "가상시 가상구 가상동 123번지",
+    website: "http://www.virtualcompany.com",
+  };
+
+  const companyLinkdata = [
+    { x: new Date("2023-11-19").getTime(), y: 1 },
+    { x: new Date("2023-11-20").getTime(), y: 3 },
+    { x: new Date("2023-11-21").getTime(), y: 2 },
+    { x: new Date("2023-11-22").getTime(), y: 5 },
+    { x: new Date("2023-11-23").getTime(), y: 10 },
+    { x: new Date("2023-11-24").getTime(), y: 20 },
+    { x: new Date("2023-11-25").getTime(), y: 1 },
+  ];
 
   return (
     <div className="company">
@@ -65,38 +86,7 @@ export const Company = () => {
                 title="기업 정보"
               />
               <div className="infoCard">
-                <div className="list-item">
-                  <div className="content-2">
-                    <p className="p">
-                      <span className="span">한글명: </span>
-                      <span className="text-wrapper-4">
-                        기업이름
-                        <br />
-                      </span>
-                      <span className="span">업종: </span>
-                      <span className="text-wrapper-4">
-                        업종
-                        <br />
-                      </span>
-                      <span className="span">주요제품: </span>
-                      <span className="text-wrapper-4">
-                        주요제품, 주요제품, 주요제품
-                        <br />
-                      </span>
-                      <span className="span">
-                        설립일
-                        <br />
-                        상장일
-                        <br />
-                        자본금
-                        <br />
-                        주소
-                        <br />
-                        홈페이지
-                      </span>
-                    </p>
-                  </div>
-                </div>
+                <InfoCard info={companyData} />
               </div>
             </div>
             <div className="rank-graph">
@@ -107,7 +97,7 @@ export const Company = () => {
                 title="순위 변동"
               />
               <div className="image-wrapper">
-                <Graph></Graph>
+                <Graph dataList={companyLinkdata} />
               </div>
             </div>
           </div>
