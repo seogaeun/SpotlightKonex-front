@@ -355,6 +355,36 @@ const clickSearch = async () => {
                 <div className="result-content"></div>
               </div>
             )}
+            {isLoaded && (
+            <div className="data-display">
+                {searchResults.length > 0 ? (
+                searchResults.map((item, index) => (
+                  <div className="products-wrapper" key={index}>
+                  <div className="products">
+                    <div className="vertical-card">
+                      <div className="company-image">
+                        <div className="overlap-group">
+                          <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
+                        </div>
+                      </div>
+                      <div className="company-info">
+                        <div className="title-2">
+                          <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
+                          <p className="price">
+                            <span className={`stock-price ${item && item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
+                            <span className={`stock-change ${item && item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>           
+                ))
+                ) : (
+                <p className="error-message">{searchError}</p>
+                )}
+              </div>
+            )}
             {selectedType === "테마" && (
               <div className="theme-search">
                 <ListTitle
