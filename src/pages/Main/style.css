@@ -459,5 +459,17 @@
     margin-right: 8px;
   }
 
+  .main .search-input {
+    width: 350px;
+    padding: 20px 10px 20px 10px;
+    border-radius: 12px;
+    font-family: var(--heading-h5-font-family);
+    font-size: 18px;
+    font-style: var(--heading-h5-font-style);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--neutraldarkmedium);
+    margin-bottom: 18px;
+  }
   
   

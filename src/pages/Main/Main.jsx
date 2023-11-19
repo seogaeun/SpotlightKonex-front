@@ -9,6 +9,7 @@ import { Tab } from "../../components/Tab/Tab";
 import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "./style.css";
 import '../../styles/styleguide.css';
 
@@ -18,8 +19,15 @@ export const Main = () => {
   const [selectedSection, setSelectedSection] = useState("거래대금"); // 초기 탭 "거래대금"
   const [selectedType, setSelectedType] = useState("종목"); // 초기 탭 "종목"
   const [selectedTheme, setSelectedTheme] = useState("금속 및 화학 제조업"); // 초기 탭 "금속 및 화학 제조업"
+  
+  const [stockname, setStockName] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [searchError, setSearchError] = useState(null);
+
   const [RankingData, setRankingData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   const firstData = RankingData[0];
 
   const dummyRankingData = [
@@ -110,9 +118,33 @@ export const Main = () => {
     // fetchData(section);
   };
 
+  const handleSearch = async () => {
+    console.log(stockname)
+    if (stockname === "") {
+        setSearchError("종목명을 입력해주세요");
+        setSearchResults([]);
+        setIsLoaded(false);
+        Swal.fire({
+            text: "종목명을 입력해주세요",
+            icon: "error",
+            timer: 2000,
+          });
+    } else {
+        fetchBrandData(stockname);
+    }
+};
+
+const clickSearch = async () => {
+  handleSearch();
+};
+
   useEffect(() => {
     setRankingData(dummyRankingData);
   }, []);
+
+  useEffect(() => {
+    fetchBrandData(stockname);
+    }, [stockname]);
 
   // useEffect(() => {
   //   setIsLoading(true);
@@ -138,19 +170,45 @@ export const Main = () => {
       let rankingData;
       if (selectedSection === "section1") {
         const response = await axios.get(`${window.API_BASE_URL}/main/top/amount`);
-        rankingData = response.data.payload.trading_volumes;
+        rankingData = response.data.payload.konexList;
       } else if (selectedSection === "section2") {
         const response = await axios.get(`${window.API_BASE_URL}/main/top/like`);
-        rankingData = response.data.payload.popularStocks;
+        rankingData = response.data.payload.konexList;
       } else if (selectedSection === "section3") {
         const response = await axios.get(`${window.API_BASE_URL}/main/top/views`);
-        rankingData = response.data.payload.popularStocks;
+        rankingData = response.data.payload.konexList;
       }
       setRankingData(rankingData);
     } catch (error) {
       console.error("API 요청 실패:", error);
     }
   };
+
+  // brand-search
+  const fetchBrandData = async (stockname) => {
+    if (stockname.trim() === "") {
+        setSearchResults([]);
+        setIsLoaded(true);
+        setSearchError("종목코드나 종목명을 입력해주세요");
+    } else {
+        try {
+            const response = await axios.get(
+                `${window.API_BASE_URL}/find/keyword/${stockname}`
+            );
+            const brandData = response.data.payload.konexList;
+            setSearchResults(brandData);
+            setIsLoaded(true);
+            setSearchError(null);
+            console.log(stockname);
+            console.log(brandData);
+        } catch (error) {
+            console.error("API 요청 실패:", error);
+            setSearchResults([]);
+            setIsLoaded(true);
+            setSearchError("검색 결과가 없습니다.");
+        }
+    }
+};
 
   return (
     <div className="main">
@@ -281,7 +339,19 @@ export const Main = () => {
                   rightControl="none"
                   title="원하는 기업을 찾아보세요"
                 />
-                <input type="text" />
+                <input
+                            className="search-input"
+                            type="text"
+                            name="stockname"
+                            value={stockname}
+                            placeholder="종목코드나 종목명을 입력해주세요."
+                            onChange={(e) => setStockName(e.target.value)}
+                            onKeyPress={(e) => {
+                              if (e.key === "Enter") {
+                                handleSearch();
+                              }
+                            }}
+                        />
                 <div className="result-content"></div>
               </div>
             )}
