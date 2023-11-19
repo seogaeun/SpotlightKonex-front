@@ -26,6 +26,7 @@
   position:sticky;
   top: 0;
   z-index: 10;
+  padding-bottom: 10px;
 }
 
 .company .design-component-instance-node {
@@ -119,19 +120,18 @@
 }
 
 .company .tab {
-  align-items: flex-end;
   display: flex;
   gap: 10px;
   height: 50px;
   justify-content: center;
-  padding: 16px;
-  position: relative;
-  position:sticky;
-  top: 5%;
+  padding: 10px;
+  position: sticky;
+  top: 50px; /* 고정되는 위치를 화면 상단으로 설정 */
   z-index: 1;
   width: 100%;
-
+  background-color: var(--neutraldarkdarkest);
 }
+
 
 .company .content-switcher-2 {
   background-color: unset;
