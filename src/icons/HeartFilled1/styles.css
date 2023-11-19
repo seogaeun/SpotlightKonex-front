@@ -1,0 +1,47 @@
+/* HeartFilled1.css */
+
+.heart-filled-1-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .heart-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .count {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* .heart-filled-1-button:active::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: radial-gradient(circle at 20% 50%, transparent 8%, white 10%, white 14%, transparent 16%, transparent),
+                radial-gradient(circle at 80% 50%, transparent 8%, white 10%, white 14%, transparent 16%, transparent);
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    animation: neon-border 0.3s ease-out forwards;
+  } */
+  
+  
+  .heart-filled-1 {
+    fill: #542ba8; /* Your heart color */
+  }
