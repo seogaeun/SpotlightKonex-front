@@ -1,29 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { ArrowDownWrapper } from "../../components/ArrowDownWrapper";
-import { ListTitle } from "../../components/ListTitle";
+// Company.js
+
+import React, { useState } from "react";
+import { LeftButton4 } from "../../icons/LeftButton4";
 import { NavBar } from "../../components/NavBar";
-import { NoOfItemsWrapper } from "../../components/NoOfItemsWrapper";
 import { Avatar8 } from "../../icons/Avatar8";
 import { HeartFilled1 } from "../../icons/HeartFilled1";
-import { Icon2 } from "../../icons/Icon2";
-import { LeftButton4 } from "../../icons/LeftButton4";
-import { Graph } from "../../components/Graph";
 import { Tab } from "../../components/Tab/Tab";
+import { ListTitle } from "../../components/ListTitle";
 import { InfoCard } from "../../components/InfoCard";
+import { Graph } from "../../components/Graph";
 import { ChatBox } from "../../components/ChatBox";
-
+import { NewsCard } from "../../components/NewsCard/NewsCard";
+import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
 import "./style.css";
 
-const backClick = () => {
-  console.log("back");
-};
-
 export const Company = () => {
-  const [selectedTab, setSelectedTab] = useState("section1"); // 초기 탭 "Home"
+  const [selectedTab, setSelectedTab] = useState("section1");
+  const [showCompanyAnswers, setShowCompanyAnswers] = useState(false);
 
   const handleTabChange = (tab) => {
-    console.log(tab); // 콘솔에 선택된 탭 출력
     setSelectedTab(tab);
+  };
+
+  const toggleContent = {
+    title: "우리 기업을 소개합니다~~ㅎㅎ",
+    content: "여기에 컨텐츠 내용이 들어갑니다:)~!",
+  };
+
+  const backClick = () => {
+    console.log("back");
   };
 
   const companyData = {
@@ -46,11 +51,44 @@ export const Company = () => {
     { x: new Date("2023-11-25").getTime(), y: 1 },
   ];
 
-  const [showCompanyAnswers, setShowCompanyAnswers] = useState(false);
+  const newsDataList = [
+    {
+      date: "2023.11.19",
+      title: "기사 제목",
+      content: "기사 요약입니다 기사 요약입니다",
+    },
+    {
+      date: "2023.11.18",
+      title: "다른 기사 제목",
+      content: "다른 기사 요약입니다 다른 기사 요약입니다",
+    },
+    // 추가적인 뉴스 데이터를 필요한 만큼 추가
+    { date: "2023.11.17", title: "뉴스 제목 1", content: "뉴스 내용 1" },
+    { date: "2023.11.16", title: "뉴스 제목 2", content: "뉴스 내용 2" },
+    { date: "2023.11.15", title: "뉴스 제목 3", content: "뉴스 내용 3" },
+    { date: "2023.11.14", title: "뉴스 제목 4", content: "뉴스 내용 4" },
+    { date: "2023.11.13", title: "뉴스 제목 5", content: "뉴스 내용 5" },
+    { date: "2023.11.12", title: "뉴스 제목 6", content: "뉴스 내용 6" },
+    { date: "2023.11.11", title: "뉴스 제목 7", content: "뉴스 내용 7" },
+    { date: "2023.11.10", title: "뉴스 제목 8", content: "뉴스 내용 8" },
+  ];
+
+  const visibleNewsDataList = newsDataList.slice(0, 2);
 
   const handleCheckboxChange = () => {
     setShowCompanyAnswers(!showCompanyAnswers);
   };
+
+  const companyPosts = [
+    { title: "게시글 1", content: "게시글 내용 1" },
+    { title: "게시글 2", content: "게시글 내용 2" },
+    { title: "게시글 3", content: "게시글 내용 3" },
+    { title: "게시글 4", content: "게시글 내용 4" },
+    { title: "게시글 5", content: "게시글 내용 5" },
+    { title: "게시글 6", content: "게시글 내용 6" },
+    { title: "게시글 7", content: "게시글 내용 7" },
+    { title: "게시글 8", content: "게시글 내용 8" },
+  ];
 
   return (
     <div className="company">
@@ -71,7 +109,7 @@ export const Company = () => {
             </div>
           </div>
           <div className="name">
-            <div className="text-wrapper-2">기업이름</div>
+            <div className="text-wrapper-2">{companyData.name}</div>
             <div className="text-wrapper-3">기업 소개 한마디</div>
           </div>
         </div>
@@ -137,64 +175,35 @@ export const Company = () => {
         {selectedTab === "section3" && (
           <div className="companyInfo-section">
             <div className="news">
-              <div className="news-list-component">
-                <div className="news-bubble">
-                  <div className="name-4">2023.11.10</div>
-                  <p className="message-2">
-                    <span className="text-wrapper-5">
-                      기사 제목
-                      <br />
-                    </span>
-                    <span className="text-wrapper-6">
-                      기사 요약입니다 기사 요약입니다
-                    </span>
-                  </p>
-                </div>
-                <div className="news-bubble">
-                  <div className="name-4">2023.11.10</div>
-                  <p className="message-2">
-                    <span className="text-wrapper-5">
-                      기사 제목
-                      <br />
-                    </span>
-                    <span className="text-wrapper-6">
-                      기사 요약입니다 기사 요약입니다
-                    </span>
-                  </p>
-                </div>
-                <div className="news-bubble">
-                  <div className="name-4">2023.11.10</div>
-                  <p className="message-2">
-                    <span className="text-wrapper-5">
-                      기사 제목
-                      <br />
-                    </span>
-                    <span className="text-wrapper-6">
-                      기사 요약입니다 기사 요약입니다
-                    </span>
-                  </p>
-                </div>
-                <div className="news-bubble">
-                  <div className="name-4">2023.11.10</div>
-                  <p className="message-2">
-                    <span className="text-wrapper-5">
-                      기사 제목
-                      <br />
-                    </span>
-                    <span className="text-wrapper-6">
-                      기사 요약입니다 기사 요약입니다
-                    </span>
-                  </p>
-                </div>
-              </div>
               <div className="news-title">
                 <ListTitle
                   className="list-title-instance"
                   divClassName="design-component-instance-node-2"
                   rightControl="none"
-                  title="기업명의 최근 소식"
+                  title="기업명의 최근 뉴스"
                 />
               </div>
+              <div className="newsContents">
+                {visibleNewsDataList.map((news, index) => (
+                  <NewsCard key={index} info={news} />
+                ))}
+              </div>
+            </div>
+            <div className="company">
+              <ListTitle
+                className="list-title-instance"
+                divClassName="design-component-instance-node-2"
+                rightControl="none"
+                title="기업명의 최근 소식"
+              />
+              {companyPosts.map((post, index) => (
+                <InfoToggle
+                  key={index}
+                  title={post.title}
+                  content={post.content}
+                  isOpen={index === 0}
+                />
+              ))}
             </div>
           </div>
         )}

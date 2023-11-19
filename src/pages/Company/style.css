@@ -498,9 +498,16 @@
 
 
 .company .news {
-  height: 537px;
+  height: fit-content;
+  margin-bottom: 50px;
   position: relative;
   width: 375px;
+}
+
+.newsContents{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .company .news-list-component {
@@ -521,17 +528,15 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  height: 81px;
   padding: 12px 16px;
   position: relative;
-  width: 311px;
 }
 
 .company .name-4 {
   align-self: stretch;
   color: var(--neutrallightdarkest);
   font-family: "Inter", Helvetica;
-  font-size: 12px;
+  font-size: var(--body-body-XS-font-size);
   font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
@@ -542,7 +547,7 @@
 .company .message-2 {
   color: var(--neutrallightlightest);
   font-family: "Inter", Helvetica;
-  font-size: 14px;
+  font-size: var(--body-body-XS-line-height);
   font-weight: 400;
   letter-spacing: 0;
   line-height: 20px;
@@ -564,17 +569,7 @@
   line-height: 20px;
 }
 
-.company .news-title {
-  align-items: center;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  left: 0;
-  padding: 5px 24px;
-  position: absolute;
-  top: 0;
-}
+
 
 .company .accordion-instance {
   left: 225px;
