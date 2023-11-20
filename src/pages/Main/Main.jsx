@@ -188,7 +188,7 @@ const clickSearch = async () => {
     if (stockname.trim() === "") {
         setSearchResults([]);
         setIsLoaded(true);
-        setSearchError("종목코드나 종목명을 입력해주세요");
+        setSearchError("");
     } else {
         try {
             const response = await axios.get(
