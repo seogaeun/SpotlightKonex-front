@@ -1,11 +1,12 @@
 .signup {
-    background-color: var(--neutraldarkdarkest);
+    background-color: #11052e;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
   
   .signup .div-2 {
+    background-color: var(--neutraldarkdarkest);
     position: relative;
     width: 600px;
     padding-bottom: 300px;

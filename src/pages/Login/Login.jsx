@@ -9,6 +9,8 @@ import { Toggle } from "../../components/Toggle";
 import { Tab } from "../../components/Tab/Tab";
 import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
+import { Nav } from "../../components/Nav"
+import { FaAngleLeft } from "react-icons/fa";
 import Swal from "sweetalert2";
 import axios from "axios";
 import "./style.css";
@@ -100,10 +102,20 @@ export const Login = () => {
     }
   };  
 
+  // nav bar
+  const handleLeftIconClick = (link) => {
+    navigate("/main");
+  };
+
 
     return (
         <div className="login">
             <div className="div-2">
+            <Nav
+              title="Login"
+              onLeftIconClick={handleLeftIconClick}
+              leftIconLink="/main"
+            />
                 <div className="home-message">
                     기업 회원이신가요?
                 </div>

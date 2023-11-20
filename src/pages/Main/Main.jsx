@@ -243,21 +243,25 @@ const clickSearch = async () => {
             visuals="none"
           />
         </div>
-        <div className="tab">
-          <Tab
-            section1Text="Home"
-            section2Text="All"
-            section3Text="Find"
-            onTabChange={handleTabChange}
-          />
+        <div className="for-sticky">
+          <div className="tab">
+            <Tab
+              section1Text="Home"
+              section2Text="All"
+              section3Text="Find"
+              onTabChange={handleTabChange}
+            />
+        </div>
         </div>
         {selectedTab === "section1" && (
           <>
-            <div className="ranking-tab">
-              <Toggle
-                tabNames={["거래대금", "좋아요수", "조회수"]}
-                onTabChange={handleSectionChange}
-              />
+            <div className="for-sticky-toggle">
+              <div className="ranking-tab">
+                <Toggle
+                  tabNames={["거래대금", "좋아요수", "조회수"]}
+                  onTabChange={handleSectionChange}
+                />
+              </div>
             </div>
             <div className="ranking-content">
               <div className="rankin">

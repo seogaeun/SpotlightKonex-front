@@ -1,11 +1,12 @@
 .login {
-    background-color: var(--neutraldarkdarkest);
+    background-color: #11052e;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
   
   .login .div-2 {
+    background-color: var(--neutraldarkdarkest);
     height: 1000px;
     position: relative;
     width: 600px;

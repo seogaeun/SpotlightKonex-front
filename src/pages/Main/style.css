@@ -108,6 +108,15 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+
+  .main .for-sticky {
+    position: sticky;
+    top:0px;
+    z-index: 7;
+    background-color: var(--neutraldarkdarkest);
+    padding-bottom: 2px;
+    width: 600px;
+  }
   
   .main .content-switcher-2 {
     background-color: unset !important;
