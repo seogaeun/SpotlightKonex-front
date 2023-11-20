@@ -10,7 +10,7 @@ import { Tab } from "../../components/Tab/Tab";
 import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
 import { Nav } from "../../components/Nav"
-import { FaAngleLeft } from "react-icons/fa";
+import { FiLogIn } from "react-icons/fi";
 import Swal from "sweetalert2";
 import axios from "axios";
 import "./style.css";
@@ -122,23 +122,27 @@ export const Login = () => {
                 <div className="login-field">
                     <div className="login-input">
                         <div className="subtitle">Email</div>
-                        <input
-                        className="input-field"
-                        type="email"
-                        name="email"
-                        value={email}
-                        placeholder="회사 이메일 계정을 입력해주세요."
-                        onChange={onChangeEmail}
-                        />
+                        <div className="input-area">
+                          <input
+                          className="input-field"
+                          type="email"
+                          name="email"
+                          value={email}
+                          placeholder="회사 이메일 계정을 입력해주세요."
+                          onChange={onChangeEmail}
+                          />
+                        </div>
                         <div className="subtitle">Password</div>
-                        <input
-                        className="input-field"
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="비밀번호를 입력해주세요."
-                        onChange={onChangePassword}
-                        />
+                        <div className="input-area">
+                          <input
+                          className="input-field"
+                          type="password"
+                          name="password"
+                          value={password}
+                          placeholder="비밀번호를 입력해주세요."
+                          onChange={onChangePassword}
+                          />
+                        </div>
                         <div className="login-btn-div">
                             <button
                             type="submit"
@@ -149,6 +153,7 @@ export const Login = () => {
                             로그인
                             </button>
                         </div>
+                        <div className="rule">아직 회원이 아니신가요? <a href="/signup"><span>회원가입하기<FiLogIn /></span></a></div>
                     </div>
                 </div>
             </div>

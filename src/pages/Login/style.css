@@ -7,10 +7,13 @@
   
   .login .div-2 {
     background-color: var(--neutraldarkdarkest);
-    height: 1000px;
     position: relative;
     width: 600px;
     padding-bottom: 300px;
+  }
+
+  .login .navbar {
+    position: relative;
   }
   
   .login .home-message {
@@ -18,9 +21,10 @@
     display: flex;
     gap: 10px;
     justify-content: center;
-    position: absolute;
-    top: 200px;
+    position: relative;
     width: 600px;
+    margin-top: 20px;
+    margin-bottom: 50px;
     color: var(--neutrallightlightest) !important;
     font-family: var(--heading-h4-font-family);
     font-size: var(--heading-h4-font-size);
@@ -32,8 +36,7 @@
 
   .login .login-field {
     width: 600px;
-    position: absolute;
-    top: 300px;
+    position: relative;
     align-items: center;
     display: flex;
     gap: 10px;
@@ -49,6 +52,7 @@
     line-height: var(--heading-h5-line-height);
     color: var(--neutrallightlight);
     margin-bottom: 8px;
+    margin-left: 22px;
   }
 
   .login .input-field {
@@ -65,6 +69,7 @@
   }
 
   .login .login-btn-div {
+    margin-top: 18px;
     margin-bottom: 18px;
     display: flex;
     align-items: center;
@@ -87,3 +92,28 @@
   .login .login-btn-div .login-btn:disabled {
     opacity: 0.5;
   }
+
+  .login .rule {
+      font-family: var(--heading-h5-font-family);
+      font-size: 18px;
+      font-weight: var(--heading-h5-font-weight);
+      font-style: var(--heading-h5-font-style);
+      letter-spacing: var(--heading-h5-letter-spacing);
+      line-height: var(--heading-h5-line-height);
+      color: var(--neutrallightlightest);
+      text-align: center;
+  }
+
+  .login .rule span {
+    color: var(--highlightlight);
+    font-weight: var(--heading-h5-font-weight);
+    background-color: var(--highlightlightest);
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+.login .input-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
