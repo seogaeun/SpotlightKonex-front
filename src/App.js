@@ -6,18 +6,16 @@ import { Main } from "./pages/Main";
 import { Company } from "./pages/Company";
 import { PostCompany } from "./pages/PostCompany";
 import { ManageCompany } from "./pages/ManageCompany/ManageCompany";
+import { Login } from "./pages/Login";
+import { Signup } from "./pages/Signup";
+
 function App() {
 
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Company />} />
-          <Route path="/Company" element={<Main />} />
-          <Route path="/PostCompany" element={<PostCompany />} />
-          <Route path="/ManageCompany" element={<ManageCompany />} />
-          
-
+          <Route path="/main" element={<Main />} />
         </Routes>
       </BrowserRouter>
     </div>
