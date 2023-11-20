@@ -8,6 +8,7 @@ import { Toggle } from "../../components/Toggle";
 import { Tab } from "../../components/Tab/Tab";
 import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
+import Loading from "../../components/Loading/Loading";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "./style.css";
@@ -18,74 +19,19 @@ export const Main = () => {
   const [selectedSection, setSelectedSection] = useState("거래대금"); // 초기 탭 "거래대금"
   const [selectedType, setSelectedType] = useState("종목"); // 초기 탭 "종목"
   const [selectedTheme, setSelectedTheme] = useState("금속 및 화학 제조업"); // 초기 탭 "금속 및 화학 제조업"
-  
+  const [selectedAdvisor, setSelectedAdvisor] = useState("신한투자증권"); // 초기 탭 "신한투자증권"
+
   const [stockname, setStockName] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchError, setSearchError] = useState(null);
 
   const [RankingData, setRankingData] = useState([]);
+  const [ThemeData, setThemeData] = useState([]);
+  const [PickData, setPickData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const firstData = RankingData[0];
-
-  const dummyRankingData = [
-    {
-      corp_name: "Dummy Corp 1",
-      price: 1000,
-      cmpprevdd_prc: 5,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-    {
-      corp_name: "Dummy Corp 2",
-      price: 1500,
-      cmpprevdd_prc: -3,
-    },
-  ];
+  const firstData = RankingData && RankingData.length > 0 ? RankingData[0] : null;
 
   function addCommasToNumber(number) {
     if (number !== undefined && number !== null) {
@@ -113,10 +59,17 @@ export const Main = () => {
 
   const handleThemeChange = (theme) => {
     setSelectedTheme(theme);
-    // setIsLoading(true);
-    // fetchData(section);
+    setIsLoading(true);
+    fetchThemeData(theme);
   };
 
+  const handleAdvisorChange = (company) => {
+    setSelectedAdvisor(company);
+    setIsLoading(true);
+    fetchPickData(company);
+  };
+
+  // brand-search-handlig
   const handleSearch = async () => {
     console.log(stockname)
     if (stockname === "") {
@@ -138,44 +91,40 @@ const clickSearch = async () => {
 };
 
   useEffect(() => {
-    setRankingData(dummyRankingData);
-  }, []);
-
-  useEffect(() => {
     fetchBrandData(stockname);
     }, [stockname]);
 
-  // useEffect(() => {
-  //   setIsLoading(true);
+  useEffect(() => {
+    setIsLoading(true);
 
-  //   fetchData(selectedSection)
-  //     .then(() => {
-  //       setIsLoading(false);
-  //       // 5초(5000밀리초)마다 fetchData 함수 호출
-  //       const intervalId = setInterval(() => {
-  //         fetchData(selectedTab);
-  //       }, 5000);
-  //       // 컴포넌트가 언마운트될 때 clearInterval 호출하여 인터벌 정리
-  //       return () => clearInterval(intervalId);
-  //     })
-  //     .catch((error) => {
-  //       console.error("API 요청 실패:", error);
-  //       setIsLoading(false); // 에러 발생 시 로딩 숨김
-  //     });
-  // }, [selectedSection]);
+    fetchRanking(selectedSection)
+      .then(() => {
+        setIsLoading(false);
+        // 5초(5000밀리초)마다 fetchData 함수 호출
+        // const intervalId = setInterval(() => {
+        //   fetchRanking(selectedTab);
+        // }, 5000);
+        // 컴포넌트가 언마운트될 때 clearInterval 호출하여 인터벌 정리
+        // return () => clearInterval(intervalId);
+      })
+      .catch((error) => {
+        console.error("API 요청 실패:", error);
+        setIsLoading(false); // 에러 발생 시 로딩 숨김
+      });
+  }, [selectedSection]);
 
   const fetchRanking = async (selectedSection) => {
     try {
       let rankingData;
-      if (selectedSection === "section1") {
+      if (selectedSection === "거래대금") {
         const response = await axios.get(`${window.API_BASE_URL}/main/top/amount`);
-        rankingData = response.data.payload.konexList;
-      } else if (selectedSection === "section2") {
+        rankingData = response.data;
+      } else if (selectedSection === "좋아요수") {
         const response = await axios.get(`${window.API_BASE_URL}/main/top/like`);
-        rankingData = response.data.payload.konexList;
-      } else if (selectedSection === "section3") {
+        rankingData = response.data;
+      } else if (selectedSection === "조회수") {
         const response = await axios.get(`${window.API_BASE_URL}/main/top/views`);
-        rankingData = response.data.payload.konexList;
+        rankingData = response.data;
       }
       setRankingData(rankingData);
     } catch (error) {
@@ -194,12 +143,15 @@ const clickSearch = async () => {
             const response = await axios.get(
                 `${window.API_BASE_URL}/find/keyword/${stockname}`
             );
-            const brandData = response.data.payload.konexList;
-            setSearchResults(brandData);
+            const brandData = response.data;
+            if (brandData.length === 0) {
+              setSearchResults([]);
+              setSearchError("검색 결과가 없습니다.");
+            } else {
+              setSearchResults(brandData);
+              setSearchError(null);
+            }
             setIsLoaded(true);
-            setSearchError(null);
-            console.log(stockname);
-            console.log(brandData);
         } catch (error) {
             console.error("API 요청 실패:", error);
             setSearchResults([]);
@@ -207,6 +159,113 @@ const clickSearch = async () => {
             setSearchError("검색 결과가 없습니다.");
         }
     }
+};
+
+// theme-search
+
+// convert theme string to numeric value
+const mapThemeToNumber = (theme) => {
+  const themeMap = {
+    "금속 및 화학 제조업": 1,
+    "식품 및 섬유 제조업": 2,
+    "전자제품 및 기타 제조업": 3,
+    "도매업": 4,
+    "서비스업": 5,
+    "건설 및 공사업": 6,
+    "금융업": 7,
+    "전기 및 전자 관련업": 8,
+  };
+
+  return themeMap[theme] || theme;
+};
+
+useEffect(() => {
+  setIsLoading(true);
+
+  fetchThemeData(selectedTheme)
+    .then(() => {
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error("API 요청 실패:", error);
+      setIsLoading(false); // 에러 발생 시 로딩 숨김
+    });
+}, [selectedTheme]);
+
+const fetchThemeData = async (selectedTheme) => {
+  const themeNumber = mapThemeToNumber(selectedTheme);
+    let themeData;
+    try {
+      const response = await axios.get(`${window.API_BASE_URL}/find/theme/${themeNumber}`);
+      themeData = response.data;
+      setThemeData(themeData);
+    } catch (error) {
+    console.error("API 요청 실패:", error);
+    setThemeData([]);
+    setIsLoaded(true);
+    setSearchError("검색 결과가 없습니다.");
+  }
+};
+
+// pick-search
+
+// convert company string to numeric value
+const mapCompanyToNumber = (company) => {
+  const themeMap = {
+    "유진투자증권": 1,
+    "신한투자증권": 2,
+    "하이투자증권": 3,
+    "IBK투자증권": 4,
+    "미래에셋증권": 5,
+    "SK증권": 6,
+    "상상인증권": 7,
+    "한화투자증권": 8,
+    "대신증권": 9,
+    "키움증권": 10,
+    "하나증권": 11,
+    "NH투자증권": 12,
+    "현대차증권": 13,
+    "교보증권": 14,
+    "BNK투자증권": 15,
+    "신영증권": 16,
+    "DB금융투자": 17,
+    "한국투자증권": 18,
+    "KB증권": 19,
+    "기타": 20,
+  };
+
+  return themeMap[company] || company;
+};
+
+useEffect(() => {
+  setIsLoading(true);
+
+  fetchPickData(selectedAdvisor)
+    .then(() => {
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error("API 요청 실패:", error);
+      setIsLoading(false); // 에러 발생 시 로딩 숨김
+    });
+}, [selectedAdvisor]);
+
+const fetchPickData = async (selectedAdvisor) => {
+  const companyNumber = mapCompanyToNumber(selectedAdvisor);
+    let pickData;
+    try {
+      console.log(companyNumber);
+      console.log(searchError);
+      const response = await axios.get(`${window.API_BASE_URL}/find/adviser/${companyNumber}`);
+      pickData = response.data;
+      setPickData(pickData);
+      console.log("hoh");
+    } catch (error) {
+    console.error("API 요청 실패:", error);
+    setPickData([]);
+    setIsLoaded(true);
+    setSearchError("검색 결과가 없습니다.");
+  }
 };
 
   return (
@@ -270,10 +329,7 @@ const clickSearch = async () => {
                     <div className="vertical-card">
                       <div className="company-image">
                         <div className="overlap-group">
-                          <Image
-                            className="image-instance"
-                            icon={<Image8 className="icon-instance-node" />}
-                          />
+                          <img className="logo-img" alt="test" src={`img/${firstData && firstData.corpCode ? firstData.corpCode : "1234567"}.png`}></img>
                           <Tag className="rank" style="focus" text="1" />
                         </div>
                       </div>
@@ -281,14 +337,14 @@ const clickSearch = async () => {
                         <div className="title-2">
                           <div className="company-2">
                             {" "}
-                            {firstData && firstData.corp_name
-                              ? firstData.corp_name
+                            {firstData && firstData.corpName
+                              ? firstData.corpName
                               : "로딩 중..."}
                           </div>
                           <p className="price">
                             <span
                               className={`stock-price ${
-                                firstData && firstData.cmpprevdd_prc > 0
+                                firstData && firstData.cmpprevddPrc > 0
                                   ? "stock-price-plus"
                                   : "stock-price-minus"
                               }`}
@@ -300,14 +356,12 @@ const clickSearch = async () => {
                             </span>
                             <span
                               className={`stock-change ${
-                                firstData && firstData.cmpprevdd_prc > 0
+                                firstData && firstData.cmpprevddPrc > 0
                                   ? "stock-change-plus"
                                   : "stock-change-minus"
                               }`}
                             >
-                              {firstData
-                                ? `${firstData.cmpprevdd_prc}%`
-                                : "로딩 중..."}
+                              {firstData && typeof firstData.cmpprevddPrc === 'string' ? `${(parseFloat(firstData.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
                             </span>
                           </p>
                         </div>
@@ -317,16 +371,13 @@ const clickSearch = async () => {
                 </div>
               </div>
               <div className="rankin-etc">
-                {RankingData.slice(1).map((item, index) => (
+              {RankingData && RankingData.length > 1 && RankingData.slice(1).map((item, index) => (
                   <div className="products-wrapper" key={index}>
                     <div className="products">
                       <div className="vertical-card">
                         <div className="company-image">
                           <div className="overlap-group">
-                            <Image
-                              className="image-instance"
-                              icon={<Image8 className="icon-instance-node" />}
-                            />
+                            <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
                             <Tag
                               className="rank"
                               style="focus"
@@ -337,14 +388,14 @@ const clickSearch = async () => {
                         <div className="company-info">
                           <div className="title-2">
                             <div className="company-2">
-                              {item && item.corp_name
-                                ? item.corp_name
+                              {item && item.corpName
+                                ? item.corpName
                                 : "로딩 중..."}
                             </div>
                             <p className="price">
                               <span
                                 className={`stock-price ${
-                                  item && item.cmpprevdd_prc > 0
+                                  item && item.cmpprevddPrc > 0
                                     ? "stock-price-plus"
                                     : "stock-price-minus"
                                 }`}
@@ -356,12 +407,12 @@ const clickSearch = async () => {
                               </span>
                               <span
                                 className={`stock-change ${
-                                  item && item.cmpprevdd_prc > 0
+                                  item && item.cmpprevddPrc > 0
                                     ? "stock-change-plus"
                                     : "stock-change-minus"
                                 }`}
                               >
-                                {item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}
+                                {item && typeof item.cmpprevddPrc === 'string' ? `${(parseFloat(item.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
                               </span>
                             </p>
                           </div>
@@ -384,10 +435,7 @@ const clickSearch = async () => {
                     <div className="vertical-card">
                       <div className="company-image">
                         <div className="overlap-group">
-                          <Image
-                            className="image-instance"
-                            icon={<Image8 className="icon-instance-node" />}
-                          />
+                          <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
                           <Tag
                             className="rank"
                             style="focus"
@@ -398,14 +446,14 @@ const clickSearch = async () => {
                       <div className="company-info">
                         <div className="title-2">
                           <div className="company-2">
-                            {item && item.corp_name
-                              ? item.corp_name
+                            {item && item.corpName
+                              ? item.corpName
                               : "로딩 중..."}
                           </div>
                           <p className="price">
                             <span
                               className={`stock-price ${
-                                item && item.cmpprevdd_prc > 0
+                                item && item.cmpprevddPrc > 0
                                   ? "stock-price-plus"
                                   : "stock-price-minus"
                               }`}
@@ -417,12 +465,12 @@ const clickSearch = async () => {
                             </span>
                             <span
                               className={`stock-change ${
-                                item && item.cmpprevdd_prc > 0
+                                item && item.cmpprevddPrc > 0
                                   ? "stock-change-plus"
                                   : "stock-change-minus"
                               }`}
                             >
-                              {item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}
+                              {item ? `${item.cmpprevddPrc}%` : "로딩 중..."}
                             </span>
                           </p>
                         </div>
@@ -467,7 +515,7 @@ const clickSearch = async () => {
                 <div className="result-content"></div>
               </div>
             )}
-            {isLoaded && (
+            {selectedType === "종목" && isLoaded && (
             <div className="data-display">
                 {searchResults.length > 0 ? (
                 searchResults.map((item, index) => (
@@ -476,15 +524,15 @@ const clickSearch = async () => {
                     <div className="vertical-card">
                       <div className="company-image">
                         <div className="overlap-group">
-                          <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
+                        <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
                         </div>
                       </div>
                       <div className="company-info">
                         <div className="title-2">
-                          <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
+                          <div className="company-2">{item && item.corpName ? item.corpName : "로딩 중..."}</div>
                           <p className="price">
-                            <span className={`stock-price ${item && item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
-                            <span className={`stock-change ${item && item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
+                            <span className={`stock-price ${item && item.cmpprevddPrc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
+                            <span className={`stock-change ${item && item.cmpprevddPrc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevddPrc}%` : "로딩 중..."}</span>
                           </p>
                         </div>
                       </div>
@@ -520,7 +568,7 @@ const clickSearch = async () => {
                     onTabChange={handleThemeChange}
                   />
                   <div className="theme-company">
-                    {RankingData.map((item, index) => (
+                    {ThemeData.map((item, index) => (
                       <div className="products-wrapper" key={index}>
                         <div className="products">
                           <div className="vertical-card">
@@ -542,14 +590,14 @@ const clickSearch = async () => {
                             <div className="company-info">
                               <div className="title-2">
                                 <div className="company-2">
-                                  {item && item.corp_name
-                                    ? item.corp_name
+                                  {item && item.corpName
+                                    ? item.corpName
                                     : "로딩 중..."}
                                 </div>
                                 <p className="price">
                                   <span
                                     className={`stock-price ${
-                                      item && item.cmpprevdd_prc > 0
+                                      item && item.cmpprevddPrc > 0
                                         ? "stock-price-plus"
                                         : "stock-price-minus"
                                     }`}
@@ -561,14 +609,12 @@ const clickSearch = async () => {
                                   </span>
                                   <span
                                     className={`stock-change ${
-                                      item && item.cmpprevdd_prc > 0
+                                      item && item.cmpprevddPrc > 0
                                         ? "stock-change-plus"
                                         : "stock-change-minus"
                                     }`}
                                   >
-                                    {item
-                                      ? `${item.cmpprevdd_prc}%`
-                                      : "로딩 중..."}
+                                    {item && typeof item.cmpprevddPrc === 'string' ? `${(parseFloat(item.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
                                   </span>
                                 </p>
                               </div>
@@ -608,26 +654,20 @@ const clickSearch = async () => {
                       "DB금융투자",
                       "한국투자증권",
                       "KB증권",
-                      "한양증권",
-                      "유안타증권",
                       "기타",
                     ]}
-                    onTabChange={handleThemeChange}
+                    onTabChange={handleAdvisorChange}
                   />
                   </div>
                   <div className="pick-company">
-                    {RankingData.map((item, index) => (
+                  {PickData.length > 1 ? (
+                    PickData.map((item, index) => (
                       <div className="products-wrapper" key={index}>
                         <div className="products">
                           <div className="vertical-card">
                             <div className="company-image">
                               <div className="overlap-group">
-                                <Image
-                                  className="image-instance"
-                                  icon={
-                                    <Image8 className="icon-instance-node" />
-                                  }
-                                />
+                              <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
                                 <Tag
                                   className="rank"
                                   style="focus"
@@ -638,14 +678,14 @@ const clickSearch = async () => {
                             <div className="company-info">
                               <div className="title-2">
                                 <div className="company-2">
-                                  {item && item.corp_name
-                                    ? item.corp_name
+                                  {item && item.corpName
+                                    ? item.corpName
                                     : "로딩 중..."}
                                 </div>
                                 <p className="price">
                                   <span
                                     className={`stock-price ${
-                                      item && item.cmpprevdd_prc > 0
+                                      item && item.cmpprevddPrc > 0
                                         ? "stock-price-plus"
                                         : "stock-price-minus"
                                     }`}
@@ -657,14 +697,12 @@ const clickSearch = async () => {
                                   </span>
                                   <span
                                     className={`stock-change ${
-                                      item && item.cmpprevdd_prc > 0
+                                      item && item.cmpprevddPrc > 0
                                         ? "stock-change-plus"
                                         : "stock-change-minus"
                                     }`}
                                   >
-                                    {item
-                                      ? `${item.cmpprevdd_prc}%`
-                                      : "로딩 중..."}
+                                    {item && typeof item.cmpprevddPrc === 'string' ? `${(parseFloat(item.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
                                   </span>
                                 </p>
                               </div>
@@ -672,7 +710,10 @@ const clickSearch = async () => {
                           </div>
                         </div>
                       </div>
-                    ))}
+                    ))
+                    ) : (
+                      <p className="error-message">{searchError}</p>
+                    )}
                   </div>
                 </div>
                 <div></div>
@@ -681,6 +722,11 @@ const clickSearch = async () => {
           </div>
         )}
       </div>
+      {isLoading && (
+        <div className="spin">
+          <Loading />
+        </div>
+      )}
     </div>
   );
 };

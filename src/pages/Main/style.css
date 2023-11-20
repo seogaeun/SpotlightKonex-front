@@ -310,6 +310,7 @@
     line-height: normal;
     position: relative;
     text-align: center;
+    width: unset;
   }
   
   .main .stock-price-plus {
@@ -341,9 +342,9 @@
     line-height: var(--heading-h5-line-height);
     color: var(--supporterrordark);
     background-color: var(--supporterrorlight);
-    padding: 5px 10px;
+    padding: 5px 2px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
   }
 
   .main .stock-change-minus {
@@ -355,9 +356,9 @@
     line-height: var(--heading-h5-line-height);
     color: var(--supportsuccessdark);
     background-color: var(--supportsuccesslight);
-    padding: 5px 10px;
+    padding: 5px 2px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
   }
   
   .main .rankin-etc {
@@ -400,6 +401,10 @@
     width: 600px;
   }
 
+  .main .brand-search {
+    margin-top: 30px;
+  }
+
   .main .theme-content {
     display: flex;
     width: 580px;
@@ -411,7 +416,6 @@
   .main .theme-content .tab-switch {
     width: 160px;
     flex-direction: column;
-    margin: 0px;
   }
 
   .main .pick-content {
@@ -476,6 +480,7 @@
     width: 580px;
     display: flex;
     overflow-y: scroll;
+    justify-content: center;
   }
 
   .main .pick-company .products-wrapper{
@@ -497,12 +502,22 @@
     margin-bottom: 18px;
   }
 
-  .main .data-display .error-message {
+  .main .error-message {
     color: var(--highlightlightest);
   }
 
   .main .search-input:focus {
     outline: 2px solid var(--highlightlightest);
+  }
+
+  .main .spin {
+    position: absolute;
+    top: 500px;
+  }
+
+  .main .logo-img {
+    width: 100%;
+    margin-top: 25%;
   }
   
   

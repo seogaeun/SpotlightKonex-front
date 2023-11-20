@@ -112,7 +112,7 @@ export const Login = () => {
         <div className="login">
             <div className="div-2">
             <Nav
-              title="Login"
+              title="로그인"
               onLeftIconClick={handleLeftIconClick}
               leftIconLink="/main"
             />
