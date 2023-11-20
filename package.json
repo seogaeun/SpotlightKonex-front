@@ -6,9 +6,9 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "apexcharts": "^3.44.0",
     "http-proxy-middleware": "^2.0.6",
     "pdfjs-dist": "^4.0.189",
-    "apexcharts": "^3.44.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
@@ -41,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "source-map-loader": "^4.0.1"
   }
 }
