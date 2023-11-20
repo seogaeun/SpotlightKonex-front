@@ -6,10 +6,10 @@
   }
   
   .signup .div-2 {
-    height: 1000px;
     position: relative;
     width: 600px;
     padding-bottom: 300px;
+    height: 1000px;
   }
   
   .signup .home-message {
@@ -63,6 +63,12 @@
     margin-bottom: 18px;
   }
 
+  .signup .input-field:focus {
+    outline: 2px solid var(--highlightlightest);
+  }
+
+  
+
   .signup .login-btn-div {
     margin-bottom: 18px;
     display: flex;
@@ -91,4 +97,38 @@
     color: var(--highlightlightest);
     margin-bottom: 8px;
     margin-top: -10px;
+  }
+
+  .signup .check-rule {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .signup .checkbox-instance {
+    margin-right: 8px;
+  }
+
+  .signup .rule {
+    font-family: var(--heading-h5-font-family);
+    font-size: 14px;
+    font-style: var(--heading-h5-font-style);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--neutrallightlightest);
+  }
+
+  .signup .check-rule span {
+    color: var(--highlightlight);
+    font-weight: var(--heading-h5-font-weight);
+  }
+
+  .signup .check-rule a {
+    color: var(--highlightlight);
+    font-weight: var(--heading-h5-font-weight);
+  }
+
+  .signup .agree-field {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }

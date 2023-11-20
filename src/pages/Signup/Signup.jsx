@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { ButtonPrimary } from "../../components/ButtonPrimary/ButtonPrimary";
-import { HorizontalCard } from "../../components/HorizontalCard";
-import { Image } from "../../components/Image";
-import { ListTitle } from "../../components/ListTitle";
-import { Tag } from "../../components/Tag";
-import { Toggle } from "../../components/Toggle";
-import { Tab } from "../../components/Tab/Tab";
-import { Image7 } from "../../icons/Image7";
-import { Image8 } from "../../icons/Image8";
-import Swal from "sweetalert2";
+import { Checkbox } from "../../components/Checkbox";
+import { PdfViewerModal } from "../../components/PdfViewerModal";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "./style.css";
 import '../../styles/styleguide.css';
+
+import pdfUrl from '../../assets/test.pdf'
 
 
 export const Signup = () => {
@@ -23,6 +18,10 @@ export const Signup = () => {
     const [email, setEmail] = React.useState("");
     const [code, setCode] = React.useState("");
     const [phone, setPhone] = React.useState("");
+
+    const [showPdfModal, setShowPdfModal] = useState(false);
+    const [selectedPdfFile, setSelectedPdfFile] = useState("");
+
 
     const navigate = useNavigate();
 
@@ -39,16 +38,25 @@ export const Signup = () => {
     const [isPassword, setIsPassword] = React.useState(false);
     const [isPasswordConfirm, setIsPasswordConfirm] = React.useState(false);
     const [isEmail, setIsEmail] = React.useState(false);
-    const [isAgreed, setIsAgreed] = React.useState(false);
+    const [isAge, setIsAge] = React.useState(false);
+    const [isAgreedService, setIsAgreedService] = React.useState(false);
+    const [isAgreedData, setIsAgreedData] = React.useState(false);
     const [isVerification, setIsVerification] = useState(false);
     const [isPhone, setIsPhone] = useState(false);
 
     const [isTimerActive, setIsTimerActive] = useState(false); // 타이머 활성화 여부
     const [remainingTime, setRemainingTime] = useState(300); // 5분은 300초
 
-    const toggleAgreement = () => {
-        setIsAgreed(!isAgreed);
-        console.log(isAgreed);
+    const toggleAge = () => {
+        setIsAge(!isAge);
+    };
+
+    const toggleAgreementService = () => {
+        setIsAgreedService(!isAgreedService);
+    };
+
+    const toggleAgreementData = () => {
+        setIsAgreedData(!isAgreedData);
     };
 
     const onChangeName = (e) => {
@@ -120,89 +128,9 @@ export const Signup = () => {
             setPhoneMessage('유효한 전화번호입니다.');
             setIsPhone(true);
           } else {
-            setPhoneMessage('유효하지 않은 전화번호입니다.');
+            setPhoneMessage('예) 00(0)-000(0)-000(0)');
             setIsPhone(false);
           }
-    };
-
-    useEffect(() => {
-        let timer;
-
-        if (isTimerActive && remainingTime > 0) {
-            timer = setTimeout(() => {
-                setRemainingTime(remainingTime - 1);
-            }, 1000); // 1초마다 1초씩 감소
-        }
-
-        if (remainingTime === 0) {
-            // 5분 경과 시
-            setIsVerification(false);
-        }
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, [isTimerActive, remainingTime]);
-
-    // 이메일로 인증 코드 요청
-    const sendVerificationCode = async () => {
-
-        console.log(email);
-
-        try {
-            const response = await axios.post(`${window.API_BASE_URL}/user-service/sign-in/email/validation`, {
-                email: email
-            });
-            // const response = await axios.get('http://test2.shinhan.site/user-service/');
-            // console.log(response);
-            if (response.status === 204) {
-                console.log("hihi");
-                setCodeMessage('코드가 전송되었습니다.');
-                setIsVerification(true);
-            } else {
-                setCodeMessage('유효하지 않은 이메일 주소입니다.');
-                setIsVerification(false);
-            }
-        } catch (error) {
-            console.error('인증 코드 전송 오류:', error);
-            setIsVerification(false);
-        }
-        // 인증 코드 요청 성공 시 타이머 활성화
-        if (isVerification) {
-            setIsTimerActive(true);
-        }
-    };
-
-    // 인증 코드 확인
-    const handleVerification = async () => {
-        if (code) {
-            try {
-                const response = await axios.post(`https:/for-alpha/user-service/sign-in/email/verification`, {
-                    email,
-                    verification_code: code,
-                });
-
-                if (response.status === 200) {
-                    setCodeMessage('인증이 완료되었습니다.');
-                    setIsVerification(true);
-                } else {
-                    setCodeMessage('인증에 실패했습니다.');
-                    setIsVerification(false);
-                }
-            } catch (error) {
-                console.error('인증 코드 확인 오류:', error);
-                setIsVerification(false);
-            }
-        } else {
-            setCodeMessage('인증 코드를 입력해주세요.');
-            setIsVerification(false);
-        }
-
-        // 인증 코드 확인 시 타이머 중지
-        if (isVerification) {
-            setIsTimerActive(false);
-            setRemainingTime(300); // 타이머 초기화
-        }
     };
 
     // 회원 가입 처리
@@ -221,16 +149,34 @@ export const Signup = () => {
 
                 if (response.status === 200) {
                     console.log('회원가입 성공', response.data);
-                    navigate("/")
+                    navigate("/login")
                 } else {
                     console.error('회원가입 실패', response.data);
+                    Swal.fire({
+                        icon: "error",
+                        title: "회원가입 실패",
+                        text: "error",
+                      });
                 }
             } catch (error) {
                 // 네트워크 오류 또는 서버 응답 없음
                 console.error('회원가입 오류', error);
+                Swal.fire({
+                    icon: "error",
+                    title: "회원가입 실패",
+                    text: "error",
+                  });
             }
         }
     };
+
+    // PDF view
+    const handleAgreementClick = (pdfUrl) => {
+        setSelectedPdfFile(pdfUrl);
+        setShowPdfModal(true);
+        console.log(selectedPdfFile);
+        console.log("ho");
+      };
 
     return (
         <div className="signup">
@@ -286,16 +232,30 @@ export const Signup = () => {
                             type="password"
                             name="passwordConfirm"
                             value={passwordConfirm}
-                            placeholder="비밀번호를 입력해주세요."
+                            placeholder="다시 한 번 비밀번호를 입력해주세요."
                             onChange={onChangePasswordConfirm}
                         />
                         <p className="note-message"> {passwordConfirmMessage} </p>
+                        <div className="agree-field">
+                            <div className="check-rule">
+                                <Checkbox className="checkbox-instance" selected={isAge} size="medium" onClick={toggleAge} />
+                                <div className="rule">만 14세 이상입니다. <span>[필수]</span></div>
+                            </div>
+                            <div className="check-rule">
+                                <Checkbox className="checkbox-instance" selected={isAgreedService} size="medium" onClick={toggleAgreementService} />
+                                <div className="rule"><a href="#" onClick={() => handleAgreementClick("import pdfUrl from '../../assets/test.pdf'")}>서비스 이용약관</a>에 동의합니다. <span>[필수]</span></div>
+                            </div>
+                            <div className="check-rule">
+                                <Checkbox className="checkbox-instance" selected={isAgreedData} size="medium" onClick={toggleAgreementData} />
+                                <div className="rule"><a href="#" onClick={() => handleAgreementClick("import pdfUrl from '../../assets/test.pdf'")}>개인정보 수집 및 활용</a>에 동의합니다. <span>[필수]</span></div>
+                            </div>
+                            </div>
                         <div className="login-btn-div">
                             <button
                                 type="submit"
                                 className="login-btn"
                                 onClick={handleSubmit}
-                                disabled={!(isEmail && isName && isPassword && isPasswordConfirm && isPhone)}
+                                disabled={!(isEmail && isName && isPassword && isPasswordConfirm && isPhone && isAge && isAgreedService && isAgreedData)}
                             >
                                 회원가입
                             </button>
@@ -303,6 +263,12 @@ export const Signup = () => {
                     </div>
                 </div>
             </div>
+            {showPdfModal && (
+                <PdfViewerModal
+                    pdfUrl={selectedPdfFile}
+                    onClose={() => setShowPdfModal(false)}
+                />
+            )}
         </div>
     );
 };
