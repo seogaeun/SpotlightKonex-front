@@ -9,6 +9,7 @@ import { Tab } from "../../components/Tab/Tab";
 import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
 import { Company } from "../Company";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -16,7 +17,7 @@ import "./style.css";
 import "../../styles/styleguide.css";
 
 export const Main = () => {
-  const [buttonInfo, setButtonInfo]=useState('');
+  const [buttonInfo, setButtonInfo] = useState("");
   const [selectedTab, setSelectedTab] = useState("section1"); // 초기 탭 "Home"
   const [selectedSection, setSelectedSection] = useState("거래대금"); // 초기 탭 "거래대금"
   const [selectedType, setSelectedType] = useState("종목"); // 초기 탭 "종목"
@@ -31,6 +32,17 @@ export const Main = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const firstData = RankingData[0];
+  const navigate = useNavigate();
+
+  //리덕스 상태 저장을 위한 함수
+  const [selectedCorp, setSelectedCorp] = useState(null);
+
+  const handleProductClick = (corpName) => {
+    setSelectedCorp(corpName);
+
+    // 선택된 기업 데이터를 history state에 저장하며 ./Company로 이동
+    navigate("/Company", { state: { corpName } });
+  };
 
   const dummyRankingData = [
     {
@@ -321,7 +333,11 @@ export const Main = () => {
               </div>
               <div className="rankin-etc">
                 {RankingData.slice(1).map((item, index) => (
-                  <div className="products-wrapper" key={index}>
+                  <div
+                    className="products-wrapper"
+                    key={index}
+                    onClick={() => handleProductClick(item.corp_name)}
+                  >
                     <div className="products">
                       <div className="vertical-card">
                         <div className="company-image">
@@ -382,7 +398,11 @@ export const Main = () => {
           <div className="ranking-content">
             <div className="rankin-etc">
               {RankingData.map((item, index) => (
-                <div className="products-wrapper" key={index}>
+                <div
+                  className="products-wrapper"
+                  key={index}
+                  onClick={() => handleProductClick(item.corp_name)}
+                >
                   <div className="products">
                     <div className="vertical-card">
                       <div className="company-image">
@@ -474,7 +494,11 @@ export const Main = () => {
               <div className="data-display">
                 {searchResults.length > 0 ? (
                   searchResults.map((item, index) => (
-                    <div className="products-wrapper" key={index}>
+                    <div
+                      className="products-wrapper"
+                      key={index}
+                      onClick={() => handleProductClick(item.corp_name)}
+                    >
                       <div className="products">
                         <div className="vertical-card">
                           <div className="company-image">
@@ -552,7 +576,11 @@ export const Main = () => {
                   />
                   <div className="theme-company">
                     {RankingData.map((item, index) => (
-                      <div className="products-wrapper" key={index}>
+                      <div
+                        className="products-wrapper"
+                        key={index}
+                        onClick={() => handleProductClick(item.corp_name)}
+                      >
                         <div className="products">
                           <div className="vertical-card">
                             <div className="company-image">
@@ -646,7 +674,11 @@ export const Main = () => {
                   />
                   <div className="pick-company">
                     {RankingData.map((item, index) => (
-                      <div className="products-wrapper" key={index}>
+                      <div
+                        className="products-wrapper"
+                        key={index}
+                        onClick={() => handleProductClick(item.corp_name)}
+                      >
                         <div className="products">
                           <div className="vertical-card">
                             <div className="company-image">

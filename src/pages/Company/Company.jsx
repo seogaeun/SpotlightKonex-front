@@ -1,4 +1,6 @@
 // Company.js
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 import { LeftButton4 } from "../../icons/LeftButton4";
@@ -18,7 +20,9 @@ import "./style.css";
 
 export const Company = () => {
   const [showCompanyAnswers, setShowCompanyAnswers] = useState(false);
-
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { corpName } = state;
   // 기업 응원수 클릭 버튼 함수 (/enterprise/{id})
   const [heartCount, setCount] = useState(0);
 
@@ -47,7 +51,7 @@ export const Company = () => {
 
   //기업 상세 정보 데이터 (/enterprise/cropCode)
   const enterpriseData = {
-    crop_name: "가상기업",
+    crop_name: corpName,
     industry_name: "IT 및 소프트웨어",
     establish_date: "2000-01-01",
     public_date: "2005-05-05",
