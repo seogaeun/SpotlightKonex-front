@@ -11,7 +11,7 @@ import pdfUrl from '../../assets/test.pdf'
 
 
 export const Signup = () => {
-    // 초기값
+    // 초기값 
     const [name, setName] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [passwordConfirm, setPasswordConfirm] = React.useState("");
