@@ -574,12 +574,7 @@ const fetchPickData = async (selectedAdvisor) => {
                           <div className="vertical-card">
                             <div className="company-image">
                               <div className="overlap-group">
-                                <Image
-                                  className="image-instance"
-                                  icon={
-                                    <Image8 className="icon-instance-node" />
-                                  }
-                                />
+                              <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
                                 <Tag
                                   className="rank"
                                   style="focus"

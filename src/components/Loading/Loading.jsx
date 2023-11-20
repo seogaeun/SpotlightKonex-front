@@ -1,12 +1,13 @@
 import React from 'react';
-import {Audio} from "react-loader-spinner";
+import {Oval} from "react-loader-spinner";
 
 
 function Loding () {
    
     return (
-        <Audio 
+        <Oval 
         color="var(--highlightlight)"
+        secondaryColor="var(--highlightlight)"
         height={100} 
         width={100}
         />
