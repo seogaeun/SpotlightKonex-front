@@ -1,0 +1,41 @@
+.list-title {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  padding: 8px 16px;
+  position: relative;
+  width: 327px;
+}
+
+.list-title .title {
+  color: var(--neutraldarkdarkest);
+  flex: 1;
+  font-family: var(--heading-h4-font-family);
+  font-size: var(--heading-h4-font-size);
+  font-style: var(--heading-h4-font-style);
+  font-weight: var(--heading-h4-font-weight);
+  letter-spacing: var(--heading-h4-letter-spacing);
+  line-height: var(--heading-h4-line-height);
+  margin-top: -1px;
+  position: relative;
+}
+
+.list-title .right-button {
+  all: unset;
+  box-sizing: border-box;
+  color: var(--highlightbackground);
+  font-family: "Inter", Helvetica;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  text-align: right;
+  width: fit-content;
+}
+
+.list-title .right-button-instance {
+  height: 16px !important;
+  position: relative !important;
+  width: 16px !important;
+}

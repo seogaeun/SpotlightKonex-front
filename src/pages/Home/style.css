@@ -1,3 +1,6 @@
+@import url('./../../styles/styleguide.css');
+
+
 .home {
     background-color: var(--neutraldarkdarkest);
     display: flex;
