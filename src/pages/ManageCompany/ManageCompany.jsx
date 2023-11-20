@@ -1,4 +1,4 @@
-// Company.js
+// ManageCompany.js
 
 import React, { useState } from "react";
 import { LeftButton4 } from "../../icons/LeftButton4";
@@ -14,8 +14,9 @@ import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
 import "./style.css";
 
-export const Company = () => {
-  const [showCompanyAnswers, setShowCompanyAnswers] = useState(false);
+export const ManageCompany = () => {
+  const [showManageCompanyAnswers, setShowManageCompanyAnswers] =
+    useState(false);
 
   // 기업 응원수 클릭 버튼 함수 (/enterprise/{id})
   const [heartCount, setCount] = useState(0);
@@ -55,7 +56,7 @@ export const Company = () => {
   };
 
   //순위가 아닌가? ***** 일단 보류
-  const companyLinkdata = [
+  const managecompanyLinkdata = [
     { x: new Date("2023-11-19").getTime(), y: 1 },
     { x: new Date("2023-11-20").getTime(), y: 3 },
     { x: new Date("2023-11-21").getTime(), y: 2 },
@@ -94,7 +95,7 @@ export const Company = () => {
 
   //채팅 기업 댓글 필터링 (기업 댓글 조회)
   const handleIsCorpMent = () => {
-    setShowCompanyAnswers(!showCompanyAnswers);
+    setShowManageCompanyAnswers(!showManageCompanyAnswers);
     //( writer_type===true만 필터링해서 보여주기)
   };
 
@@ -111,20 +112,20 @@ export const Company = () => {
   ];
 
   return (
-    <div className="company">
+    <div className="managecompany">
       {/* 전체 화면 */}
-      <div className="companyContent">
+      <div className="managecompanyContent">
         {/* 네비바 */}
         <NavBar
           className="nav-bar-instance"
           icon={<LeftButton4 className="left-button-4" onClick={backClick} />}
           leftControl="icon"
-          pageTitle="기업 상세정보"
+          pageTitle={enterpriseData.crop_name + "의 관리창"}
           rightButtonClassName="nav-title-text"
           rightControl="none"
         />
         {/*기업 기본 정보(프로필, 이름, 좋아요) */}
-        <div className="company-profile">
+        <div className="managecompany-profile">
           <div className="profile-img">
             <div className="overlap-group">
               <Avatar8 className="avatar-8" />
@@ -150,78 +151,62 @@ export const Company = () => {
           />
         </div>
         {selectedTab === "section1" && (
-          <div className="company-section">
-            <div className="company-detailinfo">
+          <div className="managecompany-section">
+            <div className="managecompany-detailinfo">
               <ListTitle
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
-                title="기업 정보"
+                title="응원수"
               />
-              <div className="infoCard">
-                <InfoCard info={enterpriseData} />
-              </div>
+              <Graph dataList={managecompanyLinkdata} />
             </div>
-            <div className="company-detailinfo">
+            <div className="managecompany-detailinfo">
+              <ListTitle
+                className="subtitile"
+                divClassName="list-title-2"
+                rightControl="none"
+                title="거래량"
+              />
+              <Graph dataList={managecompanyLinkdata} />
+            </div>
+
+            <div className="managecompany-detailinfo">
               <ListTitle
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
                 title="순위 변동"
               />
-              <Graph dataList={companyLinkdata} reversed="true" />
+              <Graph dataList={managecompanyLinkdata} reversed="true" />
             </div>
           </div>
         )}
 
         {selectedTab === "section2" && (
-          <div className="company-section">
-            <div className="company-detailinfo">
+          <div className="managecompany-section">
+            <div className="managecompany-detailinfo">
               <ListTitle
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
                 title="Talk"
               />
-              <div className="checkBox">
-                <label className="checkLabel">
-                  <input
-                    className="checkInput"
-                    type="checkbox"
-                    checked={showCompanyAnswers}
-                    onChange={handleIsCorpMent}
-                  />
-                  기업 답변만 보기
-                </label>
-              </div>
               <ChatBox />
             </div>
           </div>
         )}
 
         {selectedTab === "section3" && (
-          <div className="company-section">
-            <div className="company-detailinfo">
-              <ListTitle
-                className="subtitile"
-                divClassName="list-title-2"
-                rightControl="none"
-                title={enterpriseData.crop_name + "의 최근 뉴스"}
-              />
-              <div className="newsContents">
-                {visibleNewsDataList.map((news, index) => (
-                  <NewsCard key={index} info={news} />
-                ))}
-              </div>
-            </div>
-            <div className="company-detailinfo">
+          <div className="managecompany-section">
+            <div className="managecompany-detailinfo">
               <ListTitle
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
                 title={enterpriseData.crop_name + "의 최근 소식"}
               />
-
+              <button className="post-button">Add</button>
               {cropPosts.map((post, index) => (
                 <InfoToggle
                   key={index}

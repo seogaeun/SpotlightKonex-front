@@ -1,20 +1,11 @@
-import React, { useState } from "react";
-import './styles.css'
+import React from "react";
+import "./styles.css";
 
-export const HeartFilled1 = ({ className, onClick }) => {
-  const [count, setCount] = useState(0);
-
-  const handleClick = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
-
+export const HeartFilled1 = ({ className, onClick, count }) => {
   const displayCount = count > 999 ? "999+" : count;
 
   return (
-    <button
-      className={`heart-filled-1-button ${className}`}
-      onClick={handleClick}
-    >
+    <button className={`heart-filled-1-button ${className}`} onClick={onClick}>
       <div className="heart-container">
         <div className="count">{displayCount}</div>
         <svg

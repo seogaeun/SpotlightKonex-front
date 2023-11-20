@@ -1,42 +1,42 @@
-// InfoCard.js
+//기업 상세정보 카드 컴포넌트
 
 import React from "react";
 import "./style.css";
 
 export const InfoCard = ({
   info: {
-    name,
-    industry,
-    establishmentDate,
-    listingDate,
+    crop_name,
+    industry_name,
+    establish_date,
+    public_date,
     capital,
     address,
     website,
-  } = {}, // 언디파인드 처리를 위해 기본값 사용
+  } = {},
 }) => {
   return (
     <div className="infoCard">
       <div className="list-item">
         <div className="content-2">
-          <p className="p">
+          <p className="infoListP">
             <span className="span">한글명: </span>
             <span className="text-wrapper-4">
-              {name}
+              {crop_name}
               <br />
             </span>
             <span className="span">업종: </span>
             <span className="text-wrapper-4">
-              {industry}
+              {industry_name}
               <br />
             </span>
             <span className="span">설립일: </span>
             <span className="text-wrapper-4">
-              {establishmentDate}
+              {establish_date}
               <br />
             </span>
             <span className="span">상장일: </span>
             <span className="text-wrapper-4">
-              {listingDate}
+              {public_date}
               <br />
             </span>
 

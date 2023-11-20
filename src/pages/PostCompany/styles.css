@@ -1,0 +1,114 @@
+@import url('./../../styles/styleguide.css');
+
+.postcompany {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--neutraldarkdarkest);
+  }
+
+
+  .postcompanyContainer{
+    width: 600px;
+    padding-bottom: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .postcompany .nav-bar-instance {
+    background-color: var(--neutraldarkdarkest);
+    position:sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+
+  .postcompany .company-detailinfo {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 22px;
+    position: relative;
+    width: 60%;
+    height:fit-content;
+    box-sizing: border-box;
+    gap:10px
+  }
+
+  .nav-bar-instance {
+    background-color: var(--neutraldarkdarkest);
+    position:sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .nav-bar-instance .design-component-instance-node {
+    color: var(--neutrallightlightest);
+    left: 148px;
+}
+
+.postcompany .subtitile {
+  flex: 0 0 auto;  
+  width: 100%;
+}
+
+.postcompany .list-title-2 {
+  color: var(--neutrallightlightest);
+  flex: unset;
+  font-size: var(--action-action-l-font-size);
+
+}
+
+
+  .input-box {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--neutral-light-darkest, #C5C6CC);
+    background-color: var(--neutral-light-lightest, #FFF);
+
+
+  }
+  
+  .textarea-box {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 300px;
+    max-height: 50%;
+    padding: 12px 16px 0px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--neutral-light-darkest, #C5C6CC);
+    background-color: var(--neutral-light-lightest, #FFF);
+  
+
+  }
+  
+  .post-button {
+    height: 36px;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    background: var(--highlight-back-ground, #542BA8);
+    color: var(--neutral-light-lightest, #FFF);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  
+  .subTitle{
+    color: var(--neutral-light-lightest, #FFF);
+    align-self: stretch;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }

@@ -3,9 +3,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 197px;
   position: relative;
-  width: 311px;
+
 }
 
 .infoCard .list-item {
@@ -14,10 +13,10 @@
   border-radius: 12px;
   display: flex;
   gap: 16px;
-  height: 197px;
   padding: 16px;
   position: relative;
-  width: 311px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .infoCard .content-2 {
@@ -42,3 +41,10 @@
   position: relative;
 }
 
+.infoCard .span {
+  color: #f7f8fd;
+}
+
+.infoCard .text-wrapper-4 {
+  color: #c5c6cc;
+}

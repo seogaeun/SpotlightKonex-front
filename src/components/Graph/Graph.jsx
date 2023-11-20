@@ -4,7 +4,7 @@ import Chart from "react-apexcharts";
 
 import "./style.css";
 
-export const Graph = ({ dataList }) => {
+export const Graph = ({ dataList, reversed }) => {
   return (
     <Chart
       type="area"
@@ -28,7 +28,7 @@ export const Graph = ({ dataList }) => {
           enabled: false,
         },
         yaxis: {
-          reversed: true,
+          reversed: reversed,
         },
         xaxis: {
           type: "datetime", // x-축의 타입을 datetime으로 설정

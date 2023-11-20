@@ -8,7 +8,7 @@
 
 .toggleBtn {
   align-items: center;
-  background-color: var(--neutraldarkmedium);
+  background-color: var(--highlightbackground);
   border-radius: 12px;
   display: flex;
   flex-direction: row;

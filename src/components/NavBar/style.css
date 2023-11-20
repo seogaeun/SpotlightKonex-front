@@ -1,11 +1,16 @@
 @import url('./../../styles/styleguide.css');
 
 .nav-bar {
-    background-color: var(--neutrallightlightest);
-    height: 56px;
+    height: 70px;
     position: relative;
-    width: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding:20px;
+    box-sizing: border-box;
 }
+
+
 
 .nav-bar .right-button {
     height: 20px;
@@ -13,10 +18,12 @@
     position: absolute;
     top: 18px;
     width: 20px;
+
 }
 
 .nav-bar .page-title {
     position: absolute;
+    
 }
 
 .nav-bar .left-button {
@@ -25,6 +32,7 @@
     position: absolute;
     top: 18px;
     width: 20px;
+
 }
 
 .nav-bar .avatar-7 {
@@ -33,10 +41,12 @@
     position: absolute;
     top: 8px;
     width: 40px;
+
 }
 
 .nav-bar .div {
     position: absolute;
+    font-size: var(--action-action-m-font-size);
 }
 
 .nav-bar .text-wrapper {
@@ -52,10 +62,12 @@
     line-height: var(--action-action-m-line-height);
     position: absolute;
     top: 20px;
+
 }
 
 .nav-bar .page-title-2 {
     position: absolute;
+    
 }
 
 .nav-bar .page-title-3 {
@@ -70,6 +82,7 @@
     position: absolute;
     text-align: center;
     top: 19px;
+    
 }
 
 .nav-bar .right-control-avatar {
@@ -83,6 +96,7 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+    
 }
 
 .nav-bar .left-control-none {
@@ -96,6 +110,7 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+    
 }
 
 .nav-bar .right-control-icon {
@@ -109,6 +124,7 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+    
 }
 
 .nav-bar .right-control-none {
@@ -122,6 +138,7 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+    
 }
 
 .nav-bar .left-control-text {
@@ -135,6 +152,7 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+    
 }
 
 .nav-bar .right-control-text.left-control-icon {
@@ -148,6 +166,7 @@
     line-height: var(--action-action-m-line-height);
     text-align: right;
     top: 20px;
+    
 }
 
 .nav-bar .right-control-0-icon {
@@ -161,6 +180,7 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+    
 }
 
 .nav-bar .right-control-0-avatar {
@@ -174,19 +194,22 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+    
 }
 
+
+/* 네비바 타이틀 텍스트 수정 */
 .nav-bar .right-control-0-none {
     color: var(--neutraldarkdarkest);
-    font-family: var(--heading-h4-font-family);
-    font-size: var(--heading-h4-font-size);
-    font-style: var(--heading-h4-font-style);
-    font-weight: var(--heading-h4-font-weight);
+    font-family: var(--heading-h5-font-family);
+    font-size: var(--heading-h5-font-size);
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
     left: 152px;
-    letter-spacing: var(--heading-h4-letter-spacing);
+    letter-spacing: var(--heading-h5-letter-spacing);
     line-height: var(--heading-h4-line-height);
     text-align: center;
-    top: 19px;
+
 }
 
 .nav-bar .right-control-0-text {
@@ -212,6 +235,9 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+ 
+
+    
 }
 
 .nav-bar .right-control-1-avatar {
@@ -229,16 +255,19 @@
     line-height: var(--heading-h4-line-height);
     text-align: center;
     top: 19px;
+    
 }
 
 .nav-bar .right-control-1-icon {
     left: 152px;
     text-align: center;
+    
 }
 
 .nav-bar .right-control-1-none {
     left: 24px;
     text-align: center;
+    
 }
 
 .nav-bar .left-control-0-text {
@@ -250,17 +279,21 @@
     letter-spacing: var(--action-action-m-letter-spacing);
     line-height: var(--action-action-m-line-height);
     top: 20px;
+    
 }
 
 .nav-bar .right-control-1-text.left-control-0-none {
     left: 152px;
+
 }
 
 .nav-bar .right-control-1-text.left-control-0-text {
     left: 328px;
     text-align: right;
+
 }
 
 .nav-bar .right-control-1-text.left-control-0-icon {
     left: 152px;
+    
 }
