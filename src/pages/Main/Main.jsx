@@ -223,11 +223,13 @@ const clickSearch = async () => {
             rightControl="none"
             title="당신의 코넥스에 투자하세요!"
           />
+          <a href="/login">
           <ButtonPrimary
             className="company-login"
             divClassName="button-primary-instance"
             text="기업전용 로그인"
           />
+          </a>
         </div>
         <div className="banner">
           <HorizontalCard
@@ -580,10 +582,11 @@ const clickSearch = async () => {
                   title="증권사별 PICK"
                 />
                 <div className="pick-content">
+                  <div className="pick-company-toggle">
                   <Toggle
                     tabNames={[
-                      "유진투자증권",
                       "신한투자증권",
+                      "유진투자증권",
                       "하이투자증권",
                       "IBK투자증권",
                       "미래에셋증권",
@@ -607,6 +610,7 @@ const clickSearch = async () => {
                     ]}
                     onTabChange={handleThemeChange}
                   />
+                  </div>
                   <div className="pick-company">
                     {RankingData.map((item, index) => (
                       <div className="products-wrapper" key={index}>

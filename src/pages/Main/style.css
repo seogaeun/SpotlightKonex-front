@@ -1,11 +1,12 @@
 .main {
-    background-color: var(--neutraldarkdarkest);
+    background-color: #11052e;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
   
   .main .div-2 {
+    background-color: var(--neutraldarkdarkest);
     position: relative;
     width: 600px;
     padding-bottom: 300px;
@@ -39,6 +40,11 @@
   .main .home-copyright {
     width: unset;
     text-align: center;
+  }
+
+  .main .theme-search .home-copyright {
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
   
   .main .design-component-instance-node {
@@ -79,7 +85,7 @@
     justify-content: center;
     align-self: stretch !important;
     background-color: #11052e !important;
-    width: 600px !important;
+    width: 550px !important;
   }
   
   .main .horizontal-card-instance {
@@ -154,6 +160,8 @@
     justify-content: center;
     position: relative;
     width: 600px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   .main .chips {
@@ -168,7 +176,6 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     height: 1301px;
     left: 0;
     position: relative;
@@ -243,7 +250,7 @@
   }
   
   .main .rank {
-    left: 96px !important;
+    left: 10px !important;
     position: absolute !important;
     top: 10px !important;
   }
@@ -368,34 +375,38 @@
     width: 168px;
   }
 
+  .main .theme-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .main .search-content {
     align-items: center;
     display: flex;
     flex-direction: column;
     gap: 8px 8px;
     justify-content: center;
-    position: absolute;
-    top: 500px;
+    position: relative;
     width: 600px;
-  }
-
-  .main .hello-world {
-    background-color: red;
-    position:absolute;
-    top: 500px;
   }
 
   .main .theme-content {
     display: flex;
-    width: 600px;
+    width: 580px;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 50px;
   }
 
   .main .theme-content .tab-switch {
     width: 160px;
     flex-direction: column;
     margin: 0px;
+  }
+
+  .main .pick-content {
+    width: 580px;
   }
 
   .main .pick-content .tab-switch {
@@ -412,6 +423,11 @@
     flex-wrap: wrap;
   }
 
+  .main .pick-company-toggle {
+    display: flex;
+    justify-content: center;
+  }
+
   .main .pick-content .tab-btn {
     width: 120px;
     flex:none !important;
@@ -419,7 +435,10 @@
   }
   
   .main .pick-content .active {
-    font-size: 14px
+    font-size: 14px;
+    width: 120px;
+    flex: 0 0 120px !important;
+    flex-grow: 0;
   }
 
   .main .pick-content .tab-btn {
@@ -435,7 +454,7 @@
   }
 
   .main .theme-company{
-    width: 420px;
+    width: 400px;
     display: flex;
     overflow-y: scroll;
   }
@@ -445,7 +464,7 @@
   }
 
   .main .pick-company{
-    width: 600px;
+    width: 580px;
     display: flex;
     overflow-y: scroll;
   }
@@ -453,6 +472,8 @@
   .main .pick-company .products-wrapper{
     margin-right: 8px;
   }
+
+
 
   .main .search-input {
     width: 350px;
@@ -469,6 +490,10 @@
 
   .main .data-display .error-message {
     color: var(--highlightlightest);
+  }
+
+  .main .search-input:focus {
+    outline: 2px solid var(--highlightlightest);
   }
   
   
