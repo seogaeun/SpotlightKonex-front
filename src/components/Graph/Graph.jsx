@@ -4,12 +4,15 @@ import Chart from "react-apexcharts";
 
 import "./style.css";
 
-export const Graph = () => {
+export const Graph = ({ dataList, reversed }) => {
   return (
     <Chart
       type="area"
       series={[
-        { name: "순위", data: [1, 3,2,5,10,20,1] },
+        {
+          name: "순위",
+          data: [...dataList],
+        },
       ]}
       options={{
         theme: { mode: "light" },
@@ -20,41 +23,47 @@ export const Graph = () => {
           background: "transparent",
         },
         stroke: { curve: "smooth", width: 4 },
-        markers: {size: 3,},
+        markers: { size: 3 },
         dataLabels: {
-          enabled: false
+          enabled: false,
         },
         yaxis: {
-          reversed: true, 
+          reversed: reversed,
         },
-        // grid: { show: false },
-        // yaxis: { show: false },
-        // xaxis: {
-        //   labels: { show: false },
-        //   axisTicks: { show: false },
-        //   axisBorder: { show: false },
-        //   categories: [1660004640, 1660091040, 1660177440],
-        //   type: "datetime",
-        // },
+        xaxis: {
+          type: "datetime", // x-축의 타입을 datetime으로 설정
+        },
         fill: {
           type: "gradient",
-          gradient: { 
-            shade: 'dark',
+          gradient: {
+            shade: "dark",
             type: "vertical",
             shadeIntensity: 0.5,
-            gradientToColors: undefined, // optional, if not defined - uses the shades of same color in series
+            gradientToColors: undefined,
             inverseColors: true,
             opacityFrom: 0.9,
             opacityTo: 0.5,
             stops: [0, 50, 100],
-            colorStops: [] },
+            colorStops: [],
+          },
         },
-        colors:['#A76BFF'],
+        colors: ["#A76BFF"],
         tooltip: {
-          y: { formatter: (value) => `$ ${value.toFixed(2)}` },
+          y: {
+            formatter: (value) => ` ${parseInt(value.toFixed(2))} 등 `,
+          },
+          x: {
+            formatter: function (value) {
+              const options = {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              };
+              return new Date(value).toLocaleDateString("ko-KR", options);
+            },
+          },
         },
       }}
     />
   );
 };
-

@@ -1,0 +1,134 @@
+.signup {
+    background-color: var(--neutraldarkdarkest);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .signup .div-2 {
+    position: relative;
+    width: 600px;
+    padding-bottom: 300px;
+    height: 1000px;
+  }
+  
+  .signup .home-message {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    position: absolute;
+    top: 200px;
+    width: 600px;
+    color: var(--neutrallightlightest) !important;
+    font-family: var(--heading-h4-font-family);
+    font-size: var(--heading-h4-font-size);
+    font-style: var(--heading-h4-font-style);
+    font-weight: var(--heading-h4-font-weight);
+    letter-spacing: var(--heading-h4-letter-spacing);
+    line-height: var(--heading-h4-line-height);
+  }
+
+  .signup .login-field {
+    width: 600px;
+    position: absolute;
+    top: 300px;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .signup .subtitle {
+    font-family: var(--heading-h5-font-family);
+    font-size: 20px;
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--neutrallightlight);
+    margin-bottom: 8px;
+  }
+
+  .signup .input-field {
+    width: 350px;
+    padding: 20px 10px 20px 10px;
+    border-radius: 12px;
+    font-family: var(--heading-h5-font-family);
+    font-size: 18px;
+    font-style: var(--heading-h5-font-style);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--neutraldarkmedium);
+    margin-bottom: 18px;
+  }
+
+  .signup .input-field:focus {
+    outline: 2px solid var(--highlightlightest);
+  }
+
+  
+
+  .signup .login-btn-div {
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .signup .login-btn {
+    width: 370px;
+    border-radius: 12px;
+    padding: 20px 10px 20px 10px;
+    background-color: var(--neutraldarkmedium);
+    font-size: 20px;
+    font-weight: var(--heading-h5-font-weight);
+    font-style: var(--heading-h5-font-style);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--neutrallightlight);
+  }
+
+  .signup .login-btn-div .login-btn:disabled {
+    opacity: 0.5;
+  }
+
+  .signup .login-field .note-message {
+    color: var(--highlightlightest);
+    margin-bottom: 8px;
+    margin-top: -10px;
+  }
+
+  .signup .check-rule {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .signup .checkbox-instance {
+    margin-right: 8px;
+  }
+
+  .signup .rule {
+    font-family: var(--heading-h5-font-family);
+    font-size: 14px;
+    font-style: var(--heading-h5-font-style);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--neutrallightlightest);
+  }
+
+  .signup .check-rule span {
+    color: var(--highlightlight);
+    font-weight: var(--heading-h5-font-weight);
+  }
+
+  .signup .check-rule a {
+    color: var(--highlightlight);
+    font-weight: var(--heading-h5-font-weight);
+  }
+
+  .signup .agree-field {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }

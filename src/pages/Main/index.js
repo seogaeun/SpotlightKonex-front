@@ -1,1 +1,1 @@
-export { Company } from "./Main";
+export { Main } from "./Main";

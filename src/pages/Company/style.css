@@ -1,7 +1,17 @@
 @import url('./../../styles/styleguide.css');
 
+/* .managecompany *{
+  border: 1px solid aqua;
+} */
 
-.company {
+
+
+html{
+  background-color: var(--neutraldarkdarkest);  
+}
+
+/* 전체화면 */
+.managecompany {
   align-items: center;
   background-color: var(--neutraldarkdarkest);
   display: inline-flex;
@@ -9,10 +19,11 @@
   gap: 10px;
   position: relative;
   width: 100%;
-
+  height: fit-content;
 }
 
-.div-2{
+
+.managecompanyContent{
   width: 600px;
   padding-bottom: 5%;
   display: flex;
@@ -20,66 +31,67 @@
   flex-direction: column;
 }
 
-.company .nav-bar-instance {
+/* 네비바 */
+
+.managecompany .nav-bar-instance {
   background-color: var(--neutraldarkdarkest);
   position:sticky;
   top: 0;
   z-index: 10;
 }
 
-.company .design-component-instance-node {
+/* 네비 타이틀 글자 */
+.managecompany .nav-title-text {
   color: var(--neutrallightlightest);
-  left: 148px;
 }
 
-.company .left-button-4 {
-  height: 20px;
-  left: 24px;
-  position: absolute;
-  top: 18px;
-  width: 20px;
-}
 
-.company .company-profile {
+
+.managecompany .managecompany-profile {
   align-items: center;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
   gap: 20px;
   justify-content: center;
-  padding: 28px 139px;
-  position: relative;
-  width: 90%;
+  padding: 30px 140px;
+  width: 100%;
+  box-sizing: border-box;
 
 }
 
-.company .profile-img {
-  height: 95px;
-  position: relative;
-  width: 90px;
+.managecompany .profile-img {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.company .overlap-group {
+.profile-img .overlap-group {
   height: 100%;
-  position: relative;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left:40px;
+
 }
 
-.company .avatar-8 {
+.managecompany .avatar-8 {
   height: 80px;
   left: 0;
-  position: absolute;
   top: 0;
   width: 80px;
 }
 
-.company .heart-filled {
-  position: absolute;
-  background-color: transparent;
-  left: 50px;
-  top: 60px;
+.managecompany .heart-filled {
+  position: relative;
+  left: -30px;
+  top:30px;
 }
 
-.company .name {
+.managecompany .name {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -89,7 +101,7 @@
   width:100%;
 }
 
-.company .text-wrapper-2 {
+.managecompany .text-wrapper-2 {
   color: var(--neutrallightlightest);
   font-family: var(--heading-h3-font-family);
   font-size: var(--heading-h3-font-size);
@@ -104,7 +116,7 @@
   width: fit-content;
 }
 
-.company .text-wrapper-3 {
+.managecompany .text-wrapper-3 {
   color: var(--neutrallightdark);
   font-family: "Inter", Helvetica;
   font-size: 12px;
@@ -117,57 +129,58 @@
   width: fit-content;
 }
 
-.company .tab {
-  align-items: flex-end;
+.managecompany .tab {
   display: flex;
-  gap: 10px;
-  height: 50px;
-  justify-content: center;
-  padding: 16px;
-  position: relative;
-  position:sticky;
-  top: 5%;
-  z-index: 1;
   width: 100%;
+  box-sizing: border-box;
+  height: fit-content;
+  gap: 10px;
+  justify-content: center;
+  position: sticky;
+  top: 70px; /* 고정되는 위치를 화면 상단으로 설정 */
+  z-index: 1;
+  background-color: var(--neutraldarkdarkest);
 
 }
 
-.company .content-switcher-2 {
+
+.managecompany .content-switcher-2 {
   background-color: unset;
   width: 70%;
   background-color: var(--neutraldarkdarkest);
+
 }
 
-.company .design-component-instance-node-2 {
+.managecompany .design-component-instance-node-2 {
   color: var(--neutrallightlightest);
 }
 
-.company .content-switcher-3 {
+.managecompany .content-switcher-3 {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-color: var(--highlightlight);
   border-radius: unset;
   flex: 1;
   flex-grow: 1;
-  z-company: 4;
+  z-managecompany: 4;
 }
 
-.company .content-switcher-4 {
+.managecompany .content-switcher-4 {
   color: var(--neutrallightdark);
   margin-top: -0.7px;
 }
 
-.company .content-switcher-5 {
+.managecompany .content-switcher-5 {
   border-bottom-style: solid;
   border-bottom-width: 0.7px;
   border-color: var(--neutraldarkdark);
   border-radius: unset;
   flex: 1;
   flex-grow: 1;
-  z-company: 2;
+  z-managecompany: 2;
 }
 
-.company .content-switcher-6 {
+.managecompany .content-switcher-6 {
   background-color: unset;
   border-bottom-style: solid;
   border-bottom-width: 0.7px;
@@ -175,10 +188,19 @@
   border-radius: unset;
   flex: 1;
   flex-grow: 1;
-  z-company: 0;
+  z-managecompany: 0;
 }
 
-.company .company-detailinfo {
+.managecompany-section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.managecompany .managecompany-detailinfo {
   align-items: center;
   display: flex;
   flex: 0 0 auto;
@@ -186,309 +208,55 @@
   justify-content: center;
   padding: 20px 22px;
   position: relative;
-  width: 375px;
+  width: 60%;
+  height:fit-content;
+  box-sizing: border-box;
+  gap:10px
 }
 
-.company .list-title-instance {
-  flex: 0 0 auto;
-}
-
-.company .list-title-2 {
-  color: var(--neutrallightlightest);
-  flex: unset;
-  width: 295px;
-}
-
-.company .infoCard {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  height: 197px;
-  position: relative;
-  width: 311px;
-}
-
-.company .list-item {
-  align-items: center;
-  background-color: var(--neutraldarkmedium);
-  border-radius: 12px;
-  display: flex;
-  gap: 16px;
-  height: 197px;
-  padding: 16px;
-  position: relative;
-  width: 311px;
-}
-
-.company .content-2 {
-  align-items: flex-start;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 4px;
-  position: relative;
-}
-
-.company .p {
-  align-self: stretch;
-  color: transparent;
-  font-family: "Inter", Helvetica;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 20px;
-  margin-top: -1px;
-  position: relative;
-}
-
-.company .span {
-  color: #f7f8fd;
-}
-
-.company .text-wrapper-4 {
-  color: #c5c6cc;
-}
-
-.company .rank-graph {
-  align-items: center;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  padding: 10px 22px;
-  position: relative;
-  width: 375px;
-}
-
-.company .image-wrapper {
-  align-items: center;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 8px;
-  height: 156px;
-  position: relative;
-}
-
-.company .image {
-  height: 146px;
-  object-fit: cover;
-  position: relative;
-  width: 309px;
-}
-
-.company .talk-section {
-  height: 474px;
-  position: relative;
-  width: 375px;
-}
-
-.company .chat-input-component {
-  height: 72px;
-  left: 0;
-  position: absolute;
-  top: 392px;
-  width: 375px;
-}
-
-.company .chat-input {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  padding: 16px;
-  position: relative;
-  width: 375px;
-}
-
-.company .message-input {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  gap: 6px;
-  position: relative;
+.managecompany .subtitile {
+  flex: 0 0 auto;  
   width: 100%;
 }
 
-.company .text-input {
-  align-items: center;
-  background-color: var(--neutraldarkdark);
-  border-radius: 71px;
-  display: flex;
-  flex: 1;
-  flex-grow: 1;
-  gap: 12px;
-  height: 40px;
-  overflow: hidden;
-  padding: 8px 16px;
-  position: relative;
-}
-
-.company .text {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-grow: 1;
-  gap: 1px;
-  position: relative;
-}
-
-.company .placeholder {
-  color: var(--neutrallightdarkest);
-  font-family: var(--body-body-m-font-family);
-  font-size: var(--body-body-m-font-size);
-  font-style: var(--body-body-m-font-style);
-  font-weight: var(--body-body-m-font-weight);
-  letter-spacing: var(--body-body-m-letter-spacing);
-  line-height: var(--body-body-m-line-height);
-  margin-top: -1px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.company .icon-wrapper {
-  align-items: center;
-  background-color: var(--highlightbackground);
-  border-radius: 38px;
-  display: flex;
-  gap: 8px;
-  height: 32px;
-  justify-content: center;
-  margin-bottom: -4px;
-  margin-top: -4px;
-  overflow: hidden;
-  padding: 13px 35px;
-  position: relative;
-  width: 32px;
-}
-
-.company .icon-2 {
-  height: 12px;
-  margin-bottom: -3px;
-  margin-left: -25px;
-  margin-right: -25px;
-  margin-top: -3px;
-  position: relative;
-  width: 12px;
-}
-
-.company .chat-bubble-section {
-  height: 346px;
-  left: 0;
-  position: absolute;
-  top: 46px;
-  width: 375px;
-}
-
-.company .message-bubble {
-  align-items: flex-start;
-  background-color: var(--neutraldarkmedium);
-  border-radius: 20px;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 4px;
-  left: 24px;
-  padding: 12px 16px;
-  position: absolute;
-  top: 178px;
-}
-
-.company .name-2 {
-  align-self: stretch;
-  color: var(--neutraldarklight);
-  font-family: var(--heading-h5-font-family);
-  font-size: var(--heading-h5-font-size);
-  font-style: var(--heading-h5-font-style);
-  font-weight: var(--heading-h5-font-weight);
-  letter-spacing: var(--heading-h5-letter-spacing);
-  line-height: var(--heading-h5-line-height);
-  margin-top: -1px;
-  position: relative;
-}
-
-.company .message {
+.managecompany .list-title-2 {
   color: var(--neutrallightlightest);
-  font-family: var(--body-body-m-font-family);
-  font-size: var(--body-body-m-font-size);
-  font-style: var(--body-body-m-font-style);
-  font-weight: var(--body-body-m-font-weight);
-  letter-spacing: var(--body-body-m-letter-spacing);
-  line-height: var(--body-body-m-line-height);
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
+  flex: unset;
+  font-size: var(--action-action-l-font-size);
+
 }
 
-.company .message-bubble-2 {
-  align-items: flex-start;
-  background-color: var(--neutraldarkmedium);
-  border-radius: 20px;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 4px;
-  left: 24px;
-  padding: 12px 16px;
-  position: absolute;
-  top: 262px;
-}
 
-.company .office-message {
-  align-items: flex-start;
-  background-color: var(--highlightbackground);
-  border-radius: 20px;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 4px;
-  left: 143px;
-  padding: 12px 16px;
-  position: absolute;
-  top: 94px;
-}
-
-.company .name-3 {
+.managecompany-section .checkBox{
   color: var(--neutrallightlightest);
   font-family: var(--heading-h5-font-family);
-  font-size: var(--heading-h5-font-size);
   font-style: var(--heading-h5-font-style);
-  font-weight: var(--heading-h5-font-weight);
-  letter-spacing: var(--heading-h5-letter-spacing);
-  line-height: var(--heading-h5-line-height);
-  margin-top: -1px;
-  position: relative;
-  width: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.company .message-bubble-3 {
-  align-items: flex-start;
+.checkBox .checkLabel{
   background-color: var(--neutraldarkmedium);
   border-radius: 20px;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 4px;
-  left: 24px;
-  padding: 12px 16px;
-  position: absolute;
-  top: 10px;
+  padding:5px;
 }
 
-.company .talk-title {
-  height: 33px;
-  left: 22px;
-  position: absolute;
-  top: 10px;
-  width: 327px;
-}
 
-.company .news {
-  height: 537px;
+.managecompany .news {
+  height: fit-content;
+  margin-bottom: 50px;
   position: relative;
   width: 375px;
 }
 
-.company .news-list-component {
+.newsContents{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.managecompany .news-list-component {
   align-items: center;
   display: inline-flex;
   flex-direction: column;
@@ -499,24 +267,22 @@
   top: 53px;
 }
 
-.company .news-bubble {
+.managecompany .news-bubble {
   align-items: flex-start;
   background-color: var(--neutraldarkmedium);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  height: 81px;
   padding: 12px 16px;
   position: relative;
-  width: 311px;
 }
 
-.company .name-4 {
+.managecompany .name-4 {
   align-self: stretch;
   color: var(--neutrallightdarkest);
   font-family: "Inter", Helvetica;
-  font-size: 12px;
+  font-size: var(--body-body-XS-font-size);
   font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
@@ -524,10 +290,10 @@
   position: relative;
 }
 
-.company .message-2 {
+.managecompany .message-2 {
   color: var(--neutrallightlightest);
   font-family: "Inter", Helvetica;
-  font-size: 14px;
+  font-size: var(--body-body-XS-line-height);
   font-weight: 400;
   letter-spacing: 0;
   line-height: 20px;
@@ -536,11 +302,11 @@
   width: fit-content;
 }
 
-.company .text-wrapper-5 {
+.managecompany .text-wrapper-5 {
   font-weight: 700;
 }
 
-.company .text-wrapper-6 {
+.managecompany .text-wrapper-6 {
   color: #ffffff;
   font-family: "Inter", Helvetica;
   font-size: 14px;
@@ -549,25 +315,15 @@
   line-height: 20px;
 }
 
-.company .news-title {
-  align-items: center;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  left: 0;
-  padding: 5px 24px;
-  position: absolute;
-  top: 0;
-}
 
-.company .accordion-instance {
+
+.managecompany .accordion-instance {
   left: 225px;
   position: absolute;
   top: 511px;
   width: 300px;
 }
 
-.company .accordion-2 {
+.managecompany .accordion-2 {
   background-color: transparent;
 }

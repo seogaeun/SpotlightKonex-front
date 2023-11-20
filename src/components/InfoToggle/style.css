@@ -1,0 +1,52 @@
+.infoToggle {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.toggleBtn {
+  align-items: center;
+  background-color: var(--highlightbackground);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height:fit-content;
+  padding: 10px;
+  position: relative;
+  width: 330px;
+  box-sizing: border-box;
+
+}
+
+
+.toggleTitle{
+  color: var(--neutrallightlightest);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.toggleIcon{
+  color: var(--neutrallightlightest);
+
+}
+
+.toggle-content{
+  background-color: var(--highlightlightest);
+  width: 330px;
+  height: fit-content;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid var(--neutrallightlightest);
+  padding: 30px 10px 20px 10px;
+  box-sizing: border-box;
+  margin-top: -20px;
+  border-radius: 0 0 10px 10px;
+
+}
+
+
+
+

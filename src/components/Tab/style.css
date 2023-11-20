@@ -1,0 +1,70 @@
+.MainTab .tab-switch {
+    align-items: center;
+    border-radius: 0px;
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    position: relative;
+    width: 332px;
+    background-color: transparent;
+}
+
+.MainTab .tab-btn {
+    
+    background-color: transparent;
+    align-items: center;
+    border-radius: 0px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 8px 12px;
+    position: relative;
+    flex: 1 1 !important;
+    flex-grow: 1 !important;
+    z-index: 2 !important;
+    font-family: var(--body-body-m-font-family);
+    font-size: var(--body-body-m-font-size);
+    font-style: var(--body-body-m-font-style);
+    font-weight: var(--body-body-m-font-weight);
+    letter-spacing: var(--body-body-m-letter-spacing);
+    line-height: var(--body-body-m-line-height);
+    color: var(--neutrallightdark);
+    border-bottom: 2px solid var(--neutraldarkdark); /* 추가: 파랑색 탭 밑에 선 */
+    cursor: pointer;
+    
+}
+
+.MainTab .active {
+    
+    font-family: var(--body-body-m-font-family);
+    font-size: var(--body-body-m-font-size);
+    font-style: var(--body-body-m-font-style);
+    font-weight: var(--body-body-m-font-weight);
+    letter-spacing: var(--body-body-m-letter-spacing);
+    line-height: var(--body-body-m-line-height);
+    background-color: transparent;
+    align-items: center;
+    border-radius: 0px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 8px 12px;
+    position: relative;
+    flex: 1 1 !important;
+    flex-grow: 1 !important;
+    z-index: 2 !important;
+    color: var(--neutrallightlightest);
+    border-bottom: 2px solid var(--highlightlight); /* 추가: 클릭된 탭 밑에 빨간색 선 */
+    cursor: pointer;
+    
+}
+
+.MainTab .tab-content .tab-subtitle {
+    font-family: var(--heading-h5-font-family);
+    font-size: var(--heading-h2-font-size);
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    text-align: center;
+}
