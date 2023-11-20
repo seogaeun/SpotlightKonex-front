@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { LeftButton4 } from "../../icons/LeftButton4";
 import { NavBar } from "../../components/NavBar";
 import { ListTitle } from "../../components/ListTitle";
+import { LinkButton } from "../../components/LinkButton";
 import "./styles.css"; // 외부 CSS 파일을 import
 
 export const PostCompany = () => {
@@ -48,7 +49,7 @@ export const PostCompany = () => {
         </div>
 
         {/* Post 버튼 */}
-        <button className="post-button">Post</button>
+        <LinkButton to={""} isLinked={false} buttonText="이동하기➡️" />
       </div>
     </div>
   );

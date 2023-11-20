@@ -15,7 +15,12 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/main" element={<Main />} />
+        <Route path="/" element={<Main />} />
+          <Route path="/company" element={<Company />} />
+          <Route path="/PostCompany" element={<PostCompany />} />
+          <Route path="/ManageCompany" element={<ManageCompany />} />
+
+
         </Routes>
       </BrowserRouter>
     </div>

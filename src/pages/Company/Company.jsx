@@ -12,6 +12,8 @@ import { Graph } from "../../components/Graph";
 import { ChatBox } from "../../components/ChatBox";
 import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
+import { Footer } from "../../components/Footer";
+import { LinkButton } from "../../components/LinkButton";
 import "./style.css";
 
 export const Company = () => {
@@ -234,6 +236,7 @@ export const Company = () => {
           </div>
         )}
       </div>
+      <Footer></Footer>
     </div>
   );
 };

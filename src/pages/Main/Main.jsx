@@ -8,17 +8,20 @@ import { Toggle } from "../../components/Toggle";
 import { Tab } from "../../components/Tab/Tab";
 import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
+import { Company } from "../Company";
+
 import axios from "axios";
 import Swal from "sweetalert2";
 import "./style.css";
 import "../../styles/styleguide.css";
 
 export const Main = () => {
+  const [buttonInfo, setButtonInfo]=useState('');
   const [selectedTab, setSelectedTab] = useState("section1"); // 초기 탭 "Home"
   const [selectedSection, setSelectedSection] = useState("거래대금"); // 초기 탭 "거래대금"
   const [selectedType, setSelectedType] = useState("종목"); // 초기 탭 "종목"
   const [selectedTheme, setSelectedTheme] = useState("금속 및 화학 제조업"); // 초기 탭 "금속 및 화학 제조업"
-  
+
   const [stockname, setStockName] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -118,24 +121,24 @@ export const Main = () => {
   };
 
   const handleSearch = async () => {
-    console.log(stockname)
+    console.log(stockname);
     if (stockname === "") {
-        setSearchError("종목명을 입력해주세요");
-        setSearchResults([]);
-        setIsLoaded(false);
-        Swal.fire({
-            text: "종목명을 입력해주세요",
-            icon: "error",
-            timer: 2000,
-          });
+      setSearchError("종목명을 입력해주세요");
+      setSearchResults([]);
+      setIsLoaded(false);
+      Swal.fire({
+        text: "종목명을 입력해주세요",
+        icon: "error",
+        timer: 2000,
+      });
     } else {
-        fetchBrandData(stockname);
+      fetchBrandData(stockname);
     }
-};
+  };
 
-const clickSearch = async () => {
-  handleSearch();
-};
+  const clickSearch = async () => {
+    handleSearch();
+  };
 
   useEffect(() => {
     setRankingData(dummyRankingData);
@@ -143,7 +146,7 @@ const clickSearch = async () => {
 
   useEffect(() => {
     fetchBrandData(stockname);
-    }, [stockname]);
+  }, [stockname]);
 
   // useEffect(() => {
   //   setIsLoading(true);
@@ -168,13 +171,19 @@ const clickSearch = async () => {
     try {
       let rankingData;
       if (selectedSection === "section1") {
-        const response = await axios.get(`${window.API_BASE_URL}/main/top/amount`);
+        const response = await axios.get(
+          `${window.API_BASE_URL}/main/top/amount`
+        );
         rankingData = response.data.payload.konexList;
       } else if (selectedSection === "section2") {
-        const response = await axios.get(`${window.API_BASE_URL}/main/top/like`);
+        const response = await axios.get(
+          `${window.API_BASE_URL}/main/top/like`
+        );
         rankingData = response.data.payload.konexList;
       } else if (selectedSection === "section3") {
-        const response = await axios.get(`${window.API_BASE_URL}/main/top/views`);
+        const response = await axios.get(
+          `${window.API_BASE_URL}/main/top/views`
+        );
         rankingData = response.data.payload.konexList;
       }
       setRankingData(rankingData);
@@ -186,28 +195,28 @@ const clickSearch = async () => {
   // brand-search
   const fetchBrandData = async (stockname) => {
     if (stockname.trim() === "") {
+      setSearchResults([]);
+      setIsLoaded(true);
+      setSearchError("");
+    } else {
+      try {
+        const response = await axios.get(
+          `${window.API_BASE_URL}/find/keyword/${stockname}`
+        );
+        const brandData = response.data.payload.konexList;
+        setSearchResults(brandData);
+        setIsLoaded(true);
+        setSearchError(null);
+        console.log(stockname);
+        console.log(brandData);
+      } catch (error) {
+        console.error("API 요청 실패:", error);
         setSearchResults([]);
         setIsLoaded(true);
-        setSearchError("");
-    } else {
-        try {
-            const response = await axios.get(
-                `${window.API_BASE_URL}/find/keyword/${stockname}`
-            );
-            const brandData = response.data.payload.konexList;
-            setSearchResults(brandData);
-            setIsLoaded(true);
-            setSearchError(null);
-            console.log(stockname);
-            console.log(brandData);
-        } catch (error) {
-            console.error("API 요청 실패:", error);
-            setSearchResults([]);
-            setIsLoaded(true);
-            setSearchError("검색 결과가 없습니다.");
-        }
+        setSearchError("검색 결과가 없습니다.");
+      }
     }
-};
+  };
 
   return (
     <div className="main">
@@ -446,48 +455,76 @@ const clickSearch = async () => {
                   title="원하는 기업을 찾아보세요"
                 />
                 <input
-                            className="search-input"
-                            type="text"
-                            name="stockname"
-                            value={stockname}
-                            placeholder="종목코드나 종목명을 입력해주세요."
-                            onChange={(e) => setStockName(e.target.value)}
-                            onKeyPress={(e) => {
-                              if (e.key === "Enter") {
-                                handleSearch();
-                              }
-                            }}
-                        />
+                  className="search-input"
+                  type="text"
+                  name="stockname"
+                  value={stockname}
+                  placeholder="종목코드나 종목명을 입력해주세요."
+                  onChange={(e) => setStockName(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      handleSearch();
+                    }
+                  }}
+                />
                 <div className="result-content"></div>
               </div>
             )}
             {isLoaded && (
-            <div className="data-display">
+              <div className="data-display">
                 {searchResults.length > 0 ? (
-                searchResults.map((item, index) => (
-                  <div className="products-wrapper" key={index}>
-                  <div className="products">
-                    <div className="vertical-card">
-                      <div className="company-image">
-                        <div className="overlap-group">
-                          <Image className="image-instance" icon={<Image8 className="icon-instance-node" />} />
-                        </div>
-                      </div>
-                      <div className="company-info">
-                        <div className="title-2">
-                          <div className="company-2">{item && item.corp_name ? item.corp_name : "로딩 중..."}</div>
-                          <p className="price">
-                            <span className={`stock-price ${item && item.cmpprevdd_prc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
-                            <span className={`stock-change ${item && item.cmpprevdd_prc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevdd_prc}%` : "로딩 중..."}</span>
-                          </p>
+                  searchResults.map((item, index) => (
+                    <div className="products-wrapper" key={index}>
+                      <div className="products">
+                        <div className="vertical-card">
+                          <div className="company-image">
+                            <div className="overlap-group">
+                              <Image
+                                className="image-instance"
+                                icon={<Image8 className="icon-instance-node" />}
+                              />
+                            </div>
+                          </div>
+                          <div className="company-info">
+                            <div className="title-2">
+                              <div className="company-2">
+                                {item && item.corp_name
+                                  ? item.corp_name
+                                  : "로딩 중..."}
+                              </div>
+                              <p className="price">
+                                <span
+                                  className={`stock-price ${
+                                    item && item.cmpprevdd_prc > 0
+                                      ? "stock-price-plus"
+                                      : "stock-price-minus"
+                                  }`}
+                                >
+                                  {item
+                                    ? addCommasToNumber(item.price)
+                                    : "로딩 중..."}
+                                  원
+                                </span>
+                                <span
+                                  className={`stock-change ${
+                                    item && item.cmpprevdd_prc > 0
+                                      ? "stock-change-plus"
+                                      : "stock-change-minus"
+                                  }`}
+                                >
+                                  {item
+                                    ? `${item.cmpprevdd_prc}%`
+                                    : "로딩 중..."}
+                                </span>
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>           
-                ))
+                  ))
                 ) : (
-                <p className="error-message">{searchError}</p>
+                  <p className="error-message">{searchError}</p>
                 )}
               </div>
             )}

@@ -12,6 +12,8 @@ import { Graph } from "../../components/Graph";
 import { ChatBox } from "../../components/ChatBox";
 import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
+import { LinkButton } from "../../components/LinkButton";
+
 import "./style.css";
 
 export const ManageCompany = () => {
@@ -200,13 +202,16 @@ export const ManageCompany = () => {
         {selectedTab === "section3" && (
           <div className="managecompany-section">
             <div className="managecompany-detailinfo">
-              <ListTitle
-                className="subtitile"
-                divClassName="list-title-2"
-                rightControl="none"
-                title={enterpriseData.crop_name + "의 최근 소식"}
-              />
-              <button className="post-button">Add</button>
+              <div className="subSection">
+                <ListTitle
+                  className="subtitile"
+                  divClassName="list-title-2"
+                  rightControl="none"
+                  title={enterpriseData.crop_name + "의 최근 소식"}
+                />
+                <LinkButton to={""} isLinked={false} buttonText="Add" />
+              </div>
+
               {cropPosts.map((post, index) => (
                 <InfoToggle
                   key={index}
