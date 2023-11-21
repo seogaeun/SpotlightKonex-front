@@ -299,7 +299,7 @@ export const ManageCompany = () => {
 
   const backClick = () => {
     console.log("back");
-    navigate("/main");
+    navigate("/");
   };
 
   //채팅 기업 댓글 필터링 (기업 댓글 조회)
@@ -334,7 +334,7 @@ export const ManageCompany = () => {
 
      // nav bar
      const handleLeftIconClick = (link) => {
-      navigate("/main");
+      navigate("/");
     };
 
     // logout 처리
