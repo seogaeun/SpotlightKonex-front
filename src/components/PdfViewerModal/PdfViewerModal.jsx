@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
 import "./style.css";
-import pdfUrl from '../../assets/test.pdf'
 
 // Set up pdf.js worker source
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
