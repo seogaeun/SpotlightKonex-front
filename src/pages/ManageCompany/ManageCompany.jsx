@@ -16,7 +16,7 @@ import { ChatBox } from "../../components/ChatBox";
 import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
 import { LinkButton } from "../../components/LinkButton";
-
+import Swal from "sweetalert2";
 import "./style.css";
 
 export const ManageCompany = () => {
@@ -337,6 +337,46 @@ export const ManageCompany = () => {
       navigate("/main");
     };
 
+    // logout 처리
+  const handleLogout = async (e) => {
+    e.preventDefault();
+      try {
+        const response = await axios.post(
+          `http://125.6.38.124/auth/signout`,
+          {
+            email,
+            accessToken,
+          }
+        );
+        if (error.response === 200) {
+          sessionStorage.removeItem('company_user');
+          navigate("/")
+        } else {
+          console.error("로그아웃 실패");
+          Swal.fire({
+            icon: "error",
+            title: "로그아웃 실패",
+            text: "error",
+          });
+        }
+      } catch (error) {
+        if (error.response === 400) {
+          Swal.fire({
+            icon: "error",
+            title: "로그아웃 실패",
+            text: "잘못된 이메일 형식 입니다.",
+          });
+        } else {
+          console.error("로그아웃 실패:", error.response);
+          Swal.fire({
+            icon: "error",
+            title: "로그아웃 실패",
+            text: error.response,
+          });
+        }
+      }
+  };
+
   return (
     <div className="managecompany">
       {/* 전체 화면 */}
@@ -357,6 +397,7 @@ export const ManageCompany = () => {
           </div>
           <div className="name">
             <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
+            <div className="log-out" onClick={handleLogout}>logout</div>
             {editingDescription && (
               <div className="description">
                 <input
