@@ -171,6 +171,9 @@ export const ManageCompany = () => {
       }
     };
 
+    console.log(accessEmail);
+      console.log(accessToken);
+
     fetchData();
   }, [corpCode]);
 
