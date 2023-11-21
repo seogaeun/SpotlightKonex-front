@@ -223,10 +223,10 @@ export const Main = () => {
       "금속 및 화학 제조업": 1,
       "식품 및 섬유 제조업": 2,
       "전자제품 및 기타 제조업": 3,
-      도매업: 4,
-      서비스업: 5,
+      "도매업": 4,
+      "서비스업": 5,
       "건설 및 공사업": 6,
-      금융업: 7,
+      "금융업": 7,
       "전기 및 전자 관련업": 8,
     };
 
@@ -268,26 +268,26 @@ export const Main = () => {
   // convert company string to numeric value
   const mapCompanyToNumber = (company) => {
     const themeMap = {
-      유진투자증권: 1,
-      신한투자증권: 2,
-      하이투자증권: 3,
-      IBK투자증권: 4,
-      미래에셋증권: 5,
-      SK증권: 6,
-      상상인증권: 7,
-      한화투자증권: 8,
-      대신증권: 9,
-      키움증권: 10,
-      하나증권: 11,
-      NH투자증권: 12,
-      현대차증권: 13,
-      교보증권: 14,
-      BNK투자증권: 15,
-      신영증권: 16,
-      DB금융투자: 17,
-      한국투자증권: 18,
-      KB증권: 19,
-      기타: 20,
+      "유진투자증권": 1,
+      "신한투자증권": 2,
+      "하이투자증권": 3,
+      "IBK투자증권": 4,
+      "미래에셋증권": 5,
+      "SK증권": 6,
+      "상상인증권": 7,
+      "한화투자증권": 8,
+      "대신증권": 9,
+      "키움증권": 10,
+      "하나증권": 11,
+      "NH투자증권": 12,
+      "현대차증권": 13,
+      "교보증권": 14,
+      "BNK투자증권": 15,
+      "신영증권": 16,
+      "DB금융투자": 17,
+      "한국투자증권": 18,
+      "KB증권": 19,
+      "기타": 20,
     };
 
     return themeMap[company] || company;
@@ -311,11 +311,10 @@ export const Main = () => {
     let pickData;
     try {
       const response = await axios.get(
-        `http://125.6.38.124/find/adviser/${companyNumber}`
+        `http://125.6.38.124/find/advisor/${companyNumber}`
       );
       pickData = response.data;
       setPickData(pickData);
-      console.log(pickData);
     } catch (error) {
       console.error("API 요청 실패:", error);
       setPickData([]);
@@ -326,7 +325,6 @@ export const Main = () => {
 
   const fetchAllData = async () => {
     let allData;
-    console.log("hoho");
     try {
       const response = await axios.get(
         'http://125.6.38.124/main/enterprise'
@@ -375,16 +373,18 @@ export const Main = () => {
           )}
         </div>
         <div className="banner">
-          <HorizontalCard
-            className="KONEX-banner"
-            contentClassName="horizontal-card-instance"
-            control="none"
-            divClassName="design-component-instance-node"
-            divClassNameOverride="KONEX-banner-2"
-            subtitle="코넥스시장 알아보기"
-            title="What is konex?"
-            visuals="none"
-          />
+          <a href="https://minseoo.notion.site/ac99d1d37ca94a07940948c66063928b?pvs=4">
+            <HorizontalCard
+              className="KONEX-banner"
+              contentClassName="horizontal-card-instance"
+              control="none"
+              divClassName="design-component-instance-node"
+              divClassNameOverride="KONEX-banner-2"
+              subtitle="코넥스시장 알아보기"
+              title="What is konex?"
+              visuals="none"
+            />
+          </a>
         </div>
         <div className="for-sticky">
           <div className="tab">
