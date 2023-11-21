@@ -19,7 +19,7 @@ import "./style.css";
 // const apiEndpoint = process.env.REACT_APP_API_BASE_URL;
 const apiEndpoint = "http://133.186.215.123:8080";
 
-const initialCropCode = "00125664";
+// const initialCropCode = "00125664";
 
 export const Company = () => {
   const [selectedTab, setSelectedTab] = useState("section1");
@@ -50,6 +50,14 @@ export const Company = () => {
 
   //기업 게시글 조회
   const [companyBoarddata, setCompanyBoarddata] = useState([]);
+
+  //채팅창
+
+  const [messages, setMessages] = useState([]);
+
+  const addMessage = (text) => {
+    setMessages([...messages, { text, sender: "user" }]);
+  };
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -136,30 +144,34 @@ export const Company = () => {
     fetchData();
   }, [corpCode]);
 
-  //채팅 데이터 연결
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log("채팅 API 진입");
         const response = await fetch(
           `${apiEndpoint}/enterprise/talk?corpCode=${corpCode}&status=false`
         );
         const data = await response.json();
 
-        console.log(data);
-        // 데이터를 적절한 형식으로 변환
-        const formattedData = data.map((item) => ({
-          id: item.id,
-          date: item.pubDate,
-          title: item.title,
-          content: item.description,
-          url: item.link,
-        }));
+        if (data && data.data && data.data.talkList) {
+          // 데이터를 적절한 형식으로 변환
+          const formattedData = data.data.talkList.map((item) => ({
+            id: item.context,
+            date: new Date(),
+            text: item.context,
+            sender: item.writer_type ? "company" : "user",
+            nickName: item.nickName,
+          }));
 
-        // 변환된 데이터를 state에 설정
-        setCompanyTalkdata(formattedData);
-        console.log("채팅 배열" + companyTalkdata);
+          // 변환된 데이터를 state에 설정
+          setCompanyTalkdata(formattedData);
+          console.log("채팅 API 진입 완료");
+          console.log(formattedData);
+        } else {
+          console.error("채팅 데이터에 talkList가 없습니다.");
+        }
       } catch (error) {
-        console.error("기업 데이터 가져오기 오류:", error);
+        console.error("기업 채팅 가져오기 오류:", error);
       }
     };
 
@@ -360,7 +372,7 @@ export const Company = () => {
                   기업 답변만 보기
                 </label>
               </div>
-              <ChatBox />
+              <ChatBox messages={companyTalkdata} addMessage={addMessage} />
             </div>
           </div>
         )}
