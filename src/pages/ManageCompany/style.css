@@ -66,7 +66,7 @@ html{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(#fff,#fff,#fff,#fff, rgba(27, 21, 70, 1) );
+  background: linear-gradient(#fff,#fff,#fff,#fff,#fff, rgba(27, 21, 70, 1) );
   border-radius: 10px;
 }
 
