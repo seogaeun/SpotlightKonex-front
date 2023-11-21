@@ -301,7 +301,7 @@ export const ManageCompany = () => {
 
   const backClick = () => {
     console.log("back");
-    navigate("/main");
+    navigate("/");
   };
 
   //채팅 기업 댓글 필터링 (기업 댓글 조회)
@@ -334,53 +334,57 @@ export const ManageCompany = () => {
     fetchBoardData();
   }, [corpCode]);
 
-  // nav bar
-  const handleLeftIconClick = (link) => {
-    navigate("/main");
-  };
-
 
   const accessEmail = sessionStorage.getItem("corpEmail");
 
 
-    // logout 처리
+  // nav bar
+  const handleLeftIconClick = (link) => {
+    navigate("/");
+  };
+
+
+  // logout 처리
   const handleLogout = async (e) => {
     e.preventDefault();
-      try {
-        const response = await axios.post(
-          `http://125.6.38.124/auth/signout`,
-          {
-            email: accessEmail,
-            accessToken: accessToken,
-          }
-        );
-        if (response.status === 200) {
-          sessionStorage.removeItem('company_user');
-          navigate("/")
-        } else {
-          console.error("로그아웃 실패");
-          Swal.fire({
-            icon: "error",
-            title: "로그아웃 실패",
-            text: "error",
-          });
+    try {
+      const response = await axios.post(
+        `http://125.6.38.124/auth/signout`,
+        {
+          email: accessEmail,
+          accessToken: accessToken,
         }
-      } catch (error) {
-        if (error.response === 400) {
-          Swal.fire({
-            icon: "error",
-            title: "로그아웃 실패",
-            text: "잘못된 이메일 형식 입니다.",
-          });
-        } else {
-          console.error("로그아웃 실패:", error.response);
-          Swal.fire({
-            icon: "error",
-            title: "로그아웃 실패",
-            text: error.response,
-          });
-        }
+      );
+      console.log(accessEmail);
+      console.log(accessToken);
+      if (response.status === 200) {
+        sessionStorage.removeItem('company_user');
+        navigate("/")
+      } else {
+        console.error("로그아웃 실패");
+        Swal.fire({
+          icon: "error",
+          title: "로그아웃 실패",
+          text: "error",
+        });
       }
+    } catch (error) {
+      if (error.response === 400) {
+        Swal.fire({
+          icon: "error",
+          title: "로그아웃 실패",
+          text: "잘못된 이메일 형식 입니다.",
+        });
+        console.log("400");
+      } else {
+        console.error("로그아웃 실패:", error.response);
+        Swal.fire({
+          icon: "error",
+          title: "로그아웃 실패",
+          text: error.response,
+        });
+      }
+    }
   };
 
   return (
