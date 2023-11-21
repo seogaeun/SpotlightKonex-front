@@ -170,12 +170,12 @@ export const Main = () => {
         rankingData = response.data;
       } else if (selectedSection === "좋아요수") {
         const response = await axios.get(
-          `http://125.6.38.124main/top/like`
+          `http://125.6.38.124/main/top/like`
         );
         rankingData = response.data;
       } else if (selectedSection === "조회수") {
         const response = await axios.get(
-          `api/main/top/views`
+          `http://125.6.38.124/main/top/views`
         );
         rankingData = response.data;
       }
@@ -195,7 +195,7 @@ export const Main = () => {
     } else {
       try {
         const response = await axios.get(
-          `/api/find/keyword/${stockname}`
+          `http://125.6.38.124/find/keyword/${stockname}`
         );
         const brandData = response.data;
         if (brandData.length === 0) {
