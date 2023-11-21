@@ -40,15 +40,16 @@ export const Main = () => {
   //리덕스 상태 저장을 위한 함수
   const [selectedCorp, setSelectedCorp] = useState(null);
 
-  const handleProductClick = (corpName) => {
-    setSelectedCorp(corpName);
+  const handleProductClick = (corpCode) => {
+    setSelectedCorp(corpCode);
 
     // 선택된 기업 데이터를 history state에 저장하며 ./Company로 이동
-    navigate("/Company", { state: { corpName } });
+    navigate("/Company", { state: { corpCode } });
   };
   const accessToken = sessionStorage.getItem("company_user");
 
-  const firstData = RankingData && RankingData.length > 0 ? RankingData[0] : null;
+  const firstData =
+    RankingData && RankingData.length > 0 ? RankingData[0] : null;
 
   function addCommasToNumber(number) {
     if (number !== undefined && number !== null) {
@@ -111,8 +112,7 @@ export const Main = () => {
     fetchBrandData(stockname);
   }, [stockname]);
 
-  
- // ranking data
+  // ranking data
   useEffect(() => {
     setIsLoading(true);
 
@@ -160,13 +160,19 @@ export const Main = () => {
       let rankingData;
 
       if (selectedSection === "거래대금") {
-        const response = await axios.get(`${window.API_BASE_URL}/main/top/amount`);
+        const response = await axios.get(
+          `${window.API_BASE_URL}/main/top/amount`
+        );
         rankingData = response.data;
       } else if (selectedSection === "좋아요수") {
-        const response = await axios.get(`${window.API_BASE_URL}/main/top/like`);
+        const response = await axios.get(
+          `${window.API_BASE_URL}/main/top/like`
+        );
         rankingData = response.data;
       } else if (selectedSection === "조회수") {
-        const response = await axios.get(`${window.API_BASE_URL}/main/top/views`);
+        const response = await axios.get(
+          `${window.API_BASE_URL}/main/top/views`
+        );
         rankingData = response.data;
       }
       setRankingData(rankingData);
@@ -185,7 +191,7 @@ export const Main = () => {
     } else {
       try {
         const response = await axios.get(
-            `${window.API_BASE_URL}/find/keyword/${stockname}`
+          `${window.API_BASE_URL}/find/keyword/${stockname}`
         );
         const brandData = response.data;
         if (brandData.length === 0) {
@@ -196,132 +202,138 @@ export const Main = () => {
           setSearchError(null);
         }
         setIsLoaded(true);
-    } catch (error) {
+      } catch (error) {
         console.error("API 요청 실패:", error);
         setSearchResults([]);
         setIsLoaded(true);
         setSearchError("검색 결과가 없습니다.");
+      }
     }
-}
-};
+  };
 
-// theme-search
+  // theme-search
 
-// convert theme string to numeric value
-const mapThemeToNumber = (theme) => {
-const themeMap = {
-"금속 및 화학 제조업": 1,
-"식품 및 섬유 제조업": 2,
-"전자제품 및 기타 제조업": 3,
-"도매업": 4,
-"서비스업": 5,
-"건설 및 공사업": 6,
-"금융업": 7,
-"전기 및 전자 관련업": 8,
-};
+  // convert theme string to numeric value
+  const mapThemeToNumber = (theme) => {
+    const themeMap = {
+      "금속 및 화학 제조업": 1,
+      "식품 및 섬유 제조업": 2,
+      "전자제품 및 기타 제조업": 3,
+      도매업: 4,
+      서비스업: 5,
+      "건설 및 공사업": 6,
+      금융업: 7,
+      "전기 및 전자 관련업": 8,
+    };
 
-return themeMap[theme] || theme;
-};
+    return themeMap[theme] || theme;
+  };
 
-useEffect(() => {
-setIsLoading(true);
+  useEffect(() => {
+    setIsLoading(true);
 
-fetchThemeData(selectedTheme)
-.then(() => {
-  setIsLoading(false);
-})
-.catch((error) => {
-  console.error("API 요청 실패:", error);
-  setIsLoading(false); // 에러 발생 시 로딩 숨김
-});
-}, [selectedTheme]);
+    fetchThemeData(selectedTheme)
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("API 요청 실패:", error);
+        setIsLoading(false); // 에러 발생 시 로딩 숨김
+      });
+  }, [selectedTheme]);
 
-const fetchThemeData = async (selectedTheme) => {
-const themeNumber = mapThemeToNumber(selectedTheme);
-let themeData;
-try {
-  const response = await axios.get(`${window.API_BASE_URL}/find/theme/${themeNumber}`);
-  themeData = response.data;
-  setThemeData(themeData);
-} catch (error) {
-console.error("API 요청 실패:", error);
-setThemeData([]);
-setIsLoaded(true);
-setSearchError("검색 결과가 없습니다.");
-}
-};
+  const fetchThemeData = async (selectedTheme) => {
+    const themeNumber = mapThemeToNumber(selectedTheme);
+    let themeData;
+    try {
+      const response = await axios.get(
+        `${window.API_BASE_URL}/find/theme/${themeNumber}`
+      );
+      themeData = response.data;
+      setThemeData(themeData);
+    } catch (error) {
+      console.error("API 요청 실패:", error);
+      setThemeData([]);
+      setIsLoaded(true);
+      setSearchError("검색 결과가 없습니다.");
+    }
+  };
 
-// pick-search
+  // pick-search
 
-// convert company string to numeric value
-const mapCompanyToNumber = (company) => {
-const themeMap = {
-"유진투자증권": 1,
-"신한투자증권": 2,
-"하이투자증권": 3,
-"IBK투자증권": 4,
-"미래에셋증권": 5,
-"SK증권": 6,
-"상상인증권": 7,
-"한화투자증권": 8,
-"대신증권": 9,
-"키움증권": 10,
-"하나증권": 11,
-"NH투자증권": 12,
-"현대차증권": 13,
-"교보증권": 14,
-"BNK투자증권": 15,
-"신영증권": 16,
-"DB금융투자": 17,
-"한국투자증권": 18,
-"KB증권": 19,
-"기타": 20,
-};
+  // convert company string to numeric value
+  const mapCompanyToNumber = (company) => {
+    const themeMap = {
+      유진투자증권: 1,
+      신한투자증권: 2,
+      하이투자증권: 3,
+      IBK투자증권: 4,
+      미래에셋증권: 5,
+      SK증권: 6,
+      상상인증권: 7,
+      한화투자증권: 8,
+      대신증권: 9,
+      키움증권: 10,
+      하나증권: 11,
+      NH투자증권: 12,
+      현대차증권: 13,
+      교보증권: 14,
+      BNK투자증권: 15,
+      신영증권: 16,
+      DB금융투자: 17,
+      한국투자증권: 18,
+      KB증권: 19,
+      기타: 20,
+    };
 
-return themeMap[company] || company;
-};
+    return themeMap[company] || company;
+  };
 
-useEffect(() => {
-setIsLoading(true);
+  useEffect(() => {
+    setIsLoading(true);
 
-fetchPickData(selectedAdvisor)
-.then(() => {
-  setIsLoading(false);
-})
-.catch((error) => {
-  console.error("API 요청 실패:", error);
-  setIsLoading(false); // 에러 발생 시 로딩 숨김
-});
-}, [selectedAdvisor]);
+    fetchPickData(selectedAdvisor)
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("API 요청 실패:", error);
+        setIsLoading(false); // 에러 발생 시 로딩 숨김
+      });
+  }, [selectedAdvisor]);
 
-const fetchPickData = async (selectedAdvisor) => {
-const companyNumber = mapCompanyToNumber(selectedAdvisor);
-let pickData;
-try {
-  const response = await axios.get(`${window.API_BASE_URL}/find/adviser/${companyNumber}`);
-  pickData = response.data;
-  setPickData(pickData);
-} catch (error) {
-console.error("API 요청 실패:", error);
-setPickData([]);
-setIsLoaded(true);
-setSearchError("검색 결과가 없습니다.");
-}
-};
+  const fetchPickData = async (selectedAdvisor) => {
+    const companyNumber = mapCompanyToNumber(selectedAdvisor);
+    let pickData;
+    try {
+      const response = await axios.get(
+        `${window.API_BASE_URL}/find/adviser/${companyNumber}`
+      );
+      pickData = response.data;
+      setPickData(pickData);
+    } catch (error) {
+      console.error("API 요청 실패:", error);
+      setPickData([]);
+      setIsLoaded(true);
+      setSearchError("검색 결과가 없습니다.");
+    }
+  };
 
-const fetchAllData = async () => {
-let allData;
-try {
-  const response = await axios.get(`${window.API_BASE_URL}/main/enterprise`);
-  allData = response.data;
-  setAllData(allData);
-} catch (error) {
-console.error("API 요청 실패:", error);
-setAllData([]);
-setIsLoaded(true);
-setSearchError("검색 결과가 없습니다.");
-}
-};
+  const fetchAllData = async () => {
+    let allData;
+    try {
+      const response = await axios.get(
+        `${window.API_BASE_URL}/main/enterprise`
+      );
+      allData = response.data;
+      setAllData(allData);
+    } catch (error) {
+      console.error("API 요청 실패:", error);
+      setAllData([]);
+      setIsLoaded(true);
+      setSearchError("검색 결과가 없습니다.");
+    }
+  };
 
   return (
     <div className="main">
@@ -375,7 +387,7 @@ setSearchError("검색 결과가 없습니다.");
               section3Text="Find"
               onTabChange={handleTabChange}
             />
-        </div>
+          </div>
         </div>
         {selectedTab === "section1" && (
           <>
@@ -394,7 +406,15 @@ setSearchError("검색 결과가 없습니다.");
                     <div className="vertical-card">
                       <div className="company-image">
                         <div className="overlap-group">
-                          <img className="logo-img" alt="test" src={`img/${firstData && firstData.corpCode ? firstData.corpCode : "1234567"}.png`}></img>
+                          <img
+                            className="logo-img"
+                            alt="test"
+                            src={`img/${
+                              firstData && firstData.corpCode
+                                ? firstData.corpCode
+                                : "1234567"
+                            }.png`}
+                          ></img>
                           <Tag className="rank" style="focus" text="1" />
                         </div>
                       </div>
@@ -426,7 +446,12 @@ setSearchError("검색 결과가 없습니다.");
                                   : "stock-change-minus"
                               }`}
                             >
-                              {firstData && typeof firstData.cmpprevddPrc === 'string' ? `${(parseFloat(firstData.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
+                              {firstData &&
+                              typeof firstData.cmpprevddPrc === "string"
+                                ? `${parseFloat(firstData.cmpprevddPrc).toFixed(
+                                    2
+                                  )}%`
+                                : "로딩 중..."}
                             </span>
                           </p>
                         </div>
@@ -436,60 +461,74 @@ setSearchError("검색 결과가 없습니다.");
                 </div>
               </div>
               <div className="rankin-etc">
-              {RankingData && RankingData.length > 1 && RankingData.slice(1).map((item, index) => (
-                  <div
-                    className="products-wrapper"
-                    key={index}
-                    onClick={() => handleProductClick(item.corpName)}
-                  >
-                    <div className="products">
-                      <div className="vertical-card">
-                        <div className="company-image">
-                          <div className="overlap-group">
-                            <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
-                            <Tag
-                              className="rank"
-                              style="focus"
-                              text={index + 2}
-                            />
-                          </div>
-                        </div>
-                        <div className="company-info">
-                          <div className="title-2">
-                            <div className="company-2">
-                              {item && item.corpName
-                                ? item.corpName
-                                : "로딩 중..."}
+                {RankingData &&
+                  RankingData.length > 1 &&
+                  RankingData.slice(1).map((item, index) => (
+                    <div
+                      className="productswrapper"
+                      key={index}
+                      onClick={() => handleProductClick(item.corpCode)}
+                    >
+                      <div className="products">
+                        <div className="vertical-card">
+                          <div className="company-image">
+                            <div className="overlap-group">
+                              <img
+                                className="logo-img"
+                                alt="test"
+                                src={`img/${
+                                  item && item.corpCode
+                                    ? item.corpCode
+                                    : "1234567"
+                                }.png`}
+                              ></img>
+                              <Tag
+                                className="rank"
+                                style="focus"
+                                text={index + 2}
+                              />
                             </div>
-                            <p className="price">
-                              <span
-                                className={`stock-price ${
-                                  item && item.cmpprevddPrc > 0
-                                    ? "stock-price-plus"
-                                    : "stock-price-minus"
-                                }`}
-                              >
-                                {item
-                                  ? addCommasToNumber(item.price)
+                          </div>
+                          <div className="company-info">
+                            <div className="title-2">
+                              <div className="company-2">
+                                {item && item.corpName
+                                  ? item.corpName
                                   : "로딩 중..."}
-                                원
-                              </span>
-                              <span
-                                className={`stock-change ${
-                                  item && item.cmpprevddPrc > 0
-                                    ? "stock-change-plus"
-                                    : "stock-change-minus"
-                                }`}
-                              >
-                                {item && typeof item.cmpprevddPrc === 'string' ? `${(parseFloat(item.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
-                              </span>
-                            </p>
+                              </div>
+                              <p className="price">
+                                <span
+                                  className={`stock-price ${
+                                    item && item.cmpprevddPrc > 0
+                                      ? "stock-price-plus"
+                                      : "stock-price-minus"
+                                  }`}
+                                >
+                                  {item
+                                    ? addCommasToNumber(item.price)
+                                    : "로딩 중..."}
+                                  원
+                                </span>
+                                <span
+                                  className={`stock-change ${
+                                    item && item.cmpprevddPrc > 0
+                                      ? "stock-change-plus"
+                                      : "stock-change-minus"
+                                  }`}
+                                >
+                                  {item && typeof item.cmpprevddPrc === "string"
+                                    ? `${parseFloat(item.cmpprevddPrc).toFixed(
+                                        2
+                                      )}%`
+                                    : "로딩 중..."}
+                                </span>
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </>
@@ -497,19 +536,24 @@ setSearchError("검색 결과가 없습니다.");
 
         {selectedTab === "section2" && (
           <div className="ranking-content">
-            <div className="rankin-etc">
+            <div className="rankin-etc-2">
               {AllData.map((item, index) => (
                 <div
                   className="products-wrapper"
                   key={index}
-                  onClick={() => handleProductClick(item.corp_name)}
+                  onClick={() => handleProductClick(item.corpCode)}
                 >
-
                   <div className="products">
                     <div className="vertical-card">
                       <div className="company-image">
                         <div className="overlap-group">
-                          <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
+                          <img
+                            className="logo-img"
+                            alt="test"
+                            src={`img/${
+                              item && item.corpCode ? item.corpCode : "1234567"
+                            }.png`}
+                          ></img>
                         </div>
                       </div>
                       <div className="company-info">
@@ -539,7 +583,9 @@ setSearchError("검색 결과가 없습니다.");
                                   : "stock-change-minus"
                               }`}
                             >
-                              {item && typeof item.cmpprevddPrc === 'string' ? `${(parseFloat(item.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
+                              {item && typeof item.cmpprevddPrc === "string"
+                                ? `${parseFloat(item.cmpprevddPrc).toFixed(2)}%`
+                                : "로딩 중..."}
                             </span>
                           </p>
                         </div>
@@ -585,33 +631,68 @@ setSearchError("검색 결과가 없습니다.");
               </div>
             )}
             {selectedType === "종목" && isLoaded && (
-            <div className="data-display">
+              <div className="data-display">
                 {searchResults.length > 0 ? (
-                searchResults.map((item, index) => (
-                  <div
-                  className="products-wrapper"
-                  key={index}
-                  onClick={() => handleProductClick(item.corp_name)}
-                >                  <div className="products">
-                    <div className="vertical-card">
-                      <div className="company-image">
-                        <div className="overlap-group">
-                        <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
-                        </div>
-                      </div>
-                      <div className="company-info">
-                        <div className="title-2">
-                          <div className="company-2">{item && item.corpName ? item.corpName : "로딩 중..."}</div>
-                          <p className="price">
-                            <span className={`stock-price ${item && item.cmpprevddPrc > 0 ? 'stock-price-plus' : 'stock-price-minus'}`}>{item ? addCommasToNumber(item.price) : "로딩 중..."}원</span>
-                            <span className={`stock-change ${item && item.cmpprevddPrc > 0 ? 'stock-change-plus' : 'stock-change-minus'}`}>{item ? `${item.cmpprevddPrc}%` : "로딩 중..."}</span>
-                          </p>
+                  searchResults.map((item, index) => (
+                    <div
+                      className="products-wrapper"
+                      key={index}
+                      onClick={() => handleProductClick(item.corpCode)}
+                    >
+                      {" "}
+                      <div className="products">
+                        <div className="vertical-card">
+                          <div className="company-image">
+                            <div className="overlap-group">
+                              <img
+                                className="logo-img"
+                                alt="test"
+                                src={`img/${
+                                  item && item.corpCode
+                                    ? item.corpCode
+                                    : "1234567"
+                                }.png`}
+                              ></img>
+                            </div>
+                          </div>
+                          <div className="company-info">
+                            <div className="title-2">
+                              <div className="company-2">
+                                {item && item.corpName
+                                  ? item.corpName
+                                  : "로딩 중..."}
+                              </div>
+                              <p className="price">
+                                <span
+                                  className={`stock-price ${
+                                    item && item.cmpprevddPrc > 0
+                                      ? "stock-price-plus"
+                                      : "stock-price-minus"
+                                  }`}
+                                >
+                                  {item
+                                    ? addCommasToNumber(item.price)
+                                    : "로딩 중..."}
+                                  원
+                                </span>
+                                <span
+                                  className={`stock-change ${
+                                    item && item.cmpprevddPrc > 0
+                                      ? "stock-change-plus"
+                                      : "stock-change-minus"
+                                  }`}
+                                >
+                                  {item
+                                    ? `${item.cmpprevddPrc}%`
+                                    : "로딩 중..."}
+                                </span>
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>           
-                ))
+                  ))
                 ) : (
                   <p className="error-message">{searchError}</p>
                 )}
@@ -640,18 +721,25 @@ setSearchError("검색 결과가 없습니다.");
                     onTabChange={handleThemeChange}
                   />
                   <div className="theme-company">
-                  {ThemeData.map((item, index) => (
+                    {ThemeData.map((item, index) => (
                       <div
-                      className="products-wrapper"
-                      key={index}
-                      onClick={() => handleProductClick(item.corpName)}
-                    >
-
+                        className="products-wrapper"
+                        key={index}
+                        onClick={() => handleProductClick(item.corpCode)}
+                      >
                         <div className="products">
                           <div className="vertical-card">
                             <div className="company-image">
                               <div className="overlap-group">
-                              <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
+                                <img
+                                  className="logo-img"
+                                  alt="test"
+                                  src={`img/${
+                                    item && item.corpCode
+                                      ? item.corpCode
+                                      : "1234567"
+                                  }.png`}
+                                ></img>
                                 <Tag
                                   className="rank"
                                   style="focus"
@@ -686,7 +774,12 @@ setSearchError("검색 결과가 없습니다.");
                                         : "stock-change-minus"
                                     }`}
                                   >
-                                    {item && typeof item.cmpprevddPrc === 'string' ? `${(parseFloat(item.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
+                                    {item &&
+                                    typeof item.cmpprevddPrc === "string"
+                                      ? `${parseFloat(
+                                          item.cmpprevddPrc
+                                        ).toFixed(2)}%`
+                                      : "로딩 중..."}
                                   </span>
                                 </p>
                               </div>
@@ -705,88 +798,101 @@ setSearchError("검색 결과가 없습니다.");
                 />
                 <div className="pick-content">
                   <div className="pick-company-toggle">
-                  <Toggle
-                    tabNames={[
-                      "신한투자증권",
-                      "유진투자증권",
-                      "하이투자증권",
-                      "IBK투자증권",
-                      "미래에셋증권",
-                      "SK증권",
-                      "상상인증권",
-                      "한화투자증권",
-                      "대신증권",
-                      "키움증권",
-                      "하나증권",
-                      "NH투자증권",
-                      "현대차증권",
-                      "교보증권",
-                      "BNK투자증권",
-                      "신영증권",
-                      "DB금융투자",
-                      "한국투자증권",
-                      "KB증권",
-                      "기타",
-                    ]}
-                    onTabChange={handleAdvisorChange}
-                  />
+                    <Toggle
+                      tabNames={[
+                        "신한투자증권",
+                        "유진투자증권",
+                        "하이투자증권",
+                        "IBK투자증권",
+                        "미래에셋증권",
+                        "SK증권",
+                        "상상인증권",
+                        "한화투자증권",
+                        "대신증권",
+                        "키움증권",
+                        "하나증권",
+                        "NH투자증권",
+                        "현대차증권",
+                        "교보증권",
+                        "BNK투자증권",
+                        "신영증권",
+                        "DB금융투자",
+                        "한국투자증권",
+                        "KB증권",
+                        "기타",
+                      ]}
+                      onTabChange={handleAdvisorChange}
+                    />
                   </div>
                   <div className="pick-company">
-                  {PickData.length > 1 ? (
-                    PickData.map((item, index) => (
-                      <div
-                        className="products-wrapper"
-                        key={index}
-                        onClick={() => handleProductClick(item.corpName)}
-                      >
-                        <div className="products">
-                          <div className="vertical-card">
-                            <div className="company-image">
-                              <div className="overlap-group">
-                              <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
-                                <Tag
-                                  className="rank"
-                                  style="focus"
-                                  text={index + 1}
-                                />
-                              </div>
-                            </div>
-                            <div className="company-info">
-                              <div className="title-2">
-                                <div className="company-2">
-                                  {item && item.corpName
-                                    ? item.corpName
-                                    : "로딩 중..."}
+                    {PickData.length > 1 ? (
+                      PickData.map((item, index) => (
+                        <div
+                          className="products-wrapper"
+                          key={index}
+                          onClick={() => handleProductClick(item.corpCode)}
+                        >
+                          <div className="products">
+                            <div className="vertical-card">
+                              <div className="company-image">
+                                <div className="overlap-group">
+                                  <img
+                                    className="logo-img"
+                                    alt="test"
+                                    src={`img/${
+                                      item && item.corpCode
+                                        ? item.corpCode
+                                        : "1234567"
+                                    }.png`}
+                                  ></img>
+                                  <Tag
+                                    className="rank"
+                                    style="focus"
+                                    text={index + 1}
+                                  />
                                 </div>
-                                <p className="price">
-                                  <span
-                                    className={`stock-price ${
-                                      item && item.cmpprevddPrc > 0
-                                        ? "stock-price-plus"
-                                        : "stock-price-minus"
-                                    }`}
-                                  >
-                                    {item
-                                      ? addCommasToNumber(item.price)
+                              </div>
+                              <div className="company-info">
+                                <div className="title-2">
+                                  <div className="company-2">
+                                    {item && item.corpName
+                                      ? item.corpName
                                       : "로딩 중..."}
-                                    원
-                                  </span>
-                                  <span
-                                    className={`stock-change ${
-                                      item && item.cmpprevddPrc > 0
-                                        ? "stock-change-plus"
-                                        : "stock-change-minus"
-                                    }`}
-                                  >
-                                    {item && typeof item.cmpprevddPrc === 'string' ? `${(parseFloat(item.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
-                                  </span>
-                                </p>
+                                  </div>
+                                  <p className="price">
+                                    <span
+                                      className={`stock-price ${
+                                        item && item.cmpprevddPrc > 0
+                                          ? "stock-price-plus"
+                                          : "stock-price-minus"
+                                      }`}
+                                    >
+                                      {item
+                                        ? addCommasToNumber(item.price)
+                                        : "로딩 중..."}
+                                      원
+                                    </span>
+                                    <span
+                                      className={`stock-change ${
+                                        item && item.cmpprevddPrc > 0
+                                          ? "stock-change-plus"
+                                          : "stock-change-minus"
+                                      }`}
+                                    >
+                                      {item &&
+                                      typeof item.cmpprevddPrc === "string"
+                                        ? `${parseFloat(
+                                            item.cmpprevddPrc
+                                          ).toFixed(2)}%`
+                                        : "로딩 중..."}
+                                    </span>
+                                  </p>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    ))
+                      ))
                     ) : (
                       <p className="error-message">{searchError}</p>
                     )}

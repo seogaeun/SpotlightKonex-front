@@ -13,6 +13,7 @@ import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
 import { Footer } from "../../components/Footer";
 import { LinkButton } from "../../components/LinkButton";
+
 import "./style.css";
 
 // const apiEndpoint = process.env.REACT_APP_API_BASE_URL;
@@ -23,7 +24,7 @@ const initialCropCode = "00125664";
 export const Company = () => {
   const [selectedTab, setSelectedTab] = useState("section1");
   const [enterpriseData, setEnterpriseData] = useState({
-    crop_name: "",
+    corp_name: "",
     industry_name: "",
     establish_date: "",
     public_date: "",
@@ -41,12 +42,18 @@ export const Company = () => {
   //기업 순위 조회
   const [companyLinkdata, setCompanyLinkdata] = useState([]);
 
+  //기업 채팅 조회
+  const [companyTalkdata, setCompanyTalkdata] = useState([]);
+
   //기업 뉴스 조회
   const [companyNewsdata, setCompanyNewsdata] = useState([]);
 
+  //기업 게시글 조회
+  const [companyBoarddata, setCompanyBoarddata] = useState([]);
+
   const navigate = useNavigate();
   const { state } = useLocation();
-  const cropCode = initialCropCode;
+  const { corpCode } = state;
 
   //API 연결
 
@@ -54,11 +61,11 @@ export const Company = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${apiEndpoint}/enterprise/${cropCode}`);
+        const response = await fetch(`${apiEndpoint}/enterprise/${corpCode}`);
         const data = await response.json();
 
         setEnterpriseData({
-          crop_name: data.corpName,
+          corp_name: data.corpName,
           industry_name: data.indutyName,
           establish_date: data.establish_date,
           public_date: data.public_date,
@@ -72,14 +79,14 @@ export const Company = () => {
     };
 
     fetchData();
-  }, [cropCode]);
+  }, [corpCode]);
 
   //순위 연결
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${apiEndpoint}/enterprise/rank/${cropCode}`
+          `${apiEndpoint}/enterprise/rank/${corpCode}`
         );
         const data = await response.json();
 
@@ -98,14 +105,14 @@ export const Company = () => {
     };
 
     fetchData();
-  }, [cropCode]);
+  }, [corpCode]);
 
-  //뉴스 데이터 가져오기
+  //뉴스 데이터 연결
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${apiEndpoint}/news/?corpCode=${cropCode}`
+          `${apiEndpoint}/news/?corpCode=${corpCode}`
         );
         const data = await response.json();
 
@@ -127,13 +134,70 @@ export const Company = () => {
     };
 
     fetchData();
-  }, [cropCode]);
+  }, [corpCode]);
 
+  //채팅 데이터 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/enterprise/talk?corpCode=${corpCode}&status=false`
+        );
+        const data = await response.json();
+
+        console.log(data);
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = data.map((item) => ({
+          id: item.id,
+          date: item.pubDate,
+          title: item.title,
+          content: item.description,
+          url: item.link,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCompanyTalkdata(formattedData);
+        console.log("채팅 배열" + companyTalkdata);
+      } catch (error) {
+        console.error("기업 데이터 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
+  //보드 데이터 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiEndpoint}/boards/${corpCode}`);
+        const data = await response.json();
+
+        console.log(data);
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = data.map((item) => ({
+          corpCode: item.corpCode,
+          title: item.title,
+          context: item.context,
+          noticeSeq: item.noticeSeq,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCompanyBoarddata(formattedData);
+      } catch (error) {
+        console.error("기업 보드 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
+  // 응원수 조회 연결
   useEffect(() => {
     const fetchLikeCount = async () => {
       try {
         const response = await fetch(
-          `${apiEndpoint}/enterprise/like?corpCode=${cropCode}`
+          `${apiEndpoint}/enterprise/like?corpCode=${corpCode}`
         );
         const data = await response.json();
         setHeartCount(data.count);
@@ -143,13 +207,13 @@ export const Company = () => {
     };
 
     fetchLikeCount();
-  }, [heartCount, cropCode]);
+  }, [heartCount, corpCode]);
 
   const heartClick = async () => {
     // 서버에 응원 수를 업데이트
     try {
       const response = await fetch(
-        `${apiEndpoint}/enterprise/like?corpCode=${cropCode}`,
+        `${apiEndpoint}/enterprise/like?corpCode=${corpCode}`,
         {
           method: "POST",
           headers: {},
@@ -173,7 +237,7 @@ export const Company = () => {
 
   const backClick = () => {
     console.log("back");
-    navigate("/");
+    navigate("/main");
   };
 
   // const companyLinkdata = [
@@ -201,22 +265,20 @@ export const Company = () => {
   //   { date: "2023.11.16", title: "뉴스 제목 2", content: "뉴스 내용 2" },
   // ];
 
-  const visibleNewsDataList = companyNewsdata.slice(0, 2);
-
   const handleIsCorpMent = () => {
     setShowCompanyAnswers(!showCompanyAnswers);
   };
 
-  const cropPosts = [
-    { title: "게시글 1", content: "게시글 내용 1" },
-    { title: "게시글 2", content: "게시글 내용 2" },
-    { title: "게시글 3", content: "게시글 내용 3" },
-    { title: "게시글 4", content: "게시글 내용 4" },
-    { title: "게시글 5", content: "게시글 내용 5" },
-    { title: "게시글 6", content: "게시글 내용 6" },
-    { title: "게시글 7", content: "게시글 내용 7" },
-    { title: "게시글 8", content: "게시글 내용 8" },
-  ];
+  // const corpPosts = [
+  //   { title: "게시글 1", content: "게시글 내용 1" },
+  //   { title: "게시글 2", content: "게시글 내용 2" },
+  //   { title: "게시글 3", content: "게시글 내용 3" },
+  //   { title: "게시글 4", content: "게시글 내용 4" },
+  //   { title: "게시글 5", content: "게시글 내용 5" },
+  //   { title: "게시글 6", content: "게시글 내용 6" },
+  //   { title: "게시글 7", content: "게시글 내용 7" },
+  //   { title: "게시글 8", content: "게시글 내용 8" },
+  // ];
 
   return (
     <div className="company">
@@ -241,7 +303,7 @@ export const Company = () => {
             </div>
           </div>
           <div className="name">
-            <div className="text-wrapper-2">{enterpriseData.crop_name}</div>
+            <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
             <div className="text-wrapper-3">기업 소개 한마디</div>
           </div>
         </div>
@@ -310,10 +372,10 @@ export const Company = () => {
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
-                title={enterpriseData.crop_name + "의 최근 뉴스"}
+                title={enterpriseData.corp_name + "의 최근 뉴스"}
               />
               <div className="newsContents">
-                {visibleNewsDataList.map((news, index) => (
+                {companyNewsdata.map((news, index) => (
                   <NewsCard key={index} info={news} />
                 ))}
               </div>
@@ -323,14 +385,14 @@ export const Company = () => {
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
-                title={enterpriseData.crop_name + "의 최근 소식"}
+                title={enterpriseData.corp_name + "의 최근 소식"}
               />
 
-              {cropPosts.map((post, index) => (
+              {companyBoarddata.map((post, index) => (
                 <InfoToggle
                   key={index}
                   title={post.title}
-                  content={post.content}
+                  content={post.context}
                   isOpen={index === 0}
                 />
               ))}
