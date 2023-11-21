@@ -117,3 +117,31 @@
   align-items: center;
   justify-content: center;
 }
+
+.calc .rule {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.calc .rule-subtitle {
+  color: #b7b7b7;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.calc .rule-result {
+  margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.calc .rule-result span {
+  color: #b7b7b7;
+    margin-bottom: 32px;
+    font-size: 14px;
+    line-height: 140%;
+}
