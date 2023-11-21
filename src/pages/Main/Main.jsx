@@ -312,6 +312,7 @@ export const Main = () => {
       );
       pickData = response.data;
       setPickData(pickData);
+      console.log(pickData);
     } catch (error) {
       console.error("API 요청 실패:", error);
       setPickData([]);
