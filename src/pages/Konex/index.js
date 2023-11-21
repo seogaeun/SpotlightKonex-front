@@ -1,1 +1,0 @@
-export { Konex } from "./Konex";

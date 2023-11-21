@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { LeftButton4 } from "../../icons/LeftButton4";
-import { NavBar } from "../../components/NavBar";
+import { Nav } from "../../components/Nav";
 import { Avatar8 } from "../../icons/Avatar8";
 import { HeartFilled1 } from "../../icons/HeartFilled1";
 import { Tab } from "../../components/Tab/Tab";
@@ -306,19 +306,21 @@ export const ManageCompany = () => {
     fetchBoardData();
   }, [corpCode]);
 
+     // nav bar
+     const handleLeftIconClick = (link) => {
+      navigate("/main");
+    };
+
   return (
     <div className="managecompany">
       {/* 전체 화면 */}
       <div className="managecompanyContent">
         {/* 네비바 */}
-        <NavBar
-          className="nav-bar-instance"
-          icon={<LeftButton4 className="left-button-4" onClick={backClick} />}
-          leftControl="icon"
-          pageTitle={enterpriseData.corp_name + "의 관리창"}
-          rightButtonClassName="nav-title-text"
-          rightControl="none"
-        />
+        <Nav
+          title={enterpriseData.corp_name + "의 관리창"}
+          onLeftIconClick={backClick}
+          leftIconLink="/"
+          />
         {/*기업 기본 정보(프로필, 이름, 좋아요) */}
         <div className="managecompany-profile">
           <div className="profile-img">
