@@ -460,7 +460,6 @@
 
   .main .pick-company-toggle {
     display: flex;
-    justify-content: center;
   }
 
   .main .pick-content .tab-btn {
@@ -502,7 +501,7 @@
     width: 580px;
     display: flex;
     overflow-y: scroll;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .main .pick-company .products-wrapper{
