@@ -339,6 +339,10 @@ export const ManageCompany = () => {
     navigate("/main");
   };
 
+
+  const accessEmail = sessionStorage.getItem("corpEmail");
+
+
     // logout 처리
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -346,11 +350,11 @@ export const ManageCompany = () => {
         const response = await axios.post(
           `http://125.6.38.124/auth/signout`,
           {
-            email,
+            accessEmail,
             accessToken,
           }
         );
-        if (error.response === 200) {
+        if (axios.response === 200) {
           sessionStorage.removeItem('company_user');
           navigate("/")
         } else {
