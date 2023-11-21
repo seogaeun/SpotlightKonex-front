@@ -9,8 +9,6 @@ import Swal from "sweetalert2";
 import "./style.css";
 import '../../styles/styleguide.css';
 
-import pdfUrl from '../../assets/test.pdf'
-
 
 export const Signup = () => {
     // 초기값 
@@ -255,11 +253,11 @@ export const Signup = () => {
                             </div>
                             <div className="check-rule">
                                 <Checkbox className="checkbox-instance" selected={isAgreedService} size="medium" onClick={toggleAgreementService} />
-                                <div className="rule"><a href="#" onClick={() => handleAgreementClick("import pdfUrl from '../../assets/test.pdf'")}>서비스 이용약관</a>에 동의합니다. <span>[필수]</span></div>
+                                <div className="rule"><a href="#" onClick={() => handleAgreementClick("import pdfUrl from '../../assets/서비스이용약관.pdf'")}>서비스 이용약관</a>에 동의합니다. <span>[필수]</span></div>
                             </div>
                             <div className="check-rule">
                                 <Checkbox className="checkbox-instance" selected={isAgreedData} size="medium" onClick={toggleAgreementData} />
-                                <div className="rule"><a href="#" onClick={() => handleAgreementClick("import pdfUrl from '../../assets/test.pdf'")}>개인정보 수집 및 활용</a>에 동의합니다. <span>[필수]</span></div>
+                                <div className="rule"><a href="#" onClick={() => handleAgreementClick("import pdfUrl from '../../assets/서비스이용약관.pdf'")}>개인정보 수집 및 활용</a>에 동의합니다. <span>[필수]</span></div>
                             </div>
                             </div>
                         <div className="login-btn-div">
