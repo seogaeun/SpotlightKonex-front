@@ -255,7 +255,7 @@ export const Company = () => {
   };
 
   const backClick = () => {
-    navigate("/main");
+    navigate("/");
   };
 
   // const companyLinkdata = [
@@ -296,7 +296,7 @@ export const Company = () => {
 
   // nav bar
   const handleLeftIconClick = (link) => {
-    navigate("/main");
+    navigate("/");
   };
 
   return (
