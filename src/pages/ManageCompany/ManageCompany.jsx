@@ -20,7 +20,7 @@ import "./style.css";
 
 export const ManageCompany = () => {
   //기본 정보
-  const apiEndpoint = "http://133.186.215.123:8080";
+  const apiEndpoint = "http://125.6.38.124";
   const corpCode = "01695498";
 
   const [companyBoarddata, setCompanyBoarddata] = useState([]);

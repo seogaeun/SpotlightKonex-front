@@ -17,7 +17,7 @@ import { LinkButton } from "../../components/LinkButton";
 import "./style.css";
 
 // const apiEndpoint = process.env.REACT_APP_API_BASE_URL;
-const apiEndpoint = "http://133.186.215.123:8080";
+const apiEndpoint = "http://125.6.38.124";
 
 // const initialCropCode = "00125664";
 
@@ -152,15 +152,16 @@ export const Company = () => {
           `${apiEndpoint}/enterprise/talk?corpCode=${corpCode}&status=false`
         );
         const data = await response.json();
+        console.log(data);
 
-        if (data && data.data && data.data.talkList) {
+        if (data && data.data && Array.isArray(data.data.talkList)) {
           // 데이터를 적절한 형식으로 변환
           const formattedData = data.data.talkList.map((item) => ({
             id: item.context,
             date: new Date(),
             text: item.context,
-            sender: item.writer_type ? "company" : "user",
-            nickName: item.nickName,
+            sender: item.writerType ? "company" : "user",
+            nickName: item.nickname,
           }));
 
           // 변환된 데이터를 state에 설정
@@ -172,6 +173,7 @@ export const Company = () => {
         }
       } catch (error) {
         console.error("기업 채팅 가져오기 오류:", error);
+        // 오류가 발생했을 때는 state를 변경하지 않도록 수정
       }
     };
 

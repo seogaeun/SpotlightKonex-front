@@ -6,7 +6,7 @@ import { NavBar } from "../../components/NavBar";
 import { ListTitle } from "../../components/ListTitle";
 import { LinkButton } from "../../components/LinkButton";
 import "./styles.css";
-const apiEndpoint = "http://133.186.215.123:8080";
+const apiEndpoint = "http://125.6.38.124";
 
 export const PostCompany = () => {
   const navigate = useNavigate();
