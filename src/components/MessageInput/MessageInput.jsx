@@ -7,7 +7,7 @@ const apiEndpoint = "http://125.6.38.124";
 export const MessageInput = ({ pageCorpCode, onSuccessCallback }) => {
   const [text, setText] = useState("");
 
-  const accessEmail = sessionStorage.getItem("email");
+  const accessEmail = sessionStorage.getItem("corpEmail");
   const accessCorpCode = sessionStorage.getItem("corpCode");
 
   const handleMessageSubmit = async (e) => {
