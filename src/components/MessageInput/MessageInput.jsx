@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import "./style.css";
 import { Icon2 } from "../../icons/Icon2";
 import axios from "axios";
-const apiEndpoint = "http://125.6.38.124";
+const apiEndpoint = window.API_BASE_URL;
 
-export const MessageInput = ({ pageCorpCode }) => {
+export const MessageInput = ({ pageCorpCode, onSuccessCallback }) => {
   const [text, setText] = useState("");
 
   const accessEmail = sessionStorage.getItem("email");
@@ -19,39 +19,6 @@ export const MessageInput = ({ pageCorpCode }) => {
       alert("메시지를 입력하세요.");
       return; // 메시지가 비어있으면 아무 동작도 하지 않음
     }
-
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     try {
-    //       const statusParam = showCompanyAnswers ? "true" : "false";
-    //       const response = await fetch(
-    //         `${apiEndpoint}/enterprise/talk?corpCode=${corpCode}&status=${statusParam}`
-    //       );
-    //       const data = await response.json();
-
-    //       // 서버 응답 구조에 따라 적절히 수정
-    //       if (Array.isArray(data)) {
-    //         // 데이터를 적절한 형식으로 변환
-    //         const formattedData = data.map((item) => ({
-    //           id: item.context,
-    //           date: new Date(),
-    //           text: item.context,
-    //           sender: item.writerType ? "company" : "user",
-    //           nickName: item.nickname,
-    //         }));
-
-    //         setCompanyTalkdata(formattedData);
-    //         console.log("채팅 데이터:", formattedData);
-    //       } else {
-    //         console.error("채팅 데이터 형식이 올바르지 않습니다:", data);
-    //       }
-    //     } catch (error) {
-    //       console.error("채팅 데이터를 가져오는 중 오류 발생:", error);
-    //     }
-    //   };
-
-    //   fetchData();
-    // }, [corpCode, showCompanyAnswers]);
 
     try {
       const response = await fetch(`${apiEndpoint}/enterprise/talk`, {
@@ -72,6 +39,9 @@ export const MessageInput = ({ pageCorpCode }) => {
       if (response.ok) {
         setText("");
         // Optionally handle success
+        if (onSuccessCallback && typeof onSuccessCallback === "function") {
+          onSuccessCallback("success");
+        }
       } else {
         // Handle error
         console.error("전송 에러:", response.statusText);

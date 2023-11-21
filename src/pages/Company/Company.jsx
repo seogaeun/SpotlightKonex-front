@@ -17,7 +17,7 @@ import { LinkButton } from "../../components/LinkButton";
 import "./style.css";
 
 // const apiEndpoint = process.env.REACT_APP_API_BASE_URL;
-const apiEndpoint = "http://125.6.38.124";
+const apiEndpoint = window.API_BASE_URL;
 
 // const initialCropCode = "00125664";
 
@@ -52,6 +52,9 @@ export const Company = () => {
   const [companyBoarddata, setCompanyBoarddata] = useState([]);
 
   //채팅창
+
+  //채팅 전송
+  const [successSignal, setSuccessSignal] = useState(null);
 
   const [messages, setMessages] = useState([]);
 
@@ -174,7 +177,7 @@ export const Company = () => {
     };
 
     fetchData();
-  }, [corpCode, showCompanyAnswers]);
+  }, [corpCode, showCompanyAnswers, successSignal]);
 
   // ...
 
@@ -370,7 +373,12 @@ export const Company = () => {
                 </label>
               </div>
 
-              <ChatBox messages={companyTalkdata} PageCorpCode={corpCode} />
+              <ChatBox
+                messages={companyTalkdata}
+                PageCorpCode={corpCode}
+                successSignal={successSignal}
+                handleSuccess={(signal) => setSuccessSignal(signal)}
+              />
             </div>
           </div>
         )}

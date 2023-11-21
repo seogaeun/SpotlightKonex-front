@@ -20,7 +20,7 @@ import "./style.css";
 
 export const ManageCompany = () => {
   //기본 정보
-  const apiEndpoint = "http://125.6.38.124";
+  const apiEndpoint = window.API_BASE_URL;
   const accessToken = sessionStorage.getItem("company_user");
   const accessCorpCode = sessionStorage.getItem("corpCode");
 
@@ -69,6 +69,17 @@ export const ManageCompany = () => {
     setNewDescription(enterpriseData.corp_name);
   };
 
+  //기업 채팅
+  const [companyTalkdata, setCompanyTalkdata] = useState([]);
+
+  const [successSignal, setSuccessSignal] = useState(null);
+
+  const [messages, setMessages] = useState([]);
+
+  const addMessage = (text) => {
+    setMessages([...messages, { text, sender: "user" }]);
+  };
+
   //기업 거래량 조회
   const [corptransdata, setCropTransdata] = useState([]);
 
@@ -114,6 +125,39 @@ export const ManageCompany = () => {
 
     fetchData();
   }, [corpCode]);
+
+  // 채팅 데이터 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/enterprise/talk?corpCode=${corpCode}&status=${false}`
+        );
+        const data = await response.json();
+
+        // 서버 응답 구조에 따라 적절히 수정
+        if (Array.isArray(data)) {
+          // 데이터를 적절한 형식으로 변환
+          const formattedData = data.map((item) => ({
+            id: item.context,
+            date: new Date(),
+            text: item.context,
+            sender: item.writerType ? "company" : "user",
+            nickName: item.nickname,
+          }));
+
+          setCompanyTalkdata(formattedData);
+          console.log("채팅 데이터:", formattedData);
+        } else {
+          console.error("채팅 데이터 형식이 올바르지 않습니다:", data);
+        }
+      } catch (error) {
+        console.error("채팅 데이터를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode, successSignal]);
 
   //기업 응원수 조회 api연결
   //      여기에 작성(/analysis/like/{corp_code})
@@ -342,7 +386,12 @@ export const ManageCompany = () => {
                 rightControl="none"
                 title="Talk"
               />
-              <ChatBox />
+              <ChatBox
+                messages={companyTalkdata}
+                PageCorpCode={corpCode}
+                successSignal={successSignal}
+                handleSuccess={(signal) => setSuccessSignal(signal)}
+              />
             </div>
           </div>
         )}
