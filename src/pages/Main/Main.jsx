@@ -192,7 +192,7 @@ export const Main = () => {
     } else {
       try {
         const response = await axios.get(
-          `${window.API_BASE_URL}/find/keyword/${stockname}`
+          `/api/find/keyword/${stockname}`
         );
         const brandData = response.data;
         if (brandData.length === 0) {
@@ -248,7 +248,7 @@ export const Main = () => {
     let themeData;
     try {
       const response = await axios.get(
-        `${window.API_BASE_URL}/find/theme/${themeNumber}`
+        `/api/find/theme/${themeNumber}`
       );
       themeData = response.data;
       setThemeData(themeData);
@@ -308,7 +308,7 @@ export const Main = () => {
     let pickData;
     try {
       const response = await axios.get(
-        `${window.API_BASE_URL}/find/adviser/${companyNumber}`
+        `/api/find/adviser/${companyNumber}`
       );
       pickData = response.data;
       setPickData(pickData);
