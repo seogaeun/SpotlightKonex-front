@@ -80,7 +80,7 @@ export const Carousel = ({}) => {
   }, [currCarousel]);
 
   return (
-    <div className="carousel">
+    <div id="carousel">
       <div className="carousel-container">
         <div
           className="carousel-items"
