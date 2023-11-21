@@ -79,6 +79,10 @@ html{
   padding-bottom: 40px;
 }
 
+.profile-img .logo-img {
+  width: 90%;
+}
+
 .profile-img .overlap-group {
   height: 100%;
   width: fit-content;
