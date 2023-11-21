@@ -162,12 +162,12 @@ export const Main = () => {
 
       if (selectedSection === "거래대금") {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/main/top/amount`
+          `http://125.6.38.124/main/top/amount`
         );
         rankingData = response.data;
       } else if (selectedSection === "좋아요수") {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}main/top/like`
+          `http://125.6.38.124main/top/like`
         );
         rankingData = response.data;
       } else if (selectedSection === "조회수") {
@@ -308,7 +308,7 @@ export const Main = () => {
     let pickData;
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/find/adviser/${companyNumber}`
+        `http://125.6.38.124/find/adviser/${companyNumber}`
       );
       pickData = response.data;
       setPickData(pickData);
