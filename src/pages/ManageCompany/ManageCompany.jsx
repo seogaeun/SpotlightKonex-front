@@ -403,12 +403,21 @@ export const ManageCompany = () => {
         />
         {/*기업 기본 정보(프로필, 이름, 좋아요) */}
         <div className="managecompany-profile">
+        <div className="company-profile">
           <div className="profile-img">
             <div className="overlap-group">
-              <Avatar8 className="avatar-8" />
-              <HeartFilled1 className="heart-filled" count={heartCount} />
+              <img
+                className="logo-img"
+                alt="test"
+                src={`img/${corpCode}.png`}
+              ></img>
+              <HeartFilled1
+                className="heart-filled"
+                count={heartCount}
+              />
             </div>
           </div>
+        </div>
           <div className="name">
             <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
             <div className="log-out" onClick={handleLogout}>logout</div>
