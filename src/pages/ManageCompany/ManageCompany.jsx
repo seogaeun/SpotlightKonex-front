@@ -53,6 +53,7 @@ export const ManageCompany = () => {
   // 기업소개 수정 모드 전환
   const handleEditDescription = () => {
     setEditingDescription(true);
+    setDescription(enterpriseData.description);
   };
 
   // 기업소개 취소
@@ -99,6 +100,7 @@ export const ManageCompany = () => {
   // 기업소개 저장
   const handleSaveDescription = async () => {
     // 서버로 새로운 기업 소개 저장 요청 보내기
+    console.log("저장할 메시지" + newDescription);
     try {
       const response = await axios.post(
         `${apiEndpoint}/enterprise/descriptions`,
@@ -332,10 +334,10 @@ export const ManageCompany = () => {
     fetchBoardData();
   }, [corpCode]);
 
-     // nav bar
-     const handleLeftIconClick = (link) => {
-      navigate("/main");
-    };
+  // nav bar
+  const handleLeftIconClick = (link) => {
+    navigate("/main");
+  };
 
   return (
     <div className="managecompany">
@@ -346,7 +348,7 @@ export const ManageCompany = () => {
           title={enterpriseData.corp_name + "의 관리창"}
           onLeftIconClick={backClick}
           leftIconLink="/"
-          />
+        />
         {/*기업 기본 정보(프로필, 이름, 좋아요) */}
         <div className="managecompany-profile">
           <div className="profile-img">
