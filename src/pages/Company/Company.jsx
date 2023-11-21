@@ -13,7 +13,6 @@ import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
 import { Footer } from "../../components/Footer";
 import { LinkButton } from "../../components/LinkButton";
-import {Heart} from "react-animated-heart";
 
 import "./style.css";
 
@@ -301,9 +300,7 @@ export const Company = () => {
   };
 
   return (
-
     <div className="company">
-
       <div className="companyContent">
         <Nav
           title={enterpriseData.corp_name}
