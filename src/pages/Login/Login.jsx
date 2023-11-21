@@ -81,7 +81,7 @@ export const Login = () => {
           sessionStorage.setItem("corpEmail", data.email);
 
           console.log("로그인 성공:", data);
-          navigate("/main");
+          navigate("/");
         } else {
           console.error("로그인 실패");
           Swal.fire({
@@ -111,7 +111,7 @@ export const Login = () => {
 
   // nav bar
   const handleLeftIconClick = (link) => {
-    navigate("/main");
+    navigate("/");
   };
 
   return (
