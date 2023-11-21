@@ -173,6 +173,7 @@ export const ManageCompany = () => {
 
     console.log(accessEmail);
       console.log(accessToken);
+      console.log("test");
 
     fetchData();
   }, [corpCode]);
