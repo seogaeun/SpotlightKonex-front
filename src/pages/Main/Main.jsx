@@ -167,12 +167,12 @@ export const Main = () => {
         rankingData = response.data;
       } else if (selectedSection === "좋아요수") {
         const response = await axios.get(
-          `${window.API_BASE_URL}/main/top/like`
+          `api/main/top/like`
         );
         rankingData = response.data;
       } else if (selectedSection === "조회수") {
         const response = await axios.get(
-          `${window.API_BASE_URL}/main/top/views`
+          `api/main/top/views`
         );
         rankingData = response.data;
       }
@@ -322,12 +322,14 @@ export const Main = () => {
 
   const fetchAllData = async () => {
     let allData;
+    console.log("hoho");
     try {
       const response = await axios.get(
-        `/main/enterprise`
+        `/api/main/enterprise`
       );
       allData = response.data;
       setAllData(allData);
+      console.log(allData[0]);
     } catch (error) {
       console.error("API 요청 실패:", error);
       setAllData([]);
