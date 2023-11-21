@@ -83,6 +83,7 @@ export const Company = () => {
           capital: data.capital,
           address: data.address,
           website: data.url,
+          description: data.description,
         });
       } catch (error) {
         console.error("기업 데이터 가져오기 오류:", error);
@@ -317,7 +318,7 @@ export const Company = () => {
           </div>
           <div className="name">
             <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
-            <div className="text-wrapper-3">기업 소개 한마디</div>
+            <div className="text-wrapper-3">{enterpriseData.description}</div>
           </div>
         </div>
         <div className="tab">
