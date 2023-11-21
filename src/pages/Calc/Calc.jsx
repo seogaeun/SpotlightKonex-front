@@ -44,10 +44,8 @@ export const Calc = () => {
                 const response = await axios.get(
                     `http://125.6.38.124/calculator`,
                     {
-                        params: {
-                            income,
-                            invest
-                        }
+                        income,
+                        invest
                     }
                 );
                 const deductionAmount = response.data;
