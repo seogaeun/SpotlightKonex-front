@@ -356,21 +356,6 @@ export const ManageCompany = () => {
           </div>
         </div>
 
-        {editingDescription && (
-          <div className="description">
-            <input
-              type="text"
-              value={newDescription}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-
-            <div className="edit-buttons">
-              <button onClick={handleSaveDescription}>저장</button>
-              <button onClick={handleCancelEdit}>취소</button>
-            </div>
-          </div>
-        )}
-
         {/* 탭 바 */}
         <div className="tab">
           <Tab
