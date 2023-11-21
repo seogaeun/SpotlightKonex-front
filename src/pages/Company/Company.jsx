@@ -17,7 +17,7 @@ import { LinkButton } from "../../components/LinkButton";
 import "./style.css";
 
 // const apiEndpoint = process.env.REACT_APP_API_BASE_URL;
-const apiEndpoint = window.API_BASE_URL;
+const apiEndpoint = "http://125.6.38.124";
 
 // const initialCropCode = "00125664";
 

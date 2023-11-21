@@ -6,8 +6,7 @@ import { NavBar } from "../../components/NavBar";
 import { ListTitle } from "../../components/ListTitle";
 import { LinkButton } from "../../components/LinkButton";
 import "./styles.css";
-const apiEndpoint = window.API_BASE_URL;
-
+const apiEndpoint = "http://125.6.38.124";
 export const PostCompany = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");

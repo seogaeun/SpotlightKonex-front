@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import "./style.css";
 import { Icon2 } from "../../icons/Icon2";
 import axios from "axios";
-const apiEndpoint = window.API_BASE_URL;
-
+const apiEndpoint = "http://125.6.38.124";
 export const MessageInput = ({ pageCorpCode, onSuccessCallback }) => {
   const [text, setText] = useState("");
 
