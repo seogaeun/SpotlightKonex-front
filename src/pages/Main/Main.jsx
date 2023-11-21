@@ -311,11 +311,10 @@ export const Main = () => {
     let pickData;
     try {
       const response = await axios.get(
-        `http://125.6.38.124/find/adviser/${companyNumber}`
+        `http://125.6.38.124/find/advisor/${companyNumber}`
       );
       pickData = response.data;
       setPickData(pickData);
-      console.log(pickData);
     } catch (error) {
       console.error("API 요청 실패:", error);
       setPickData([]);
@@ -326,7 +325,6 @@ export const Main = () => {
 
   const fetchAllData = async () => {
     let allData;
-    console.log("hoho");
     try {
       const response = await axios.get(
         'http://125.6.38.124/main/enterprise'
