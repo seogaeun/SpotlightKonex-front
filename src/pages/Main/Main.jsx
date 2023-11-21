@@ -324,7 +324,7 @@ export const Main = () => {
     let allData;
     try {
       const response = await axios.get(
-        `${window.API_BASE_URL}/main/enterprise`
+        `/main/enterprise`
       );
       allData = response.data;
       setAllData(allData);
