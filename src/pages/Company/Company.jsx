@@ -1,6 +1,5 @@
-// Company.js
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LeftButton4 } from "../../icons/LeftButton4";
 import { NavBar } from "../../components/NavBar";
 import { Avatar8 } from "../../icons/Avatar8";
@@ -12,109 +11,291 @@ import { Graph } from "../../components/Graph";
 import { ChatBox } from "../../components/ChatBox";
 import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
+import { Footer } from "../../components/Footer";
+import { LinkButton } from "../../components/LinkButton";
+
 import "./style.css";
 
+// const apiEndpoint = process.env.REACT_APP_API_BASE_URL;
+const apiEndpoint = window.API_BASE_URL;
+
+// const initialCropCode = "00125664";
+
 export const Company = () => {
+  const [selectedTab, setSelectedTab] = useState("section1");
+  const [enterpriseData, setEnterpriseData] = useState({
+    corp_name: "",
+    industry_name: "",
+    establish_date: "",
+    public_date: "",
+    capital: "",
+    address: "",
+    website: "",
+  });
+
+  //하트 개수 받아오기
+  const [heartCount, setHeartCount] = useState(0);
+
+  //기업 것만 보기
   const [showCompanyAnswers, setShowCompanyAnswers] = useState(false);
 
-  // 기업 응원수 클릭 버튼 함수 (/enterprise/{id})
-  const [heartCount, setCount] = useState(0);
+  //기업 순위 조회
+  const [companyLinkdata, setCompanyLinkdata] = useState([]);
 
-  const heartClick = () => {
-    setCount((heartCount) => heartCount + 1);
+  //기업 채팅 조회
+  const [companyTalkdata, setCompanyTalkdata] = useState([]);
+
+  //기업 뉴스 조회
+  const [companyNewsdata, setCompanyNewsdata] = useState([]);
+
+  //기업 게시글 조회
+  const [companyBoarddata, setCompanyBoarddata] = useState([]);
+
+  //채팅창
+
+  //채팅 전송
+  const [successSignal, setSuccessSignal] = useState(null);
+
+  const [messages, setMessages] = useState([]);
+
+  const addMessage = (text) => {
+    setMessages([...messages, { text, sender: "user" }]);
   };
 
-  //기업 응원수 조회 api연결
-  //      여기에 작성(/analysis/like/{crop_code})
-  //      createdAt==현재날짜 필터링해서 그것만 갖고오면 될듯?
-  //      근데 crop_code??는 어따쓰지 *****
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { corpCode } = state;
 
-  // 상세정보 전환 탭
-  const [selectedTab, setSelectedTab] = useState("section1");
+  //API 연결
+
+  //INFO 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiEndpoint}/enterprise/${corpCode}`);
+        const data = await response.json();
+
+        setEnterpriseData({
+          corp_name: data.corpName,
+          industry_name: data.indutyName,
+          establish_date: data.establish_date,
+          public_date: data.public_date,
+          capital: data.capital,
+          address: data.address,
+          website: data.url,
+        });
+      } catch (error) {
+        console.error("기업 데이터 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
+  //순위 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/enterprise/rank/${corpCode}`
+        );
+        const data = await response.json();
+
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = data.map((item) => ({
+          x: new Date(item.day),
+          y: item.ranking,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCompanyLinkdata(formattedData);
+      } catch (error) {
+        console.error("기업 데이터 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
+  //뉴스 데이터 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/news/?corpCode=${corpCode}`
+        );
+        const data = await response.json();
+
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = data.map((item) => ({
+          id: item.id,
+          date: item.pubDate,
+          title: item.title,
+          content: item.description,
+          url: item.link,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCompanyNewsdata(formattedData);
+      } catch (error) {
+        console.error("기업 데이터 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
+  // 채팅 데이터 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const statusParam = showCompanyAnswers ? "true" : "false";
+        const response = await fetch(
+          `${apiEndpoint}/enterprise/talk?corpCode=${corpCode}&status=${statusParam}`
+        );
+        const data = await response.json();
+
+        // 서버 응답 구조에 따라 적절히 수정
+        if (Array.isArray(data)) {
+          // 데이터를 적절한 형식으로 변환
+          const formattedData = data.map((item) => ({
+            id: item.context,
+            date: new Date(),
+            text: item.context,
+            sender: item.writerType ? "company" : "user",
+            nickName: item.nickname,
+          }));
+
+          setCompanyTalkdata(formattedData);
+          console.log("채팅 데이터:", formattedData);
+        } else {
+          console.error("채팅 데이터 형식이 올바르지 않습니다:", data);
+        }
+      } catch (error) {
+        console.error("채팅 데이터를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode, showCompanyAnswers, successSignal]);
+
+  // ...
+
+  const handleIsCorpMent = async () => {
+    setShowCompanyAnswers((prevShowCompanyAnswers) => !prevShowCompanyAnswers);
+  };
+
+  //보드 데이터 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiEndpoint}/boards/${corpCode}`);
+        const data = await response.json();
+
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = data.map((item) => ({
+          corpCode: item.corpCode,
+          title: item.title,
+          context: item.context,
+          noticeSeq: item.noticeSeq,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCompanyBoarddata(formattedData);
+      } catch (error) {
+        console.error("기업 보드 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
+  // 응원수 조회 연결
+  useEffect(() => {
+    const fetchLikeCount = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/enterprise/like?corpCode=${corpCode}`
+        );
+        const data = await response.json();
+        setHeartCount(data.count);
+      } catch (error) {
+        console.error("응원수 조회 오류:", error);
+      }
+    };
+
+    fetchLikeCount();
+  }, [heartCount, corpCode]);
+
+  const heartClick = async () => {
+    // 서버에 응원 수를 업데이트
+    try {
+      const response = await fetch(
+        `${apiEndpoint}/enterprise/like?corpCode=${corpCode}`,
+        {
+          method: "POST",
+          headers: {},
+        }
+      );
+
+      if (response.ok) {
+        // 서버 업데이트가 성공하면 클라이언트 상태 업데이트
+        setHeartCount((prevCount) => prevCount + 1);
+      } else {
+        console.error("서버 응답 오류:", response.status);
+      }
+    } catch (error) {
+      console.error("서버 연결 오류:", error);
+    }
+  };
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
   };
 
-  //뒤로가기 버튼(<)
-  //  전 페이지인 home으로 연결
-
   const backClick = () => {
-    console.log("back");
+    navigate("/main");
   };
 
-  //기업 상세 정보 데이터 (/enterprise/cropCode)
-  const enterpriseData = {
-    crop_name: "가상기업",
-    industry_name: "IT 및 소프트웨어",
-    establish_date: "2000-01-01",
-    public_date: "2005-05-05",
-    capital: "10억 원",
-    address: "가상시 가상구 가상동 123번지",
-    website: "http://www.virtualcompany.com",
-  };
+  // const companyLinkdata = [
+  //   { x: new Date("2023-11-19").getTime(), y: 1 },
+  //   { x: new Date("2023-11-20").getTime(), y: 3 },
+  //   { x: new Date("2023-11-21").getTime(), y: 2 },
+  //   { x: new Date("2023-11-22").getTime(), y: 5 },
+  //   { x: new Date("2023-11-23").getTime(), y: 10 },
+  //   { x: new Date("2023-11-24").getTime(), y: 20 },
+  //   { x: new Date("2023-11-25").getTime(), y: 1 },
+  // ];
 
-  //순위가 아닌가? ***** 일단 보류
-  const companyLinkdata = [
-    { x: new Date("2023-11-19").getTime(), y: 1 },
-    { x: new Date("2023-11-20").getTime(), y: 3 },
-    { x: new Date("2023-11-21").getTime(), y: 2 },
-    { x: new Date("2023-11-22").getTime(), y: 5 },
-    { x: new Date("2023-11-23").getTime(), y: 10 },
-    { x: new Date("2023-11-24").getTime(), y: 20 },
-    { x: new Date("2023-11-25").getTime(), y: 1 },
-  ];
+  // const newsDataList = [
+  //   {
+  //     date: "2023.11.19",
+  //     title: "기사 제목",
+  //     content: "기사 요약입니다 기사 요약입니다",
+  //   },
+  //   {
+  //     date: "2023.11.18",
+  //     title: "다른 기사 제목",
+  //     content: "다른 기사 요약입니다 다른 기사 요약입니다",
+  //   },
+  //   { date: "2023.11.17", title: "뉴스 제목 1", content: "뉴스 내용 1" },
+  //   { date: "2023.11.16", title: "뉴스 제목 2", content: "뉴스 내용 2" },
+  // ];
 
-  //기업 뉴스 조회 (/enterprise/news)
-  //      GET
-  //      Request 뭐지..??
-  const newsDataList = [
-    {
-      date: "2023.11.19",
-      title: "기사 제목",
-      content: "기사 요약입니다 기사 요약입니다",
-    },
-    {
-      date: "2023.11.18",
-      title: "다른 기사 제목",
-      content: "다른 기사 요약입니다 다른 기사 요약입니다",
-    },
-    // 추가적인 뉴스 데이터를 필요한 만큼 추가
-    { date: "2023.11.17", title: "뉴스 제목 1", content: "뉴스 내용 1" },
-    { date: "2023.11.16", title: "뉴스 제목 2", content: "뉴스 내용 2" },
-    { date: "2023.11.15", title: "뉴스 제목 3", content: "뉴스 내용 3" },
-    { date: "2023.11.14", title: "뉴스 제목 4", content: "뉴스 내용 4" },
-    { date: "2023.11.13", title: "뉴스 제목 5", content: "뉴스 내용 5" },
-    { date: "2023.11.12", title: "뉴스 제목 6", content: "뉴스 내용 6" },
-    { date: "2023.11.11", title: "뉴스 제목 7", content: "뉴스 내용 7" },
-    { date: "2023.11.10", title: "뉴스 제목 8", content: "뉴스 내용 8" },
-  ];
-  //      2개만 조회
-  const visibleNewsDataList = newsDataList.slice(0, 2);
-
-  //채팅 기업 댓글 필터링 (기업 댓글 조회)
-  const handleIsCorpMent = () => {
-    setShowCompanyAnswers(!showCompanyAnswers);
-    //( writer_type===true만 필터링해서 보여주기)
-  };
-
-  //기업 게시물 조회 (/boards/{crop_code})
-  const cropPosts = [
-    { title: "게시글 1", content: "게시글 내용 1" },
-    { title: "게시글 2", content: "게시글 내용 2" },
-    { title: "게시글 3", content: "게시글 내용 3" },
-    { title: "게시글 4", content: "게시글 내용 4" },
-    { title: "게시글 5", content: "게시글 내용 5" },
-    { title: "게시글 6", content: "게시글 내용 6" },
-    { title: "게시글 7", content: "게시글 내용 7" },
-    { title: "게시글 8", content: "게시글 내용 8" },
-  ];
+  // const corpPosts = [
+  //   { title: "게시글 1", content: "게시글 내용 1" },
+  //   { title: "게시글 2", content: "게시글 내용 2" },
+  //   { title: "게시글 3", content: "게시글 내용 3" },
+  //   { title: "게시글 4", content: "게시글 내용 4" },
+  //   { title: "게시글 5", content: "게시글 내용 5" },
+  //   { title: "게시글 6", content: "게시글 내용 6" },
+  //   { title: "게시글 7", content: "게시글 내용 7" },
+  //   { title: "게시글 8", content: "게시글 내용 8" },
+  // ];
 
   return (
     <div className="company">
-      {/* 전체 화면 */}
       <div className="companyContent">
-        {/* 네비바 */}
         <NavBar
           className="nav-bar-instance"
           icon={<LeftButton4 className="left-button-4" onClick={backClick} />}
@@ -123,7 +304,6 @@ export const Company = () => {
           rightButtonClassName="nav-title-text"
           rightControl="none"
         />
-        {/*기업 기본 정보(프로필, 이름, 좋아요) */}
         <div className="company-profile">
           <div className="profile-img">
             <div className="overlap-group">
@@ -136,11 +316,10 @@ export const Company = () => {
             </div>
           </div>
           <div className="name">
-            <div className="text-wrapper-2">{enterpriseData.crop_name}</div>
+            <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
             <div className="text-wrapper-3">기업 소개 한마디</div>
           </div>
         </div>
-        {/* 탭 바 */}
         <div className="tab">
           <Tab
             section1Text="Home"
@@ -173,7 +352,6 @@ export const Company = () => {
             </div>
           </div>
         )}
-
         {selectedTab === "section2" && (
           <div className="company-section">
             <div className="company-detailinfo">
@@ -194,11 +372,16 @@ export const Company = () => {
                   기업 답변만 보기
                 </label>
               </div>
-              <ChatBox />
+
+              <ChatBox
+                messages={companyTalkdata}
+                PageCorpCode={corpCode}
+                successSignal={successSignal}
+                handleSuccess={(signal) => setSuccessSignal(signal)}
+              />
             </div>
           </div>
         )}
-
         {selectedTab === "section3" && (
           <div className="company-section">
             <div className="company-detailinfo">
@@ -206,10 +389,10 @@ export const Company = () => {
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
-                title={enterpriseData.crop_name + "의 최근 뉴스"}
+                title={enterpriseData.corp_name + "의 최근 뉴스"}
               />
               <div className="newsContents">
-                {visibleNewsDataList.map((news, index) => (
+                {companyNewsdata.map((news, index) => (
                   <NewsCard key={index} info={news} />
                 ))}
               </div>
@@ -219,14 +402,14 @@ export const Company = () => {
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
-                title={enterpriseData.crop_name + "의 최근 소식"}
+                title={enterpriseData.corp_name + "의 최근 소식"}
               />
 
-              {cropPosts.map((post, index) => (
+              {companyBoarddata.map((post, index) => (
                 <InfoToggle
                   key={index}
                   title={post.title}
-                  content={post.content}
+                  content={post.context}
                   isOpen={index === 0}
                 />
               ))}
@@ -234,6 +417,7 @@ export const Company = () => {
           </div>
         )}
       </div>
+      <Footer></Footer>
     </div>
   );
 };

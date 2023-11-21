@@ -1,24 +1,25 @@
 .signup {
-    background-color: var(--neutraldarkdarkest);
+    background-color: #11052e;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
   
   .signup .div-2 {
+    background-color: var(--neutraldarkdarkest);
     position: relative;
     width: 600px;
     padding-bottom: 300px;
-    height: 1000px;
   }
   
   .signup .home-message {
     align-items: center;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
-    position: absolute;
-    top: 200px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 600px;
     color: var(--neutrallightlightest) !important;
     font-family: var(--heading-h4-font-family);
@@ -31,11 +32,10 @@
 
   .signup .login-field {
     width: 600px;
-    position: absolute;
-    top: 300px;
+    position: relative;
     align-items: center;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
   }
 
@@ -132,3 +132,22 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+
+  .signup .go-login {
+    font-family: var(--heading-h5-font-family);
+    font-size: 18px;
+    font-weight: var(--heading-h5-font-weight);
+    font-style: var(--heading-h5-font-style);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--neutrallightlightest);
+    text-align: center;
+}
+
+.signup .go-login span {
+  color: var(--highlightlight);
+  font-weight: var(--heading-h5-font-weight);
+  background-color: var(--highlightlightest);
+  padding: 2px 8px;
+  border-radius: 5px;
+}

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Checkbox } from "../../components/Checkbox";
+import { Nav } from "../../components/Nav";
 import { PdfViewerModal } from "../../components/PdfViewerModal";
+import { FiLogOut } from "react-icons/fi";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "./style.css";
@@ -178,9 +180,19 @@ export const Signup = () => {
         console.log("ho");
       };
 
+    // nav bar
+  const handleLeftIconClick = (link) => {
+    navigate("/main");
+  };
+
     return (
         <div className="signup">
             <div className="div-2">
+                <Nav
+                title="회원가입"
+                onLeftIconClick={handleLeftIconClick}
+                leftIconLink="/main"
+                />
                 <div className="home-message">
                     Spotlight Conex 시작하기
                 </div>
@@ -260,6 +272,7 @@ export const Signup = () => {
                                 회원가입
                             </button>
                         </div>
+                        <div className="go-login">이미 회원이세요? <a href="/login"><span>로그인 하러가기<FiLogOut /></span></a></div>
                     </div>
                 </div>
             </div>

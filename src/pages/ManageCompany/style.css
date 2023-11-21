@@ -129,6 +129,11 @@ html{
   width: fit-content;
 }
 
+.description{
+  display: flex;
+  flex-direction: row;
+}
+
 .company .tab {
   display: flex;
   width: 100%;

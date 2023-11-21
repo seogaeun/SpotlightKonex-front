@@ -2,6 +2,7 @@
 
 import React from "react";
 import "./style.css";
+import { LinkButton } from "../LinkButton";
 
 export const InfoCard = ({
   info: {
@@ -57,6 +58,7 @@ export const InfoCard = ({
               {website}
               <br />
             </span>
+            <LinkButton to={website} isLinked={true} buttonText="이동하기➡️" />
           </p>
         </div>
       </div>

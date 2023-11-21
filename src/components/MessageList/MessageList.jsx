@@ -1,13 +1,13 @@
-// MessageList.js
-
 import React, { useEffect, useRef } from "react";
 import "./style.css";
 
 export const MessageList = ({ messages }) => {
+  const messageArray = messages || [];
+
   const messageListRef = useRef(null);
 
   useEffect(() => {
-    // 스크롤을 맨 아래로 이동
+    // Scroll to the bottom when new messages are received
     if (messageListRef.current) {
       messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
     }
@@ -16,14 +16,31 @@ export const MessageList = ({ messages }) => {
   return (
     <div className="MessageList" ref={messageListRef}>
       <ul>
-        {messages.map((message, index) => (
-          <div key={index} className="messageBubble">
-            <div className="bubbleContent">
-              <div className="userName">{`${message.sender}`}</div>
-              <div className="bubbleText">{`${message.text}`}</div>
+        {messageArray.map((message, index) => {
+          console.log("유형" + message.sender);
+          const isUserMessage = message.sender === "user";
+          const bubbleClass = isUserMessage
+            ? "messageBubble-User"
+            : "messageBubble-Corp";
+          const contentClass = isUserMessage
+            ? "bubbleContent-User"
+            : "bubbleContent-Corp";
+          const userNameClass = isUserMessage
+            ? "userName-User"
+            : "userName-Corp";
+          const bubbleTextClass = isUserMessage
+            ? "bubbleText-User"
+            : "bubbleText-Corp";
+
+          return (
+            <div key={index} className={bubbleClass}>
+              <div className={contentClass}>
+                <div className={userNameClass}>{`${message.nickName}`}</div>
+                <div className={bubbleTextClass}>{`${message.text}`}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </ul>
     </div>
   );

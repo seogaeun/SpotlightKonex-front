@@ -1,6 +1,6 @@
 .MessageList {
     width: 100%;
-    max-height: 400px;
+    height: 400px;
     border-radius: 10px;
     overflow-y: auto;
     box-sizing: border-box;
@@ -8,16 +8,16 @@
   }
 
   
-  /*작성자가 고객일 경우*/
+   /* 작성자가 고객일 경우 */
 
-  /* .MessageList .messageBubble {
+  .MessageList .messageBubble-User {
     width: 100%;
-    background-color: blue;
     display: flex; 
   }
   
-  .messageBubble .bubbleContent {
+  .messageBubble-User .bubbleContent-User {
     width: 200px;
+    height: fit-content;
     margin: 15px;
     align-items: flex-start;
     background-color: var(--neutraldarkmedium);
@@ -28,50 +28,59 @@
     padding: 10px 15px;
     box-sizing: border-box;
     white-space: normal; 
-  } 
+    word-break: keep-all;
+  }  
   
   
   
     
-  .bubbleContent .userName {
+  .bubbleContent-User .userName-User {
     color: var(--neutraldarklight);
-    font-family: var(--heading-h5-font-family);
-    font-size: var(--heading-h5-font-size);
-    font-style: var(--heading-h5-font-style);
-    font-weight: var(--heading-h5-font-weight);
-    letter-spacing: var(--heading-h5-letter-spacing);
-    line-height: var(--heading-h5-line-height);
-    margin-top: -1px;
+    font-family: var(--body-body-l-font-family);
+    font-size: var(--body-body-l-font-size);
+    font-style: var(--body-body-l-font-style);
+    font-weight: var(--body-body-l-font-weight);
+    letter-spacing: var(--body-body-l-letter-spacing);
+    line-height: var(--body-body-l-line-height);
+    margin-bottom: 10px;
     position: relative;
+    text-align: left;
+    word-break: keep-all;
+
   }
   
-  .bubbleContent .bubbleText {
+  .bubbleContent-User .bubbleText-User {
     color: var(--neutrallightlightest);
-    font-family: var(--body-body-m-font-family);
-    font-size: var(--body-body-m-font-size);
-    font-style: var(--body-body-m-font-style);
-    font-weight: var(--body-body-m-font-weight);
-    letter-spacing: var(--body-body-m-letter-spacing);
-    line-height: var(--body-body-m-line-height);
+    font-family: var(--body-body-XS-font-family);
+    font-size: var(--body-body-XS-font-size);
+    font-style: var(--body-body-XS-font-style);
+    font-weight: var(--body-body-XS-font-weight);
+    letter-spacing: var(--body-body-XS-letter-spacing);
+    line-height: var(--body-body-XS-line-height);
+
     position: relative;
+    word-break: keep-all;
+    white-space: normal; 
+
   }
   
   
   
   
   
-  */
 
 
 /*작성자가 회사일 경우*/
 
-.MessageList .messageBubble {
+.MessageList .messageBubble-Corp {
     max-width: 100%;
     display: flex; 
     justify-content: flex-end;
+    word-break: keep-all;
+
   }
 
-.messageBubble .bubbleContent {
+.messageBubble-Corp .bubbleContent-Corp {
     width: 50%;
     margin: 15px;
     align-items: flex-end;
@@ -81,11 +90,13 @@
     padding: 10px 15px;
     box-sizing: border-box;
     white-space: normal; 
+    word-break: keep-all;
+
   }
 
 
   
-  .bubbleContent .userName {
+  .bubbleContent-Corp .userName-Corp {
     color: var(--supportwarninglight);
     font-family: var(--body-body-l-font-family);
     font-size: var(--body-body-l-font-size);
@@ -96,10 +107,12 @@
     margin-bottom: 10px;
     position: relative;
     text-align: right;
+    word-break: keep-all;
+
   }
   
   
-  .bubbleContent .bubbleText {
+  .bubbleContent-Corp .bubbleText-Corp {
     color: var(--neutrallightlightest);
     font-family: var(--body-body-XS-font-family);
     font-size: var(--body-body-XS-font-size);
@@ -109,6 +122,8 @@
     line-height: var(--body-body-XS-line-height);
     position: relative;
     text-align: right;
+    word-break: keep-all;
+
 
   }
   

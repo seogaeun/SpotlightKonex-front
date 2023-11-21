@@ -9,6 +9,8 @@ import { ManageCompany } from "./pages/ManageCompany/ManageCompany";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 
+
+
 function App() {
 
   return (
@@ -16,6 +18,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/main" element={<Main />} />
+          <Route path="/company" element={<Company />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/post" element={<PostCompany />} />
+          <Route path="/manage" element={<ManageCompany />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,22 +1,16 @@
-// ChatBox.js
-
 import React, { useState } from "react";
 import { MessageList } from "../MessageList";
 import { MessageInput } from "../MessageInput/MessageInput";
 
 import "./style.css";
 
-export const ChatBox = () => {
-  const [messages, setMessages] = useState([]);
-
-  const addMessage = (text) => {
-    setMessages([...messages, { text, sender: "user" }]);
-  };
+export const ChatBox = ({ messages, PageCorpCode, handleSuccess  }) => {
+  console.log("중간 인자" + PageCorpCode);
 
   return (
     <div className="ChatBox">
       <MessageList messages={messages} />
-      <MessageInput addMessage={addMessage} />
+      <MessageInput pageCorpCode={PageCorpCode} onSuccessCallback={handleSuccess} />
     </div>
   );
 };

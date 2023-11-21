@@ -49,4 +49,6 @@
 
 
 
-
+.toggleOpenContent{
+  word-break: keep-all;
+}
