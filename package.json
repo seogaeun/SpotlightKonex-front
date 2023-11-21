@@ -47,5 +47,6 @@
   },
   "devDependencies": {
     "source-map-loader": "^4.0.1"
-  }
+  },
+  "proxy": "http://125.6.38.124"
 }
