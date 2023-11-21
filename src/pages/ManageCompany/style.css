@@ -73,7 +73,7 @@
 
 
 
-.company .company-profile {
+.managecompany .company-profile {
   align-items: center;
   display: flex;
   flex: 0 0 auto;
@@ -86,7 +86,7 @@
 
 }
 
-.company .profile-img {
+.managecompany .profile-img {
   height: 100px;
   width: 100px;
   display: flex;
