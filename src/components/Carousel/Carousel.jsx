@@ -85,7 +85,7 @@ export const Carousel = ({}) => {
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${currCarousel * 600}px)`,
+            transform: `translateX(-${600-(currCarousel * 600)}px)`,
             transition: `${carouselTransition}`,
           }}
         >

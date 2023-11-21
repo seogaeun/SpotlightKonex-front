@@ -10,7 +10,6 @@
 
 .carousel-items{
   display: flex;
-  margin:10px;
   width: fit-content;
   height: 180px;
 }
