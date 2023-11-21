@@ -294,8 +294,8 @@ export const Company = () => {
   //   { title: "게시글 8", content: "게시글 내용 8" },
   // ];
 
-   // nav bar
-   const handleLeftIconClick = (link) => {
+  // nav bar
+  const handleLeftIconClick = (link) => {
     navigate("/main");
   };
 
@@ -303,18 +303,18 @@ export const Company = () => {
     <div className="company">
       <div className="companyContent">
         <Nav
-          title={corpName}
+          title={enterpriseData.corp_name}
           onLeftIconClick={backClick}
           leftIconLink="/"
-          />
+        />
         <div className="company-profile">
           <div className="profile-img">
             <div className="overlap-group">
-            <img
-              className="logo-img"
-              alt="test"
-              src={`img/${corpCode}.png`}
-            ></img>
+              <img
+                className="logo-img"
+                alt="test"
+                src={`img/${corpCode}.png`}
+              ></img>
               <HeartFilled1
                 className="heart-filled"
                 onClick={heartClick}
