@@ -162,7 +162,7 @@ export const Main = () => {
 
       if (selectedSection === "거래대금") {
         const response = await axios.get(
-          `http://125.6.38.124/main/top/amount`
+          `${process.env.REACT_APP_API_URL}/main/top/amount`
         );
         rankingData = response.data;
       } else if (selectedSection === "좋아요수") {
@@ -325,7 +325,7 @@ export const Main = () => {
     console.log("hoho");
     try {
       const response = await axios.get(
-        `/api/main/enterprise`
+        '/proxy/main/enterprise'
       );
       allData = response.data;
       setAllData(allData);
