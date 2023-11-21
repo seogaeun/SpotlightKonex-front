@@ -15,7 +15,9 @@ import { Footer } from "../../components/Footer";
 import { LinkButton } from "../../components/LinkButton";
 import "./style.css";
 
-const apiEndpoint = process.env.API_BASE_URL;
+// const apiEndpoint = process.env.REACT_APP_API_BASE_URL;
+const apiEndpoint = "http://133.186.215.123:8080";
+
 const initialCropCode = "00125664";
 
 export const Company = () => {
@@ -30,16 +32,25 @@ export const Company = () => {
     website: "",
   });
 
+  //하트 개수 받아오기
   const [heartCount, setHeartCount] = useState(0);
+
+  //기업 것만 보기
   const [showCompanyAnswers, setShowCompanyAnswers] = useState(false);
 
   //기업 순위 조회
   const [companyLinkdata, setCompanyLinkdata] = useState([]);
 
+  //기업 뉴스 조회
+  const [companyNewsdata, setCompanyNewsdata] = useState([]);
+
   const navigate = useNavigate();
   const { state } = useLocation();
   const cropCode = initialCropCode;
 
+  //API 연결
+
+  //INFO 연결
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -63,6 +74,7 @@ export const Company = () => {
     fetchData();
   }, [cropCode]);
 
+  //순위 연결
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -87,6 +99,36 @@ export const Company = () => {
 
     fetchData();
   }, [cropCode]);
+
+  //뉴스 데이터 가져오기
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/news/?corpCode=${cropCode}`
+        );
+        const data = await response.json();
+
+        console.log(data);
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = data.map((item) => ({
+          id: item.id,
+          date: item.pubDate,
+          title: item.title,
+          content: item.description,
+          url: item.link,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCompanyNewsdata(formattedData);
+      } catch (error) {
+        console.error("기업 데이터 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [cropCode]);
+
   useEffect(() => {
     const fetchLikeCount = async () => {
       try {
@@ -144,22 +186,22 @@ export const Company = () => {
   //   { x: new Date("2023-11-25").getTime(), y: 1 },
   // ];
 
-  const newsDataList = [
-    {
-      date: "2023.11.19",
-      title: "기사 제목",
-      content: "기사 요약입니다 기사 요약입니다",
-    },
-    {
-      date: "2023.11.18",
-      title: "다른 기사 제목",
-      content: "다른 기사 요약입니다 다른 기사 요약입니다",
-    },
-    { date: "2023.11.17", title: "뉴스 제목 1", content: "뉴스 내용 1" },
-    { date: "2023.11.16", title: "뉴스 제목 2", content: "뉴스 내용 2" },
-  ];
+  // const newsDataList = [
+  //   {
+  //     date: "2023.11.19",
+  //     title: "기사 제목",
+  //     content: "기사 요약입니다 기사 요약입니다",
+  //   },
+  //   {
+  //     date: "2023.11.18",
+  //     title: "다른 기사 제목",
+  //     content: "다른 기사 요약입니다 다른 기사 요약입니다",
+  //   },
+  //   { date: "2023.11.17", title: "뉴스 제목 1", content: "뉴스 내용 1" },
+  //   { date: "2023.11.16", title: "뉴스 제목 2", content: "뉴스 내용 2" },
+  // ];
 
-  const visibleNewsDataList = newsDataList.slice(0, 2);
+  const visibleNewsDataList = companyNewsdata.slice(0, 2);
 
   const handleIsCorpMent = () => {
     setShowCompanyAnswers(!showCompanyAnswers);
