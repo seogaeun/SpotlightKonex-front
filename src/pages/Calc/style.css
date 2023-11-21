@@ -27,9 +27,8 @@
     margin-bottom: 50px;
     color: var(--neutrallightlightest) !important;
     font-family: var(--heading-h4-font-family);
-    font-size: var(--heading-h4-font-size);
+    font-size: 18px;
     font-style: var(--heading-h4-font-style);
-    font-weight: var(--heading-h4-font-weight);
     letter-spacing: var(--heading-h4-letter-spacing);
     line-height: var(--heading-h4-line-height);
   }
@@ -53,6 +52,7 @@
     color: var(--neutrallightlight);
     margin-bottom: 8px;
     margin-left: 22px;
+    text-align: center;
   }
 
   .calc .input-field {
@@ -68,7 +68,7 @@
     margin-bottom: 18px;
   }
 
-  .calc .calc-btn-div {
+  .calc .login-btn-div {
     margin-top: 18px;
     margin-bottom: 18px;
     display: flex;
@@ -76,7 +76,7 @@
     justify-content: center;
   }
 
-  .calc .calc-btn {
+  .calc .login-btn {
     width: 370px;
     border-radius: 12px;
     padding: 20px 10px 20px 10px;
@@ -89,7 +89,7 @@
     color: var(--neutrallightlight);
   }
 
-  .calc .calc-btn-div .calc-btn:disabled {
+  .calc .login-btn-div .calc-btn:disabled {
     opacity: 0.5;
   }
 

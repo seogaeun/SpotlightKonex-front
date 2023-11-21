@@ -107,10 +107,10 @@ export const Calc = () => {
                             </button>
                         </div>
                         <div className="rule">
-                            <p>예상 공제액</p>
-                            <p>최대 ${formatNumberWithCommas(deductionAmount)}을 공제 받으실 수 있습니다.
-                                지방소득세를 포함한 소득 세부산정 기준에 따라 달라질 수 있습니다.
-                                조합출자금액이 아닌 투자금액 기준입니다.</p>
+                            <p className="rule-subtitle">예상 공제액</p>
+                            <p className="rule-result">최대 {formatNumberWithCommas(deductionAmount)}을 공제 받으실 수 있습니다.
+                                <span>지방소득세를 포함한 소득 세부산정 기준에 따라 달라질 수 있습니다.
+                                조합출자금액이 아닌 투자금액 기준입니다.</span></p>
                             <a href="https://home.kban.or.kr/">
                                 <span>
                                     엔젤투자 시작하기
