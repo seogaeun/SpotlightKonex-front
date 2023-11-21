@@ -1,12 +1,12 @@
 .main {
-    background-color: var(--neutraldarkdarkest);
+    background-color: #11052e;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
   
   .main .div-2 {
-    height: 1767px;
+    background-color: var(--neutraldarkdarkest);
     position: relative;
     width: 600px;
     padding-bottom: 300px;
@@ -15,8 +15,7 @@
   .main .main-image {
     height: 180px !important;
     left: 0 !important;
-    position: absolute !important;
-    top: 0 !important;
+    position: relative;
     width: 600px !important;
     padding: 0;
   }
@@ -32,15 +31,20 @@
     display: flex;
     gap: 8px;
     justify-content: center;
-    position: absolute;
-    top: 200px;
+    position: relative;
     width: 600px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   .main .home-copyright {
-    flex: 1 !important;
-    flex-grow: 1 !important;
-    width: unset !important;
+    width: unset;
+    text-align: center;
+  }
+
+  .main .theme-search .home-copyright {
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
   
   .main .design-component-instance-node {
@@ -73,8 +77,7 @@
     gap: 8px;
     height: 100px;
     justify-content: center;
-    position: absolute;
-    top: 265px;
+    position: relative;
     width: 600px;
   }
   
@@ -82,7 +85,7 @@
     justify-content: center;
     align-self: stretch !important;
     background-color: #11052e !important;
-    width: 600px !important;
+    width: 550px !important;
   }
   
   .main .horizontal-card-instance {
@@ -100,8 +103,18 @@
     gap: 8px;
     height: 50px;
     justify-content: center;
-    position: absolute;
-    top: 400px;
+    position: relative;
+    width: 600px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .main .for-sticky {
+    position: sticky;
+    top:0px;
+    z-index: 7;
+    background-color: var(--neutraldarkdarkest);
+    padding-bottom: 2px;
     width: 600px;
   }
   
@@ -154,9 +167,10 @@
     gap: 8px;
     height: 50px;
     justify-content: center;
-    position: absolute;
-    top: 470px;
+    position: relative;
     width: 600px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   .main .chips {
@@ -174,8 +188,7 @@
     gap: 8px;
     height: 1301px;
     left: 0;
-    position: absolute;
-    top: 520px;
+    position: relative;
     width: 600px;
   }
   
@@ -210,7 +223,6 @@
     display: flex;
     flex: 0 0 auto;
     gap: 12px;
-    overflow-x: scroll;
     position: relative;
     width: 100%;
   }
@@ -242,13 +254,13 @@
   
   .main .image-instance {
     left: 0 !important;
-    position: absolute !important;
+    position: relative;
     top: 0 !important;
     padding: 0px;
   }
   
   .main .rank {
-    left: 96px !important;
+    left: 10px !important;
     position: absolute !important;
     top: 10px !important;
   }
@@ -287,6 +299,9 @@
     margin-top: -1px;
     position: relative;
     text-align: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .main .price {
@@ -299,6 +314,7 @@
     line-height: normal;
     position: relative;
     text-align: center;
+    width: unset;
   }
   
   .main .stock-price-plus {
@@ -330,9 +346,9 @@
     line-height: var(--heading-h5-line-height);
     color: var(--supporterrordark);
     background-color: var(--supporterrorlight);
-    padding: 5px 10px;
+    padding: 5px 2px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
   }
 
   .main .stock-change-minus {
@@ -344,9 +360,9 @@
     line-height: var(--heading-h5-line-height);
     color: var(--supportsuccessdark);
     background-color: var(--supportsuccesslight);
-    padding: 5px 10px;
+    padding: 5px 2px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
   }
   
   .main .rankin-etc {
@@ -362,6 +378,20 @@
     position: relative;
     width: 375px;
   }
+
+  .main .rankin-etc-2 {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: 8px 8px;
+    justify-content: center;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 16px 8px;
+    position: relative;
+    width: 575px;
+  }
   
   .main .products-wrapper {
     align-items: center;
@@ -373,34 +403,41 @@
     width: 168px;
   }
 
+  .main .theme-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .main .search-content {
     align-items: center;
     display: flex;
     flex-direction: column;
     gap: 8px 8px;
     justify-content: center;
-    position: absolute;
-    top: 500px;
+    position: relative;
     width: 600px;
   }
 
-  .main .hello-world {
-    background-color: red;
-    position:absolute;
-    top: 500px;
+  .main .brand-search {
+    margin-top: 30px;
   }
 
   .main .theme-content {
     display: flex;
-    width: 600px;
+    width: 580px;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 50px;
   }
 
   .main .theme-content .tab-switch {
     width: 160px;
     flex-direction: column;
-    margin: 0px;
+  }
+
+  .main .pick-content {
+    width: 580px;
   }
 
   .main .pick-content .tab-switch {
@@ -417,6 +454,11 @@
     flex-wrap: wrap;
   }
 
+  .main .pick-company-toggle {
+    display: flex;
+    justify-content: center;
+  }
+
   .main .pick-content .tab-btn {
     width: 120px;
     flex:none !important;
@@ -424,7 +466,10 @@
   }
   
   .main .pick-content .active {
-    font-size: 14px
+    font-size: 14px;
+    width: 120px;
+    flex: 0 0 120px !important;
+    flex-grow: 0;
   }
 
   .main .pick-content .tab-btn {
@@ -440,7 +485,7 @@
   }
 
   .main .theme-company{
-    width: 420px;
+    width: 400px;
     display: flex;
     overflow-y: scroll;
   }
@@ -450,17 +495,20 @@
   }
 
   .main .pick-company{
-    width: 600px;
+    width: 580px;
     display: flex;
     overflow-y: scroll;
+    justify-content: center;
   }
 
   .main .pick-company .products-wrapper{
     margin-right: 8px;
   }
 
+
+
   .main .search-input {
-    width: 350px;
+    width: 450px;
     padding: 20px 10px 20px 10px;
     border-radius: 12px;
     font-family: var(--heading-h5-font-family);
@@ -472,8 +520,31 @@
     margin-bottom: 18px;
   }
 
-  .main .data-display .error-message {
+  .main .error-message {
     color: var(--highlightlightest);
+  }
+
+  .main .search-input:focus {
+    outline: 2px solid var(--highlightlightest);
+  }
+
+  .main .spin {
+    position: absolute;
+    top: 500px;
+  }
+
+  .main .logo-img {
+    width: 100%;
+    margin-top: 25%;
+  }
+
+  .main .data-display {
+    display: flex;
+    width: 550px;
+    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   

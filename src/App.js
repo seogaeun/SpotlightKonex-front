@@ -17,12 +17,12 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Main />} />
+          <Route path="/main" element={<Main />} />
           <Route path="/company" element={<Company />} />
-          <Route path="/PostCompany" element={<PostCompany />} />
-          <Route path="/ManageCompany" element={<ManageCompany />} />
-
-
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/post" element={<PostCompany />} />
+          <Route path="/manage" element={<ManageCompany />} />
         </Routes>
       </BrowserRouter>
     </div>
