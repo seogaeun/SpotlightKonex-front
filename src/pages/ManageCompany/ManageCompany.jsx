@@ -106,7 +106,7 @@ export const ManageCompany = () => {
         `${apiEndpoint}/enterprise/descriptions`,
         {
           corpCode,
-          newDescription,
+          description:newDescription,
         }
       );
 
