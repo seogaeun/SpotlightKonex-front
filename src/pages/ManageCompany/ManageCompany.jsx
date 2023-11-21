@@ -81,15 +81,17 @@ export const ManageCompany = () => {
           newDescription,
         }
       );
-
+  
       // 성공 시 처리 (예: 성공 메시지 표시)
       console.log("설명이 성공적으로 업데이트되었습니다:", response.data);
+  
+      // 상태 업데이트
+      setEditingDescription(false);
     } catch (error) {
       // 오류 처리 (예: 오류 메시지 표시)
       console.error("설명 업데이트 오류:", error);
     }
   };
-
   // 기업소개 저장
   const handleSaveDescription = () => {
     // TODO: 서버로 새로운 기업 소개 저장 요청 보내기
