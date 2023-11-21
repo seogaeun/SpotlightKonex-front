@@ -93,6 +93,8 @@ html{
 
 .managecompany .heart-filled {
   position: relative;
+  width:100px;
+  height:100px;
   left: -30px;
   top:30px;
 }
