@@ -139,7 +139,7 @@
     line-height: 140%;
 }
 
-.calc .rule-result span {
+.calc .rule-result .result-desc {
   color: #b7b7b7;
     margin-bottom: 32px;
     font-size: 14px;
