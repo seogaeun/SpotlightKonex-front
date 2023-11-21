@@ -14,24 +14,17 @@
 
 /* 전체화면 */
 .companyContent {
-  align-items: center;
   background-color: var(--neutraldarkdarkest);
-  display: inline-flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
-  width: 100%;
   height: fit-content;
-}
-
-
-.companyContent{
   width: 600px;
   padding-bottom: 5%;
   display: flex;
   align-items: center;
-  flex-direction: column;
 }
+
 
 /* 네비바 */
 

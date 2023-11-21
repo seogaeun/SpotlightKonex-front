@@ -12,14 +12,31 @@
   justify-content: center;
 }
 
-
-
-html{
-  background-color: var(--neutraldarkdarkest);  
+.managecompany {
+  background-color: #11052e;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
+
 /* 전체화면 */
-.company {
+.managecompanyContent {
+  background-color: var(--neutraldarkdarkest);
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  height: fit-content;
+  width: 600px;
+  padding-bottom: 5%;
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* 전체화면 */
+/* .company {
   width: 600px;
   align-items: center;
   background-color: var(--neutraldarkdarkest);
@@ -38,7 +55,7 @@ html{
   display: flex;
   align-items: center;
   flex-direction: column;
-}
+} */
 
 /* 네비바 */
 
