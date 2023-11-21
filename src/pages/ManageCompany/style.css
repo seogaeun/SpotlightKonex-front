@@ -20,6 +20,7 @@ html{
 
 /* 전체화면 */
 .company {
+  width: 600px;
   align-items: center;
   background-color: var(--neutraldarkdarkest);
   display: inline-flex;

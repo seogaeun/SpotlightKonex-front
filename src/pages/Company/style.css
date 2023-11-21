@@ -4,7 +4,7 @@
   border: 1px solid aqua;
 } */
 
-.main {
+.company {
   background-color: #11052e;
   display: flex;
   flex-direction: row;
@@ -12,12 +12,8 @@
 }
 
 
-html{
-  background-color: var(--neutraldarkdarkest);  
-}
-
 /* 전체화면 */
-.managecompany {
+.companyContent {
   align-items: center;
   background-color: var(--neutraldarkdarkest);
   display: inline-flex;
@@ -29,7 +25,7 @@ html{
 }
 
 
-.managecompanyContent{
+.companyContent{
   width: 600px;
   padding-bottom: 5%;
   display: flex;

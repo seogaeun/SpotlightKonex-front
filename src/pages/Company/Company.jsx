@@ -300,7 +300,9 @@ export const Company = () => {
   };
 
   return (
+
     <div className="company">
+
       <div className="companyContent">
         <Nav
           title={enterpriseData.corp_name}
