@@ -1,0 +1,14 @@
+.LinkBtn{
+  display: flex;
+  height: 20px;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background: var(--highlight-back-ground, #542BA8);
+  border: 1px solid var(--neutrallightlightest);
+  margin:5px;
+  color: var(--neutrallightlightest);
+  font-size: xx-small;
+}

@@ -9,6 +9,8 @@ import { Toggle } from "../../components/Toggle";
 import { Tab } from "../../components/Tab/Tab";
 import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
+import { Nav } from "../../components/Nav"
+import { FiLogIn } from "react-icons/fi";
 import Swal from "sweetalert2";
 import axios from "axios";
 import "./style.css";
@@ -20,14 +22,13 @@ export const Login = () => {
   const [password, setPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
 
-  // 유효성 검사
-  const [isPassword, setIsPassword] = React.useState(false);
-  const [isEmail, setIsEmail] = React.useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
 
   // 유효성 검사
+  const [isPassword, setIsPassword] = React.useState(false);
+  const [isEmail, setIsEmail] = React.useState(false);
+
   const onChangeEmail = (e) => {
     const currentEmail = e.target.value;
     setEmail(currentEmail);
@@ -55,7 +56,6 @@ export const Login = () => {
 
   // 로그인 처리
   const handleSubmit = async (e) => {
-    console.log("c");
     e.preventDefault();
     if (isEmail && isPassword) {
       try {
@@ -64,21 +64,20 @@ export const Login = () => {
           password,
         });
 
-        console.log("Response Data:", response.data.payload);
+        console.log("Response Data:", response.data);
   
-        const data = response.data.payload;
+        const data = response.data;
   
-        if (data && data.user_id) {
-          sessionStorage.setItem("userUUID", data.user_id);
-  
+        if (data && data.accessToken) {
+          sessionStorage.setItem("company_user", data.accessToken);
           console.log("로그인 성공:", data);
           navigate("/main");
         } else {
-          console.error("로그인 실패: 서버에서 UUID를 반환하지 않음");
+          console.error("로그인 실패");
           Swal.fire({
             icon: "error",
             title: "로그인 실패",
-            text: "서버에서 UUID를 반환하지 않았습니다.",
+            text: "error",
           });
         }
       } catch (error) {
@@ -100,33 +99,46 @@ export const Login = () => {
     }
   };  
 
+  // nav bar
+  const handleLeftIconClick = (link) => {
+    navigate("/main");
+  };
 
     return (
         <div className="login">
             <div className="div-2">
+            <Nav
+              title="로그인"
+              onLeftIconClick={handleLeftIconClick}
+              leftIconLink="/main"
+            />
                 <div className="home-message">
                     기업 회원이신가요?
                 </div>
                 <div className="login-field">
                     <div className="login-input">
                         <div className="subtitle">Email</div>
-                        <input
-                        className="input-field"
-                        type="email"
-                        name="email"
-                        value={email}
-                        placeholder="회사 이메일 계정을 입력해주세요."
-                        onChange={onChangeEmail}
-                        />
+                        <div className="input-area">
+                          <input
+                          className="input-field"
+                          type="email"
+                          name="email"
+                          value={email}
+                          placeholder="회사 이메일 계정을 입력해주세요."
+                          onChange={onChangeEmail}
+                          />
+                        </div>
                         <div className="subtitle">Password</div>
-                        <input
-                        className="input-field"
-                        type="password"
-                        name="password"
-                        value={password}
-                        placeholder="비밀번호를 입력해주세요."
-                        onChange={onChangePassword}
-                        />
+                        <div className="input-area">
+                          <input
+                          className="input-field"
+                          type="password"
+                          name="password"
+                          value={password}
+                          placeholder="비밀번호를 입력해주세요."
+                          onChange={onChangePassword}
+                          />
+                        </div>
                         <div className="login-btn-div">
                             <button
                             type="submit"
@@ -137,6 +149,7 @@ export const Login = () => {
                             로그인
                             </button>
                         </div>
+                        <div className="rule">아직 회원이 아니신가요? <a href="/signup"><span>회원가입하기<FiLogIn /></span></a></div>
                     </div>
                 </div>
             </div>

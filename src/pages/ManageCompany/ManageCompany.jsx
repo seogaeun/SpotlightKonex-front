@@ -1,6 +1,8 @@
 // ManageCompany.js
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { LeftButton4 } from "../../icons/LeftButton4";
 import { NavBar } from "../../components/NavBar";
 import { Avatar8 } from "../../icons/Avatar8";
@@ -12,23 +14,26 @@ import { Graph } from "../../components/Graph";
 import { ChatBox } from "../../components/ChatBox";
 import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
+import { LinkButton } from "../../components/LinkButton";
+
 import "./style.css";
 
 export const ManageCompany = () => {
+  //기본 정보
+  const apiEndpoint = "http://133.186.215.123:8080";
+  const corpCode = "01695498";
+
+  const [companyBoarddata, setCompanyBoarddata] = useState([]);
+
+  const accessToken = sessionStorage.getItem("company_user");
   const [showManageCompanyAnswers, setShowManageCompanyAnswers] =
     useState(false);
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
-  // 기업 응원수 클릭 버튼 함수 (/enterprise/{id})
-  const [heartCount, setCount] = useState(0);
-
-  const heartClick = () => {
-    setCount((heartCount) => heartCount + 1);
-  };
-
-  //기업 응원수 조회 api연결
-  //      여기에 작성(/analysis/like/{crop_code})
-  //      createdAt==현재날짜 필터링해서 그것만 갖고오면 될듯?
-  //      근데 crop_code??는 어따쓰지 *****
+  const [enterpriseData, setEnterpriseData] = useState({
+    corp_name: "",
+  });
 
   // 상세정보 전환 탭
   const [selectedTab, setSelectedTab] = useState("section1");
@@ -37,61 +42,148 @@ export const ManageCompany = () => {
     setSelectedTab(tab);
   };
 
+  //기업 거래량 조회
+  const [corptransdata, setCropTransdata] = useState([]);
+
+  //기업 응원수 조회
+  const [corplikedata, setCorpLikedata] = useState([]);
+
+  //기업 순위 조회
+  const [managecompanyLinkdata, setCompanyLinkdata] = useState([]);
+
+  // 기업 응원수 클릭 버튼 함수 (/enterprise/{id})
+  const [heartCount, setHeartCount] = useState(0);
+  // 응원수 조회 연결
+  useEffect(() => {
+    const fetchLikeCount = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/enterprise/like?corpCode=${corpCode}`
+        );
+        const data = await response.json();
+        setHeartCount(data.count);
+      } catch (error) {
+        console.error("응원수 조회 오류:", error);
+      }
+    };
+
+    fetchLikeCount();
+  }, [heartCount, corpCode]);
+
+  //기업 이름 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiEndpoint}/enterprise/${corpCode}`);
+        const data = await response.json();
+
+        setEnterpriseData({
+          corp_name: data.corpName,
+        });
+      } catch (error) {
+        console.error("기업 데이터 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
+  //기업 응원수 조회 api연결
+  //      여기에 작성(/analysis/like/{corp_code})
+  //      createdAt==현재날짜 필터링해서 그것만 갖고오면 될듯?
+  //      근데 corp_code??는 어따쓰지 *****
+
+  // 좋아요 분석 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(corpCode);
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/analysis/like/${corpCode}`
+        );
+        const data = await response.json();
+
+        // data가 배열이 아니라면 빈 배열로 설정
+        const dataArray = Array.isArray(data) ? data : [];
+
+        console.log(dataArray);
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = dataArray.map((item) => ({
+          x: new Date(item.createdAt),
+          y: item.count,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCorpLikedata(formattedData);
+      } catch (error) {
+        console.error("기업 좋아요 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
+  // 거래량 분석 연결
+  useEffect(() => {
+    const fetchTransactionData = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/analysis/transaction/${corpCode}`
+        );
+        const data = await response.json();
+
+        // data가 배열이 아니라면 빈 배열로 설정
+        const dataArray = Array.isArray(data) ? data : [];
+
+        console.log(dataArray);
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = dataArray.map((item) => ({
+          x: new Date(item.createdAt),
+          y: item.tradingVolume,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCropTransdata(formattedData);
+      } catch (error) {
+        console.error("기업 거래량 가져오기 오류:", error);
+      }
+    };
+
+    fetchTransactionData();
+  }, [corpCode]);
+
+  //순위 연결
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${apiEndpoint}/enterprise/rank/${corpCode}`
+        );
+        const data = await response.json();
+
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = data.map((item) => ({
+          x: new Date(item.day),
+          y: item.ranking,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCompanyLinkdata(formattedData);
+      } catch (error) {
+        console.error("기업 데이터 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, [corpCode]);
+
   //뒤로가기 버튼(<)
   //  전 페이지인 home으로 연결
 
   const backClick = () => {
     console.log("back");
+    navigate("/main");
   };
-
-  //기업 상세 정보 데이터 (/enterprise/cropCode)
-  const enterpriseData = {
-    crop_name: "가상기업",
-    industry_name: "IT 및 소프트웨어",
-    establish_date: "2000-01-01",
-    public_date: "2005-05-05",
-    capital: "10억 원",
-    address: "가상시 가상구 가상동 123번지",
-    website: "http://www.virtualcompany.com",
-  };
-
-  //순위가 아닌가? ***** 일단 보류
-  const managecompanyLinkdata = [
-    { x: new Date("2023-11-19").getTime(), y: 1 },
-    { x: new Date("2023-11-20").getTime(), y: 3 },
-    { x: new Date("2023-11-21").getTime(), y: 2 },
-    { x: new Date("2023-11-22").getTime(), y: 5 },
-    { x: new Date("2023-11-23").getTime(), y: 10 },
-    { x: new Date("2023-11-24").getTime(), y: 20 },
-    { x: new Date("2023-11-25").getTime(), y: 1 },
-  ];
-
-  //기업 뉴스 조회 (/enterprise/news)
-  //      GET
-  //      Request 뭐지..??
-  const newsDataList = [
-    {
-      date: "2023.11.19",
-      title: "기사 제목",
-      content: "기사 요약입니다 기사 요약입니다",
-    },
-    {
-      date: "2023.11.18",
-      title: "다른 기사 제목",
-      content: "다른 기사 요약입니다 다른 기사 요약입니다",
-    },
-    // 추가적인 뉴스 데이터를 필요한 만큼 추가
-    { date: "2023.11.17", title: "뉴스 제목 1", content: "뉴스 내용 1" },
-    { date: "2023.11.16", title: "뉴스 제목 2", content: "뉴스 내용 2" },
-    { date: "2023.11.15", title: "뉴스 제목 3", content: "뉴스 내용 3" },
-    { date: "2023.11.14", title: "뉴스 제목 4", content: "뉴스 내용 4" },
-    { date: "2023.11.13", title: "뉴스 제목 5", content: "뉴스 내용 5" },
-    { date: "2023.11.12", title: "뉴스 제목 6", content: "뉴스 내용 6" },
-    { date: "2023.11.11", title: "뉴스 제목 7", content: "뉴스 내용 7" },
-    { date: "2023.11.10", title: "뉴스 제목 8", content: "뉴스 내용 8" },
-  ];
-  //      2개만 조회
-  const visibleNewsDataList = newsDataList.slice(0, 2);
 
   //채팅 기업 댓글 필터링 (기업 댓글 조회)
   const handleIsCorpMent = () => {
@@ -99,17 +191,29 @@ export const ManageCompany = () => {
     //( writer_type===true만 필터링해서 보여주기)
   };
 
-  //기업 게시물 조회 (/boards/{crop_code})
-  const cropPosts = [
-    { title: "게시글 1", content: "게시글 내용 1" },
-    { title: "게시글 2", content: "게시글 내용 2" },
-    { title: "게시글 3", content: "게시글 내용 3" },
-    { title: "게시글 4", content: "게시글 내용 4" },
-    { title: "게시글 5", content: "게시글 내용 5" },
-    { title: "게시글 6", content: "게시글 내용 6" },
-    { title: "게시글 7", content: "게시글 내용 7" },
-    { title: "게시글 8", content: "게시글 내용 8" },
-  ];
+  // 기업 보드 데이터 가져오기
+  useEffect(() => {
+    const fetchBoardData = async () => {
+      try {
+        const response = await fetch(`${apiEndpoint}/boards/${corpCode}`);
+        const data = await response.json();
+
+        // 데이터를 적절한 형식으로 변환
+        const formattedData = data.map((item) => ({
+          id: item.noticeSeq,
+          title: item.title,
+          content: item.context,
+        }));
+
+        // 변환된 데이터를 state에 설정
+        setCompanyBoarddata(formattedData);
+      } catch (error) {
+        console.error("기업 보드 가져오기 오류:", error);
+      }
+    };
+
+    fetchBoardData();
+  }, [corpCode]);
 
   return (
     <div className="managecompany">
@@ -120,7 +224,7 @@ export const ManageCompany = () => {
           className="nav-bar-instance"
           icon={<LeftButton4 className="left-button-4" onClick={backClick} />}
           leftControl="icon"
-          pageTitle={enterpriseData.crop_name + "의 관리창"}
+          pageTitle={enterpriseData.corp_name + "의 관리창"}
           rightButtonClassName="nav-title-text"
           rightControl="none"
         />
@@ -129,15 +233,11 @@ export const ManageCompany = () => {
           <div className="profile-img">
             <div className="overlap-group">
               <Avatar8 className="avatar-8" />
-              <HeartFilled1
-                className="heart-filled"
-                onClick={heartClick}
-                count={heartCount}
-              />
+              <HeartFilled1 className="heart-filled" count={heartCount} />
             </div>
           </div>
           <div className="name">
-            <div className="text-wrapper-2">{enterpriseData.crop_name}</div>
+            <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
             <div className="text-wrapper-3">기업 소개 한마디</div>
           </div>
         </div>
@@ -159,7 +259,7 @@ export const ManageCompany = () => {
                 rightControl="none"
                 title="응원수"
               />
-              <Graph dataList={managecompanyLinkdata} />
+              <Graph dataList={corplikedata} />
             </div>
             <div className="managecompany-detailinfo">
               <ListTitle
@@ -168,7 +268,7 @@ export const ManageCompany = () => {
                 rightControl="none"
                 title="거래량"
               />
-              <Graph dataList={managecompanyLinkdata} />
+              <Graph dataList={corptransdata} />
             </div>
 
             <div className="managecompany-detailinfo">
@@ -200,14 +300,17 @@ export const ManageCompany = () => {
         {selectedTab === "section3" && (
           <div className="managecompany-section">
             <div className="managecompany-detailinfo">
-              <ListTitle
-                className="subtitile"
-                divClassName="list-title-2"
-                rightControl="none"
-                title={enterpriseData.crop_name + "의 최근 소식"}
-              />
-              <button className="post-button">Add</button>
-              {cropPosts.map((post, index) => (
+              <div className="subSection">
+                <ListTitle
+                  className="subtitile"
+                  divClassName="list-title-2"
+                  rightControl="none"
+                  title={enterpriseData.corp_name + "의 최근 소식"}
+                />
+                <LinkButton to={"/post"} isLinked={false} buttonText="Add" />
+              </div>
+
+              {companyBoarddata.map((post, index) => (
                 <InfoToggle
                   key={index}
                   title={post.title}
