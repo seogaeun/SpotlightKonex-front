@@ -58,7 +58,8 @@ export const ManageCompany = () => {
   // 기업소개 취소
   const handleCancelEdit = () => {
     setEditingDescription(false);
-    setDescription(enterpriseData.corp_name);
+    // 이전 소개로 되돌리기
+    setDescription(enterpriseData.description);
   };
 
   //기업 채팅
@@ -72,7 +73,7 @@ export const ManageCompany = () => {
     setMessages([...messages, { text, sender: "user" }]);
   };
 
-  const updateDescriptionOnServer = async (corpCode, newDescription) => {
+  const updateDescriptionOnServer = async () => {
     try {
       const response = await axios.post(
         `${apiEndpoint}/enterprise/descriptions`,
@@ -81,22 +82,47 @@ export const ManageCompany = () => {
           newDescription,
         }
       );
-  
-      // 성공 시 처리 (예: 성공 메시지 표시)
+
       console.log("설명이 성공적으로 업데이트되었습니다:", response.data);
-  
-      // 상태 업데이트
+
       setEditingDescription(false);
     } catch (error) {
-      // 오류 처리 (예: 오류 메시지 표시)
       console.error("설명 업데이트 오류:", error);
     }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateDescriptionOnServer();
+  };
+
   // 기업소개 저장
-  const handleSaveDescription = () => {
-    // TODO: 서버로 새로운 기업 소개 저장 요청 보내기
-    updateDescriptionOnServer(corpCode, newDescription);
-    setEditingDescription(false);
+  const handleSaveDescription = async () => {
+    // 서버로 새로운 기업 소개 저장 요청 보내기
+    try {
+      const response = await axios.post(
+        `${apiEndpoint}/enterprise/descriptions`,
+        {
+          corpCode,
+          newDescription,
+        }
+      );
+
+      console.log("설명이 성공적으로 업데이트되었습니다:", response.data);
+
+      // 업데이트된 데이터 다시 불러오기
+      const updatedData = await fetch(`${apiEndpoint}/enterprise/${corpCode}`);
+      const updatedEnterpriseData = await updatedData.json();
+
+      setEnterpriseData({
+        ...enterpriseData,
+        description: updatedEnterpriseData.description,
+      });
+
+      setEditingDescription(false);
+    } catch (error) {
+      console.error("설명 업데이트 오류:", error);
+    }
   };
 
   //기업 거래량 조회
@@ -333,10 +359,9 @@ export const ManageCompany = () => {
               <div className="description">
                 <input
                   type="text"
-                  value={enterpriseData.description}
+                  value={newDescription}
                   onChange={(e) => setDescription(e.target.value)}
                 />
-
                 <div className="edit-buttons">
                   <button onClick={handleSaveDescription}>저장</button>
                   <button onClick={handleCancelEdit}>취소</button>
