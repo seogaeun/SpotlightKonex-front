@@ -1,0 +1,46 @@
+
+
+.carousel-container{
+  width: 600px;
+  background-color: #9055FF;
+  overflow-y: hidden;
+  height: fit-content;
+  display: flex;
+}
+
+.carousel-items{
+  display: flex;
+  margin:10px;
+  width: fit-content;
+  height: 180px;
+}
+.carousel-wrapper{
+}
+
+.image-section{
+  height: 180px;
+  width: 600px;
+  background-color: aqua;
+}
+
+
+#carousel {
+  overflow: hidden; /* 넘치는 부분 숨김 */
+}
+
+.carousel-container {
+  display: flex; /* 이미지들을 수평으로 배치하기 위해 flex 사용 */
+}
+
+.carousel-items {
+  display: flex; /* 이미지들을 수평으로 배치하기 위해 flex 사용 */
+  transition: transform 500ms ease-in-out; /* 이동 애니메이션 효과 */
+}
+
+.carousel-wrapper {
+  flex: 0 0 auto; /* flex item의 크기 고정 */
+}
+
+img {
+  margin: 0; /* 이미지 간 마진 없애기 */
+}

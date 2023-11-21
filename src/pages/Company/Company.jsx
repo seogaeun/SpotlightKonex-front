@@ -13,6 +13,7 @@ import { NewsCard } from "../../components/NewsCard/NewsCard";
 import { InfoToggle } from "../../components/InfoToggle/InfoToggle";
 import { Footer } from "../../components/Footer";
 import { LinkButton } from "../../components/LinkButton";
+import {Heart} from "react-animated-heart";
 
 import "./style.css";
 
