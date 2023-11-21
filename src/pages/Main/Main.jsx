@@ -10,6 +10,7 @@ import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
 import { Company } from "../Company";
 import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 import Loading from "../../components/Loading/Loading";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -161,7 +162,7 @@ export const Main = () => {
 
       if (selectedSection === "거래대금") {
         const response = await axios.get(
-          `${window.API_BASE_URL}/main/top/amount`
+          `/api/main/top/amount`
         );
         rankingData = response.data;
       } else if (selectedSection === "좋아요수") {
@@ -401,7 +402,11 @@ export const Main = () => {
             </div>
             <div className="ranking-content">
               <div className="rankin">
-                <div className="products-wrapper">
+                <div
+                  className="products-wrapper"
+                  key={1}
+                  onClick={() => handleProductClick(firstData.corpCode)}
+                    >
                   <div className="products">
                     <div className="vertical-card">
                       <div className="company-image">
@@ -465,7 +470,7 @@ export const Main = () => {
                   RankingData.length > 1 &&
                   RankingData.slice(1).map((item, index) => (
                     <div
-                      className="productswrapper"
+                      className="products-wrapper"
                       key={index}
                       onClick={() => handleProductClick(item.corpCode)}
                     >
@@ -536,6 +541,12 @@ export const Main = () => {
 
         {selectedTab === "section2" && (
           <div className="ranking-content">
+            <ListTitle
+                  className="home-copyright"
+                  divClassName="design-component-instance-node"
+                  rightControl="none"
+                  title="코넥스 상장 기업 전체보기"
+                />
             <div className="rankin-etc-2">
               {AllData.map((item, index) => (
                 <div
@@ -614,19 +625,22 @@ export const Main = () => {
                   rightControl="none"
                   title="원하는 기업을 찾아보세요"
                 />
-                <input
-                  className="search-input"
-                  type="text"
-                  name="stockname"
-                  value={stockname}
-                  placeholder="종목코드나 종목명을 입력해주세요."
-                  onChange={(e) => setStockName(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      handleSearch();
-                    }
-                  }}
-                />
+                <div>
+                  <input
+                    className="search-input"
+                    type="text"
+                    name="stockname"
+                    value={stockname}
+                    placeholder="종목코드나 종목명을 입력해주세요."
+                    onChange={(e) => setStockName(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter") {
+                        handleSearch();
+                      }
+                    }}
+                  />
+                  <FaSearch className="search-icon" onClick={clickSearch} />
+                </div>
                 <div className="result-content"></div>
               </div>
             )}
@@ -682,9 +696,12 @@ export const Main = () => {
                                       : "stock-change-minus"
                                   }`}
                                 >
-                                  {item
-                                    ? `${item.cmpprevddPrc}%`
-                                    : "로딩 중..."}
+                                  {item &&
+                                    typeof item.cmpprevddPrc === "string"
+                                      ? `${parseFloat(
+                                          item.cmpprevddPrc
+                                        ).toFixed(2)}%`
+                                      : "로딩 중..."}
                                 </span>
                               </p>
                             </div>
@@ -740,11 +757,6 @@ export const Main = () => {
                                       : "1234567"
                                   }.png`}
                                 ></img>
-                                <Tag
-                                  className="rank"
-                                  style="focus"
-                                  text={index + 1}
-                                />
                               </div>
                             </div>
                             <div className="company-info">
@@ -845,11 +857,6 @@ export const Main = () => {
                                         : "1234567"
                                     }.png`}
                                   ></img>
-                                  <Tag
-                                    className="rank"
-                                    style="focus"
-                                    text={index + 1}
-                                  />
                                 </div>
                               </div>
                               <div className="company-info">

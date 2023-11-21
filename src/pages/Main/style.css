@@ -250,6 +250,9 @@
     height: 120px;
     position: relative;
     width: 168px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .main .image-instance {
@@ -257,6 +260,7 @@
     position: relative;
     top: 0 !important;
     padding: 0px;
+    
   }
   
   .main .rank {
@@ -530,12 +534,11 @@
 
   .main .spin {
     position: absolute;
-    top: 500px;
+    top: 50%;
   }
 
   .main .logo-img {
-    width: 100%;
-    margin-top: 25%;
+    width: 70%;
   }
 
   .main .data-display {
@@ -547,4 +550,12 @@
     justify-content: center;
   }
   
+  .main .search-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 155px;
+    right: 70px;
+    color: var(--highlightbackground);
+  }
   

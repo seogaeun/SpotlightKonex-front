@@ -8,7 +8,7 @@ import { PostCompany } from "./pages/PostCompany";
 import { ManageCompany } from "./pages/ManageCompany/ManageCompany";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
-
+import { Konex } from "./pages/Konex";
 
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/post" element={<PostCompany />} />
           <Route path="/manage" element={<ManageCompany />} />
+          <Route path="/konex" element={<Konex />} />
         </Routes>
       </BrowserRouter>
     </div>
