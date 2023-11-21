@@ -43,7 +43,7 @@ export const InfoCard = ({
 
             <span className="span">자본금: </span>
             <span className="text-wrapper-4">
-              {capital}
+              {capital.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               <br />
             </span>
 
