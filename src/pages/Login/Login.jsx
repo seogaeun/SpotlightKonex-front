@@ -9,16 +9,15 @@ import { Toggle } from "../../components/Toggle";
 import { Tab } from "../../components/Tab/Tab";
 import { Image7 } from "../../icons/Image7";
 import { Image8 } from "../../icons/Image8";
-import { Nav } from "../../components/Nav"
+import { Nav } from "../../components/Nav";
 import { FiLogIn } from "react-icons/fi";
 import Swal from "sweetalert2";
 import axios from "axios";
 import "./style.css";
-import '../../styles/styleguide.css';
-
+import "../../styles/styleguide.css";
 
 export const Login = () => {
-    // 초기값
+  // 초기값
   const [password, setPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
 
@@ -59,17 +58,28 @@ export const Login = () => {
     e.preventDefault();
     if (isEmail && isPassword) {
       try {
-        const response = await axios.post(`${window.API_BASE_URL}/auth/signin`, {
-          email,
-          password,
-        });
+        const response = await axios.post(
+          `${window.API_BASE_URL}/auth/signin`,
+          {
+            email,
+            password,
+          }
+        );
 
-        console.log("Response Data:", response.data);
-  
         const data = response.data;
-  
+        console.log("Response Data:", data);
+
         if (data && data.accessToken) {
           sessionStorage.setItem("company_user", data.accessToken);
+
+          // 데이터 객체의 전체 구조를 로그에 출력하여 확인
+          console.log("Data Structure:", data);
+
+          // corpCode가 data 바로 아래에 있는지 또는 다른 속성 안에 중첩되어 있는지 확인
+          sessionStorage.setItem("corpCode", data.corpCode);
+
+          sessionStorage.setItem("corpEmail", data.email);
+
           console.log("로그인 성공:", data);
           navigate("/main");
         } else {
@@ -97,62 +107,68 @@ export const Login = () => {
         }
       }
     }
-  };  
+  };
 
   // nav bar
   const handleLeftIconClick = (link) => {
     navigate("/main");
   };
 
-    return (
-        <div className="login">
-            <div className="div-2">
-            <Nav
-              title="로그인"
-              onLeftIconClick={handleLeftIconClick}
-              leftIconLink="/main"
-            />
-                <div className="home-message">
-                    기업 회원이신가요?
-                </div>
-                <div className="login-field">
-                    <div className="login-input">
-                        <div className="subtitle">Email</div>
-                        <div className="input-area">
-                          <input
-                          className="input-field"
-                          type="email"
-                          name="email"
-                          value={email}
-                          placeholder="회사 이메일 계정을 입력해주세요."
-                          onChange={onChangeEmail}
-                          />
-                        </div>
-                        <div className="subtitle">Password</div>
-                        <div className="input-area">
-                          <input
-                          className="input-field"
-                          type="password"
-                          name="password"
-                          value={password}
-                          placeholder="비밀번호를 입력해주세요."
-                          onChange={onChangePassword}
-                          />
-                        </div>
-                        <div className="login-btn-div">
-                            <button
-                            type="submit"
-                            className="login-btn"
-                            onClick={handleSubmit}
-                            disabled={!(isEmail && isPassword)}
-                            >
-                            로그인
-                            </button>
-                        </div>
-                        <div className="rule">아직 회원이 아니신가요? <a href="/signup"><span>회원가입하기<FiLogIn /></span></a></div>
-                    </div>
-                </div>
+  return (
+    <div className="login">
+      <div className="div-2">
+        <Nav
+          title="로그인"
+          onLeftIconClick={handleLeftIconClick}
+          leftIconLink="/main"
+        />
+        <div className="home-message">기업 회원이신가요?</div>
+        <div className="login-field">
+          <div className="login-input">
+            <div className="subtitle">Email</div>
+            <div className="input-area">
+              <input
+                className="input-field"
+                type="email"
+                name="email"
+                value={email}
+                placeholder="회사 이메일 계정을 입력해주세요."
+                onChange={onChangeEmail}
+              />
             </div>
+            <div className="subtitle">Password</div>
+            <div className="input-area">
+              <input
+                className="input-field"
+                type="password"
+                name="password"
+                value={password}
+                placeholder="비밀번호를 입력해주세요."
+                onChange={onChangePassword}
+              />
+            </div>
+            <div className="login-btn-div">
+              <button
+                type="submit"
+                className="login-btn"
+                onClick={handleSubmit}
+                disabled={!(isEmail && isPassword)}
+              >
+                로그인
+              </button>
+            </div>
+            <div className="rule">
+              아직 회원이 아니신가요?{" "}
+              <a href="/signup">
+                <span>
+                  회원가입하기
+                  <FiLogIn />
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };

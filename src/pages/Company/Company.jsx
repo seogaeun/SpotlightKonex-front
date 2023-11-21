@@ -98,7 +98,6 @@ export const Company = () => {
         );
         const data = await response.json();
 
-        console.log(data);
         // 데이터를 적절한 형식으로 변환
         const formattedData = data.map((item) => ({
           x: new Date(item.day),
@@ -124,7 +123,6 @@ export const Company = () => {
         );
         const data = await response.json();
 
-        console.log(data);
         // 데이터를 적절한 형식으로 변환
         const formattedData = data.map((item) => ({
           id: item.id,
@@ -144,19 +142,20 @@ export const Company = () => {
     fetchData();
   }, [corpCode]);
 
+  // 채팅 데이터 연결
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("채팅 API 진입");
+        const statusParam = showCompanyAnswers ? "true" : "false";
         const response = await fetch(
-          `${apiEndpoint}/enterprise/talk?corpCode=${corpCode}&status=false`
+          `${apiEndpoint}/enterprise/talk?corpCode=${corpCode}&status=${statusParam}`
         );
         const data = await response.json();
-        console.log(data);
 
-        if (data && data.data && Array.isArray(data.data.talkList)) {
+        // 서버 응답 구조에 따라 적절히 수정
+        if (Array.isArray(data)) {
           // 데이터를 적절한 형식으로 변환
-          const formattedData = data.data.talkList.map((item) => ({
+          const formattedData = data.map((item) => ({
             id: item.context,
             date: new Date(),
             text: item.context,
@@ -164,21 +163,24 @@ export const Company = () => {
             nickName: item.nickname,
           }));
 
-          // 변환된 데이터를 state에 설정
           setCompanyTalkdata(formattedData);
-          console.log("채팅 API 진입 완료");
-          console.log(formattedData);
+          console.log("채팅 데이터:", formattedData);
         } else {
-          console.error("채팅 데이터에 talkList가 없습니다.");
+          console.error("채팅 데이터 형식이 올바르지 않습니다:", data);
         }
       } catch (error) {
-        console.error("기업 채팅 가져오기 오류:", error);
-        // 오류가 발생했을 때는 state를 변경하지 않도록 수정
+        console.error("채팅 데이터를 가져오는 중 오류 발생:", error);
       }
     };
 
     fetchData();
-  }, [corpCode]);
+  }, [corpCode, showCompanyAnswers]);
+
+  // ...
+
+  const handleIsCorpMent = async () => {
+    setShowCompanyAnswers((prevShowCompanyAnswers) => !prevShowCompanyAnswers);
+  };
 
   //보드 데이터 연결
   useEffect(() => {
@@ -187,7 +189,6 @@ export const Company = () => {
         const response = await fetch(`${apiEndpoint}/boards/${corpCode}`);
         const data = await response.json();
 
-        console.log(data);
         // 데이터를 적절한 형식으로 변환
         const formattedData = data.map((item) => ({
           corpCode: item.corpCode,
@@ -250,7 +251,6 @@ export const Company = () => {
   };
 
   const backClick = () => {
-    console.log("back");
     navigate("/main");
   };
 
@@ -278,10 +278,6 @@ export const Company = () => {
   //   { date: "2023.11.17", title: "뉴스 제목 1", content: "뉴스 내용 1" },
   //   { date: "2023.11.16", title: "뉴스 제목 2", content: "뉴스 내용 2" },
   // ];
-
-  const handleIsCorpMent = () => {
-    setShowCompanyAnswers(!showCompanyAnswers);
-  };
 
   // const corpPosts = [
   //   { title: "게시글 1", content: "게시글 내용 1" },
@@ -353,7 +349,6 @@ export const Company = () => {
             </div>
           </div>
         )}
-
         {selectedTab === "section2" && (
           <div className="company-section">
             <div className="company-detailinfo">
@@ -374,11 +369,11 @@ export const Company = () => {
                   기업 답변만 보기
                 </label>
               </div>
-              <ChatBox messages={companyTalkdata} addMessage={addMessage} />
+
+              <ChatBox messages={companyTalkdata} PageCorpCode={corpCode} />
             </div>
           </div>
         )}
-
         {selectedTab === "section3" && (
           <div className="company-section">
             <div className="company-detailinfo">

@@ -4,11 +4,13 @@ import { MessageInput } from "../MessageInput/MessageInput";
 
 import "./style.css";
 
-export const ChatBox = ({ messages, addMessage }) => {
+export const ChatBox = ({ messages, PageCorpCode }) => {
+  console.log("중간 인자" + PageCorpCode);
+
   return (
     <div className="ChatBox">
       <MessageList messages={messages} />
-      <MessageInput addMessage={addMessage} />
+      <MessageInput pageCorpCode={PageCorpCode} />
     </div>
   );
 };

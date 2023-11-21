@@ -19,7 +19,8 @@ export const PostCompany = () => {
   };
 
   const handleSubmit = async () => {
-    const corpCode = "01695498";
+    const accessCorpCode = sessionStorage.getItem("corpCode");
+    const accessCorpEmail = sessionStorage.getItem("corpEmail");
 
     try {
       const response = await axios.post(
@@ -27,7 +28,8 @@ export const PostCompany = () => {
         {
           title: title,
           context: content,
-          corpCode: corpCode,
+          corpCode: accessCorpCode,
+          email: accessCorpEmail,
         },
         {
           headers: {
@@ -42,6 +44,9 @@ export const PostCompany = () => {
     } catch (error) {
       console.error("Post 실패:", error);
       // 에러 발생 시 알림창 또는 다른 처리 방법 추가
+      console.log(accessCorpCode);
+      console.log("메일 주소" + accessCorpEmail);
+
       alert("게시글 올리기에 실패했습니다.");
     }
   };

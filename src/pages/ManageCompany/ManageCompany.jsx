@@ -21,11 +21,14 @@ import "./style.css";
 export const ManageCompany = () => {
   //기본 정보
   const apiEndpoint = "http://125.6.38.124";
-  const corpCode = "01695498";
+  const accessToken = sessionStorage.getItem("company_user");
+  const accessCorpCode = sessionStorage.getItem("corpCode");
+
+  console.log(accessCorpCode + "!!!");
+  const corpCode = accessCorpCode;
 
   const [companyBoarddata, setCompanyBoarddata] = useState([]);
 
-  const accessToken = sessionStorage.getItem("company_user");
   const [showManageCompanyAnswers, setShowManageCompanyAnswers] =
     useState(false);
   const navigate = useNavigate();
@@ -40,6 +43,30 @@ export const ManageCompany = () => {
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
+  };
+
+  //기업 한줄소개 수정
+  const [editingDescription, setEditingDescription] = useState(false);
+  const [newDescription, setNewDescription] = useState(
+    enterpriseData.corp_name
+  );
+
+  // 기업소개 수정 모드 전환
+  const handleEditDescription = () => {
+    setEditingDescription(true);
+  };
+
+  // 기업소개 저장
+  const handleSaveDescription = () => {
+    // TODO: 서버로 새로운 기업 소개 저장 요청 보내기
+    // 예시: axios.post('/updateDescription', { corpCode, newDescription });
+    setEditingDescription(false);
+  };
+
+  // 기업소개 취소
+  const handleCancelEdit = () => {
+    setEditingDescription(false);
+    setNewDescription(enterpriseData.corp_name);
   };
 
   //기업 거래량 조회
@@ -238,7 +265,30 @@ export const ManageCompany = () => {
           </div>
           <div className="name">
             <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
-            <div className="text-wrapper-3">기업 소개 한마디</div>
+            {editingDescription && (
+              <div className="description">
+                <input
+                  type="text"
+                  value={newDescription}
+                  onChange={(e) => setNewDescription(e.target.value)}
+                />
+
+                <div className="edit-buttons">
+                  <button onClick={handleSaveDescription}>저장</button>
+                  <button onClick={handleCancelEdit}>취소</button>
+                </div>
+              </div>
+            )}
+
+            {/* 기업 소개 */}
+            {!editingDescription && (
+              <div className="description">
+                <div className="text-wrapper-3">{newDescription}</div>
+                <div className="edit-button" onClick={handleEditDescription}>
+                  ✏️
+                </div>
+              </div>
+            )}
           </div>
         </div>
         {/* 탭 바 */}

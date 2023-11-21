@@ -17,7 +17,8 @@ export const MessageList = ({ messages }) => {
     <div className="MessageList" ref={messageListRef}>
       <ul>
         {messageArray.map((message, index) => {
-          const isUserMessage = message.senderType === "User";
+          console.log("유형" + message.sender);
+          const isUserMessage = message.sender === "user";
           const bubbleClass = isUserMessage
             ? "messageBubble-User"
             : "messageBubble-Corp";

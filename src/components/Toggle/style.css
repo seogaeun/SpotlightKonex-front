@@ -7,6 +7,7 @@
     padding: 4px;
     position: relative;
     width: 332px;
+    word-break: keep-all;
 }
 
 .tab-btn {
@@ -28,6 +29,7 @@
     letter-spacing: var(--heading-h5-letter-spacing);
     line-height: var(--heading-h5-line-height);
     color: var(--highlightbackground);
+    word-break: keep-all;
 }
 
 .active {
@@ -49,6 +51,7 @@
     font-weight: var(--heading-h5-font-weight);
     letter-spacing: var(--heading-h5-letter-spacing);
     line-height: var(--heading-h5-line-height);
+    word-break: keep-all;
 }
 
 .tab-content .tab-subtitle {

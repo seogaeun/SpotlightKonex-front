@@ -47,6 +47,9 @@ export const Main = () => {
     navigate("/Company", { state: { corpCode } });
   };
   const accessToken = sessionStorage.getItem("company_user");
+  const accessCorpCode = sessionStorage.getItem("corpCode");
+
+
 
   const firstData =
     RankingData && RankingData.length > 0 ? RankingData[0] : null;
