@@ -29,7 +29,10 @@ export const Main = () => {
   const [RankingData, setRankingData] = useState([]);
   const [ThemeData, setThemeData] = useState([]);
   const [PickData, setPickData] = useState([]);
+  const [AllData, setAllData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const accessToken = sessionStorage.getItem("company_user");
 
   const firstData = RankingData && RankingData.length > 0 ? RankingData[0] : null;
 
@@ -71,7 +74,6 @@ export const Main = () => {
 
   // brand-search-handlig
   const handleSearch = async () => {
-    console.log(stockname)
     if (stockname === "") {
         setSearchError("종목명을 입력해주세요");
         setSearchResults([]);
@@ -94,6 +96,8 @@ const clickSearch = async () => {
     fetchBrandData(stockname);
     }, [stockname]);
 
+  
+ // ranking data
   useEffect(() => {
     setIsLoading(true);
 
@@ -113,8 +117,31 @@ const clickSearch = async () => {
       });
   }, [selectedSection]);
 
+  // all data
+  useEffect(() => {
+    setIsLoading(true);
+
+    fetchAllData()
+      .then(() => {
+        setIsLoading(false);
+        // 5초(5000밀리초)마다 fetchData 함수 호출
+        // const intervalId = setInterval(() => {
+        //   fetchRanking(selectedTab);
+        // }, 5000);
+        // 컴포넌트가 언마운트될 때 clearInterval 호출하여 인터벌 정리
+        // return () => clearInterval(intervalId);
+      })
+      .catch((error) => {
+        console.error("API 요청 실패:", error);
+        setIsLoading(false); // 에러 발생 시 로딩 숨김
+      });
+  }, []);
+
   const fetchRanking = async (selectedSection) => {
     try {
+      setIsLoading(true);
+      setRankingData([]);
+
       let rankingData;
       if (selectedSection === "거래대금") {
         const response = await axios.get(`${window.API_BASE_URL}/main/top/amount`);
@@ -129,6 +156,7 @@ const clickSearch = async () => {
       setRankingData(rankingData);
     } catch (error) {
       console.error("API 요청 실패:", error);
+      setIsLoading(false);
     }
   };
 
@@ -254,15 +282,26 @@ const fetchPickData = async (selectedAdvisor) => {
   const companyNumber = mapCompanyToNumber(selectedAdvisor);
     let pickData;
     try {
-      console.log(companyNumber);
-      console.log(searchError);
       const response = await axios.get(`${window.API_BASE_URL}/find/adviser/${companyNumber}`);
       pickData = response.data;
       setPickData(pickData);
-      console.log("hoh");
     } catch (error) {
     console.error("API 요청 실패:", error);
     setPickData([]);
+    setIsLoaded(true);
+    setSearchError("검색 결과가 없습니다.");
+  }
+};
+
+const fetchAllData = async () => {
+    let allData;
+    try {
+      const response = await axios.get(`${window.API_BASE_URL}/main/enterprise`);
+      allData = response.data;
+      setAllData(allData);
+    } catch (error) {
+    console.error("API 요청 실패:", error);
+    setAllData([]);
     setIsLoaded(true);
     setSearchError("검색 결과가 없습니다.");
   }
@@ -282,13 +321,23 @@ const fetchPickData = async (selectedAdvisor) => {
             rightControl="none"
             title="당신의 코넥스에 투자하세요!"
           />
-          <a href="/login">
-          <ButtonPrimary
-            className="company-login"
-            divClassName="button-primary-instance"
-            text="기업전용 로그인"
-          />
-          </a>
+          {accessToken ? (
+            <a href="/manage">
+              <ButtonPrimary
+                className="company-login"
+                divClassName="button-primary-instance"
+                text="내 회사 보기"
+              />
+            </a>
+          ) : (
+            <a href="/login">
+              <ButtonPrimary
+                className="company-login"
+                divClassName="button-primary-instance"
+                text="기업전용 로그인"
+              />
+            </a>
+          )}
         </div>
         <div className="banner">
           <HorizontalCard
@@ -428,19 +477,14 @@ const fetchPickData = async (selectedAdvisor) => {
 
         {selectedTab === "section2" && (
           <div className="ranking-content">
-            <div className="rankin-etc">
-              {RankingData.map((item, index) => (
+            <div className="rankin-etc-2">
+              {AllData.map((item, index) => (
                 <div className="products-wrapper" key={index}>
                   <div className="products">
                     <div className="vertical-card">
                       <div className="company-image">
                         <div className="overlap-group">
                           <img className="logo-img" alt="test" src={`img/${item && item.corpCode ? item.corpCode : "1234567"}.png`}></img>
-                          <Tag
-                            className="rank"
-                            style="focus"
-                            text={index + 1}
-                          />
                         </div>
                       </div>
                       <div className="company-info">
@@ -470,7 +514,7 @@ const fetchPickData = async (selectedAdvisor) => {
                                   : "stock-change-minus"
                               }`}
                             >
-                              {item ? `${item.cmpprevddPrc}%` : "로딩 중..."}
+                              {item && typeof item.cmpprevddPrc === 'string' ? `${(parseFloat(item.cmpprevddPrc)).toFixed(2)}%` : "로딩 중..."}
                             </span>
                           </p>
                         </div>

@@ -22,14 +22,13 @@ export const Login = () => {
   const [password, setPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
 
-  // 유효성 검사
-  const [isPassword, setIsPassword] = React.useState(false);
-  const [isEmail, setIsEmail] = React.useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
 
   // 유효성 검사
+  const [isPassword, setIsPassword] = React.useState(false);
+  const [isEmail, setIsEmail] = React.useState(false);
+
   const onChangeEmail = (e) => {
     const currentEmail = e.target.value;
     setEmail(currentEmail);
@@ -57,7 +56,6 @@ export const Login = () => {
 
   // 로그인 처리
   const handleSubmit = async (e) => {
-    console.log("c");
     e.preventDefault();
     if (isEmail && isPassword) {
       try {
@@ -66,21 +64,20 @@ export const Login = () => {
           password,
         });
 
-        console.log("Response Data:", response.data.payload);
+        console.log("Response Data:", response.data);
   
-        const data = response.data.payload;
+        const data = response.data;
   
-        if (data && data.user_id) {
-          sessionStorage.setItem("userUUID", data.user_id);
-  
+        if (data && data.accessToken) {
+          sessionStorage.setItem("company_user", data.accessToken);
           console.log("로그인 성공:", data);
           navigate("/main");
         } else {
-          console.error("로그인 실패: 서버에서 UUID를 반환하지 않음");
+          console.error("로그인 실패");
           Swal.fire({
             icon: "error",
             title: "로그인 실패",
-            text: "서버에서 UUID를 반환하지 않았습니다.",
+            text: "error",
           });
         }
       } catch (error) {
@@ -106,7 +103,6 @@ export const Login = () => {
   const handleLeftIconClick = (link) => {
     navigate("/main");
   };
-
 
     return (
         <div className="login">

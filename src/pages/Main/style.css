@@ -298,6 +298,9 @@
     margin-top: -1px;
     position: relative;
     text-align: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .main .price {
@@ -373,6 +376,20 @@
     padding: 16px 8px;
     position: relative;
     width: 375px;
+  }
+
+  .main .rankin-etc-2 {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: 8px 8px;
+    justify-content: center;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 16px 8px;
+    position: relative;
+    width: 575px;
   }
   
   .main .products-wrapper {
@@ -490,7 +507,7 @@
 
 
   .main .search-input {
-    width: 350px;
+    width: 450px;
     padding: 20px 10px 20px 10px;
     border-radius: 12px;
     font-family: var(--heading-h5-font-family);
@@ -518,6 +535,15 @@
   .main .logo-img {
     width: 100%;
     margin-top: 25%;
+  }
+
+  .main .data-display {
+    display: flex;
+    width: 550px;
+    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   
