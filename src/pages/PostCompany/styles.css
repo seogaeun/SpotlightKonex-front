@@ -1,5 +1,13 @@
 @import url('./../../styles/styleguide.css');
 
+.main {
+  background-color: #11052e;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
 .postcompany {
     display: flex;
     flex-direction: column;

@@ -5,6 +5,14 @@
 } */
 
 
+.main {
+  background-color: #11052e;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
 
 html{
   background-color: var(--neutraldarkdarkest);  
