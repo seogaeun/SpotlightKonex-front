@@ -325,7 +325,7 @@ export const Main = () => {
     console.log("hoho");
     try {
       const response = await axios.get(
-        '/proxy/main/enterprise'
+        'http://125.6.38.124/main/enterprise'
       );
       allData = response.data;
       setAllData(allData);
