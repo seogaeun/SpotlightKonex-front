@@ -350,11 +350,11 @@ export const ManageCompany = () => {
         const response = await axios.post(
           `http://125.6.38.124/auth/signout`,
           {
-            accessEmail,
-            accessToken,
+            email: accessEmail,
+            accessToken: accessToken,
           }
         );
-        if (axios.response === 200) {
+        if (response.status === 200) {
           sessionStorage.removeItem('company_user');
           navigate("/")
         } else {
