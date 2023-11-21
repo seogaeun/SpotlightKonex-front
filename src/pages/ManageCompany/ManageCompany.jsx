@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { LeftButton4 } from "../../icons/LeftButton4";
 import { NavBar } from "../../components/NavBar";
@@ -47,26 +48,17 @@ export const ManageCompany = () => {
 
   //기업 한줄소개 수정
   const [editingDescription, setEditingDescription] = useState(false);
-  const [newDescription, setNewDescription] = useState(
-    enterpriseData.corp_name
-  );
+  const [newDescription, setDescription] = useState(enterpriseData.corp_name);
 
   // 기업소개 수정 모드 전환
   const handleEditDescription = () => {
     setEditingDescription(true);
   };
 
-  // 기업소개 저장
-  const handleSaveDescription = () => {
-    // TODO: 서버로 새로운 기업 소개 저장 요청 보내기
-    // 예시: axios.post('/updateDescription', { corpCode, newDescription });
-    setEditingDescription(false);
-  };
-
   // 기업소개 취소
   const handleCancelEdit = () => {
     setEditingDescription(false);
-    setNewDescription(enterpriseData.corp_name);
+    setDescription(enterpriseData.corp_name);
   };
 
   //기업 채팅
@@ -78,6 +70,31 @@ export const ManageCompany = () => {
 
   const addMessage = (text) => {
     setMessages([...messages, { text, sender: "user" }]);
+  };
+
+  const updateDescriptionOnServer = async (corpCode, newDescription) => {
+    try {
+      const response = await axios.post(
+        `${apiEndpoint}/enterprise/descriptions`,
+        {
+          corpCode,
+          newDescription,
+        }
+      );
+
+      // 성공 시 처리 (예: 성공 메시지 표시)
+      console.log("설명이 성공적으로 업데이트되었습니다:", response.data);
+    } catch (error) {
+      // 오류 처리 (예: 오류 메시지 표시)
+      console.error("설명 업데이트 오류:", error);
+    }
+  };
+
+  // 기업소개 저장
+  const handleSaveDescription = () => {
+    // TODO: 서버로 새로운 기업 소개 저장 요청 보내기
+    updateDescriptionOnServer(corpCode, newDescription);
+    setEditingDescription(false);
   };
 
   //기업 거래량 조회
@@ -117,6 +134,7 @@ export const ManageCompany = () => {
 
         setEnterpriseData({
           corp_name: data.corpName,
+          description: data.description,
         });
       } catch (error) {
         console.error("기업 데이터 가져오기 오류:", error);
@@ -313,8 +331,8 @@ export const ManageCompany = () => {
               <div className="description">
                 <input
                   type="text"
-                  value={newDescription}
-                  onChange={(e) => setNewDescription(e.target.value)}
+                  value={enterpriseData.description}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
 
                 <div className="edit-buttons">
@@ -327,7 +345,9 @@ export const ManageCompany = () => {
             {/* 기업 소개 */}
             {!editingDescription && (
               <div className="description">
-                <div className="text-wrapper-3">{newDescription}</div>
+                <div className="text-wrapper-3">
+                  {enterpriseData.description}
+                </div>
                 <div className="edit-button" onClick={handleEditDescription}>
                   ✏️
                 </div>
@@ -335,6 +355,22 @@ export const ManageCompany = () => {
             )}
           </div>
         </div>
+
+        {editingDescription && (
+          <div className="description">
+            <input
+              type="text"
+              value={newDescription}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+
+            <div className="edit-buttons">
+              <button onClick={handleSaveDescription}>저장</button>
+              <button onClick={handleCancelEdit}>취소</button>
+            </div>
+          </div>
+        )}
+
         {/* 탭 바 */}
         <div className="tab">
           <Tab
