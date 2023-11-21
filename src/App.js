@@ -9,6 +9,7 @@ import { ManageCompany } from "./pages/ManageCompany/ManageCompany";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { Calc } from "./pages/Calc";
+import { Carousel } from "./components/Carousel";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/post" element={<PostCompany />} />
           <Route path="/manage" element={<ManageCompany />} />
           <Route path="/calc" element={<Calc />} />
+          <Route path="/carousel" element={<Carousel/>}/>
         </Routes>
       </BrowserRouter>
     </div>
