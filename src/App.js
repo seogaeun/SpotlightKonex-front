@@ -8,7 +8,7 @@ import { PostCompany } from "./pages/PostCompany";
 import { ManageCompany } from "./pages/ManageCompany/ManageCompany";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
-
+import { Calc } from "./pages/Calc";
 
 function App() {
 
@@ -22,6 +22,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/post" element={<PostCompany />} />
           <Route path="/manage" element={<ManageCompany />} />
+          <Route path="/calc" element={<Calc />} />
         </Routes>
       </BrowserRouter>
     </div>
