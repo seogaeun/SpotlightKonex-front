@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LeftButton4 } from "../../icons/LeftButton4";
 import { NavBar } from "../../components/NavBar";
-import { Avatar8 } from "../../icons/Avatar8";
+import { Nav } from "../../components/Nav";
 import { HeartFilled1 } from "../../icons/HeartFilled1";
 import { Tab } from "../../components/Tab/Tab";
 import { ListTitle } from "../../components/ListTitle";
@@ -294,21 +294,27 @@ export const Company = () => {
   //   { title: "게시글 8", content: "게시글 내용 8" },
   // ];
 
+   // nav bar
+   const handleLeftIconClick = (link) => {
+    navigate("/main");
+  };
+
   return (
     <div className="company">
       <div className="companyContent">
-        <NavBar
-          className="nav-bar-instance"
-          icon={<LeftButton4 className="left-button-4" onClick={backClick} />}
-          leftControl="icon"
-          pageTitle="기업 상세정보"
-          rightButtonClassName="nav-title-text"
-          rightControl="none"
-        />
+        <Nav
+          title={corpName}
+          onLeftIconClick={backClick}
+          leftIconLink="/"
+          />
         <div className="company-profile">
           <div className="profile-img">
             <div className="overlap-group">
-              <Avatar8 className="avatar-8" />
+            <img
+              className="logo-img"
+              alt="test"
+              src={`img/${corpCode}.png`}
+            ></img>
               <HeartFilled1
                 className="heart-filled"
                 onClick={heartClick}
