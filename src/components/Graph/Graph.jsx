@@ -28,8 +28,8 @@ export const Graph = ({ dataList, reversed, type }) => {
       options={{
         theme: { mode: "light" },
         chart: {
-          height: 300,
-          width: 500,
+          height: "300px",
+          width: "600px",
           toolbar: { show: false },
           background: "transparent",
         },
