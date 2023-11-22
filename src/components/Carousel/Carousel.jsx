@@ -104,7 +104,7 @@ export const Carousel = ({}) => {
           {DictionaryContents.length > 0 &&
             DictionaryContents.map((dictionaryContent, index) => (
               <div className="carousel-wrapper" key={dictionaryContent.id}>
-                {index >= currCarousel && index < currCarousel + 3 && (
+                {index >= currCarousel && index < currCarousel + 4 && (
                   <a
                     href={dictionaryContent.url}
                     target="_blank"
