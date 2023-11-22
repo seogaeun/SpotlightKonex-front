@@ -165,7 +165,7 @@ export const Main = () => {
       if (selectedSection === "거래대금") {
         const response = await axios.get(`http://125.6.38.124/main/top/amount`);
         rankingData = response.data;
-      } else if (selectedSection === "좋아요수") {
+      } else if (selectedSection === "응원수") {
         const response = await axios.get(`http://125.6.38.124/main/top/like`);
         rankingData = response.data;
       } else if (selectedSection === "조회수") {
@@ -389,7 +389,7 @@ export const Main = () => {
             <div className="for-sticky-toggle">
               <div className="ranking-tab">
                 <Toggle
-                  tabNames={["거래대금", "좋아요수", "조회수"]}
+                  tabNames={["거래대금", "응원수", "조회수"]}
                   onTabChange={handleSectionChange}
                 />
               </div>
