@@ -5,7 +5,6 @@ import { FiLogIn } from "react-icons/fi";
 import Swal from "sweetalert2";
 import axios from "axios";
 import "./style.css";
-import "../../styles/styleguide.css";
 
 export const Calc = () => {
   // 초기값
