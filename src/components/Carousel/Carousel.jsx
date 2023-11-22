@@ -5,9 +5,8 @@ import "./style.css";
 
 export const Carousel = ({}) => {
   const [currCarousel, setCurrCarousel] = useState(1);
-  const [carouselTransition, setCarouselTransition] = useState(
-    "transform 500ms ease-in-out"
-  );
+  const [carouselTransition, setCarouselTransition] =
+    useState("500ms ease-in-out");
 
   const moveToNthSlide = (n) => {
     setTimeout(() => {
@@ -16,7 +15,7 @@ export const Carousel = ({}) => {
     }, 500);
   };
 
-  const dictionaryContents = [
+  const DictionaryContents = [
     {
       id: 1,
       word: "이미지1",
@@ -29,12 +28,7 @@ export const Carousel = ({}) => {
       link: "./../../assets/Banner/002.jpg",
       url: "/calc",
     },
-    {
-      id: 3,
-      word: "이미지3",
-      link: "./../../assets/Banner/003.jpg",
-      url: "/",
-    },
+    { id: 3, word: "이미지3", link: "./../../assets/Banner/003.jpg", url: "/" },
     {
       id: 4,
       word: "이미지4",
@@ -47,45 +41,36 @@ export const Carousel = ({}) => {
       link: "./../../assets/Banner/002.jpg",
       url: "/calc",
     },
-    {
-      id: 6,
-      word: "이미지6",
-      link: "./../../assets/Banner/003.jpg",
-      url: "/",
-    },
+    { id: 6, word: "이미지6", link: "./../../assets/Banner/003.jpg", url: "/" },
   ];
 
-  const slideNextSoulsCarousel = () => {
-    const soulSliderLength = dictionaryContents.length;
+  const SlideNextSoulsCarousel = () => {
+    const soulSliderLength = DictionaryContents.length;
     const newCurr = currCarousel + 1;
 
-    // 이미지가 끝에 도달하면 처음 이미지로 이동
     if (newCurr === soulSliderLength - 2) {
       moveToNthSlide(1);
     } else {
       setCurrCarousel(newCurr);
     }
-
-    setCarouselTransition("transform 500ms ease-in-out");
+    setCarouselTransition("500ms ease-in-out");
   };
 
-  const slidePrevSoulsCarousel = () => {
-    const soulSliderLength = dictionaryContents.length;
+  const SlidePrevSoulsCarousel = () => {
+    const soulSliderLength = DictionaryContents.length;
     const newCurr = currCarousel - 1;
 
-    // 이미지가 처음에 도달하면 마지막 이미지로 이동
     if (newCurr === 0) {
       moveToNthSlide(soulSliderLength - 3);
     } else {
       setCurrCarousel(newCurr);
     }
-
-    setCarouselTransition("transform 500ms ease-in-out");
+    setCarouselTransition("500ms ease-in-out");
   };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      slideNextSoulsCarousel();
+      SlideNextSoulsCarousel();
     }, 10000);
 
     return () => clearInterval(intervalId);
@@ -101,19 +86,24 @@ export const Carousel = ({}) => {
             transition: `${carouselTransition}`,
           }}
         >
-          {dictionaryContents.length > 0 &&
-            dictionaryContents.map((dictionaryContent, index) => (
+          {DictionaryContents.length > 0 &&
+            DictionaryContents.map((dictionaryContent, index) => (
               <div className="carousel-wrapper" key={dictionaryContent.id}>
-                {/* 현재 인덱스가 현재 캐러셀 위치와 일치하는지 확인 */}
                 {index >= currCarousel && index < currCarousel + 3 && (
-                  <div
-                    className="image-section"
-                    style={{
-                      backgroundImage: `url(${dictionaryContent.link})`,
-                    }}
+                  <a
+                    href={dictionaryContent.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    {dictionaryContent.word}
-                  </div>
+                    <div
+                      className="image-section"
+                      style={{
+                        backgroundImage: `url(${dictionaryContent.link})`,
+                      }}
+                    >
+                      {dictionaryContent.word}
+                    </div>
+                  </a>
                 )}
               </div>
             ))}
