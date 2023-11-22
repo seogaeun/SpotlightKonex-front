@@ -799,7 +799,7 @@ export const Main = () => {
                   className="home-copyright"
                   divClassName="design-component-instance-node"
                   rightControl="none"
-                  title="증권사별 PICK"
+                  title="지정자문인별 종목"
                 />
                 <div className="pick-content">
                   <div className="pick-company-toggle">

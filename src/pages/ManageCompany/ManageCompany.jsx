@@ -340,10 +340,10 @@ export const ManageCompany = () => {
 
   const accessEmail = sessionStorage.getItem("corpEmail");
 
-  // nav bar
-  const handleLeftIconClick = (link) => {
-    navigate("/");
-  };
+  // // nav bar
+  // const handleLeftIconClick = (link) => {
+  //   navigate("/");
+  // };
 
   // logout 처리
   const handleLogout = async (e) => {
@@ -411,9 +411,7 @@ export const ManageCompany = () => {
           </div>
           <div className="name">
             <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
-            <div className="log-out" onClick={handleLogout}>
-              logout
-            </div>
+
             {editingDescription && (
               <div className="description">
                 <input
@@ -439,6 +437,10 @@ export const ManageCompany = () => {
                 </div>
               </div>
             )}
+
+            <div className="log-out" onClick={handleLogout}>
+              logout
+            </div>
           </div>
         </div>
 
@@ -460,7 +462,7 @@ export const ManageCompany = () => {
                 rightControl="none"
                 title="응원수"
               />
-              <Graph dataList={corplikedata} type="like" />
+              <Graph dataList={corplikedata} type="cheer" />
             </div>
             <div className="managecompany-detailinfo">
               <ListTitle
@@ -513,7 +515,9 @@ export const ManageCompany = () => {
                   rightControl="none"
                   title={enterpriseData.corp_name + "의 최근 소식"}
                 />
-                <LinkButton to={"/post"} isLinked={false} buttonText="Add" />
+                <div className="buttonContent">
+                  <LinkButton to={"/post"} isLinked={false} buttonText="Add" />
+                </div>
               </div>
 
               {companyBoarddata.map((post, index) => (

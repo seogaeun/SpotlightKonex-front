@@ -19,6 +19,12 @@
   justify-content: center;
 }
 
+.managecompany .buttonContent
+{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
 
 /* 전체화면 */
 .managecompanyContent {
@@ -262,6 +268,22 @@
   width: 100%;
 }
 
+.managecompany-detailinfo {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 22px;
+  position: relative;
+  /* width: 60%; */
+  height: -moz-fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+
 .managecompany-detailinfo .list-title-2 {
   color: var(--neutrallightlightest);
   flex: unset;
@@ -359,3 +381,10 @@
 }
 
 /* Add more styles as needed for other elements */
+.log-out{
+  padding: 3px;
+  color: #fff;
+  background-color: var(--highlightlight);
+  border-radius: 10px;
+  margin: 3px;
+}

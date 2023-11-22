@@ -20,11 +20,6 @@ export const InfoCard = ({
       <div className="list-item">
         <div className="content-2">
           <p className="infoListP">
-            <span className="span">한글명: </span>
-            <span className="text-wrapper-4">
-              {crop_name}
-              <br />
-            </span>
             <span className="span">업종: </span>
             <span className="text-wrapper-4">
               {industry_name}

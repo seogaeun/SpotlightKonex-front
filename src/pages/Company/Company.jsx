@@ -323,7 +323,6 @@ export const Company = () => {
             </div>
           </div>
 
-          
           <div className="name">
             <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
             <div className="text-wrapper-3">{enterpriseData.description}</div>
@@ -357,7 +356,7 @@ export const Company = () => {
                 rightControl="none"
                 title="거래대금 순위 변동"
               />
-              <Graph dataList={companyLinkdata} reversed="true"  />
+              <Graph dataList={companyLinkdata} reversed="true" />
             </div>
           </div>
         )}
@@ -398,7 +397,7 @@ export const Company = () => {
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
-                title={enterpriseData.corp_name + "의 최근 뉴스"}
+                title={enterpriseData.corp_name + "의 기업 뉴스"}
               />
               <div className="newsContents">
                 {companyNewsdata.map((news, index) => (
@@ -411,7 +410,7 @@ export const Company = () => {
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
-                title={enterpriseData.corp_name + "의 최근 소식"}
+                title={enterpriseData.corp_name + "의 기업 소식"}
               />
 
               {companyBoarddata.map((post, index) => (
