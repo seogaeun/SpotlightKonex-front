@@ -194,7 +194,7 @@ export const Signup = () => {
           onLeftIconClick={handleLeftIconClick}
           leftIconLink="/main"
         />
-        <div className="home-message">Spotlight Conex 시작하기</div>
+        <div className="home-message">Spotlight Konex 시작하기</div>
         <div className="login-field">
           <div className="login-input">
             <div className="subtitle">Name</div>
