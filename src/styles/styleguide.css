@@ -1,6 +1,6 @@
 :root {
     --action-action-l-font-family: "Pretendard Variable", Helvetica;
-    --action-action-l-font-size: 19px;
+    --action-action-l-font-size: 20px;
     --action-action-l-font-style: normal;
     --action-action-l-font-weight: 600;
     --action-action-l-letter-spacing: 0px;
@@ -18,7 +18,7 @@
     --action-action-s-letter-spacing: 0px;
     --action-action-s-line-height: normal;
     --body-body-l-font-family: "Pretendard Variable", Helvetica;
-    --body-body-l-font-size: 24px;
+    --body-body-l-font-size: 16px;
     --body-body-l-font-style: normal;
     --body-body-l-font-weight: 400;
     --body-body-l-letter-spacing: 0px;
@@ -42,13 +42,13 @@
     --body-body-XL-letter-spacing: 0px;
     --body-body-XL-line-height: 24px;
     --body-body-XS-font-family: "Pretendard Variable", Helvetica;
-    --body-body-XS-font-size: 10px;
+    --body-body-XS-font-size: 14px;
     --body-body-XS-font-style: normal;
     --body-body-XS-font-weight: 400;
     --body-body-XS-letter-spacing: 0.15px;
     --body-body-XS-line-height: 14px;
     --caption-caption-m-font-family: "Pretendard Variable", Helvetica;
-    --caption-caption-m-font-size: 18px;
+    --caption-caption-m-font-size: 16px;
     --caption-caption-m-font-style: normal;
     --caption-caption-m-font-weight: 600;
     --caption-caption-m-letter-spacing: 0.5px;
