@@ -369,3 +369,23 @@
 .company .accordion-2 {
   background-color: transparent;
 }
+
+
+
+/* Add this CSS to your stylesheets or inline style */
+.managecompany .name {
+  text-align: center;
+}
+
+.managecompany .text-wrapper-2 {
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+
+.managecompany .description {
+  font-size: 10px;
+  color: white;
+}
+
+/* Add more styles as needed for other elements */
