@@ -27,14 +27,12 @@ export const Calc = () => {
   }
 
   const onChangeIncome = (e) => {
-    const currentIncome = parseFloat(e.target.value);
-    setIncome(currentIncome);
+    setIncome(e.target.value);
     setIsIncome(true);
   };
 
   const onChangeInvest = (e) => {
-    const currentInvest = parseFloat(e.target.value);
-    setInvest(currentInvest);
+    setInvest(e.target.value);
     setIsInvest(true);
   };
 
@@ -100,7 +98,7 @@ export const Calc = () => {
             </div>
             <div className="login-btn-div">
               <button
-                type="submit"
+                type="button"
                 className="login-btn"
                 onClick={handleSubmit}
                 disabled={!(isIncome && isInvest)}
