@@ -15,7 +15,7 @@ export const Carousel = ({}) => {
   const imageWidth = 600; // 이미지의 너비
   const moveToNthSlide = (n) => {
     setTimeout(() => {
-      setCarouselTransition("");
+      setCarouselTransition("600px");
       setCurrCarousel(n);
     }, 500);
   };
@@ -97,7 +97,7 @@ export const Carousel = ({}) => {
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${600-(currCarousel * imageWidth)}px)`,
+            transform: `translateX(-${currCarousel * imageWidth}px)`,
             transition: `${carouselTransition}`,
           }}
         >
