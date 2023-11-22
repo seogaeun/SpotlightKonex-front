@@ -55,6 +55,18 @@ export const Carousel = ({}) => {
       link: image3,
       url: "https://apply.nu-angels.com/about",
     },
+    {
+      id: 7,
+      word: "이미지1",
+      link: image1,
+      url: "https://www.kirs.or.kr/public/newsview.html?no=1250",
+    },
+    {
+      id: 8,
+      word: "이미지1",
+      link: image1,
+      url: "https://www.kirs.or.kr/public/newsview.html?no=1250",
+    },
   ];
 
   const SlideNextSoulsCarousel = () => {
