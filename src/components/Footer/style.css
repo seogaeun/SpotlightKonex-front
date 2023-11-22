@@ -8,11 +8,19 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-color: var(--neutraldarklightest);
   font-family: var(--action-action-s-font-family);
   font-size: var(--action-action-s-font-size);
   font-style: var(--action-action-s-font-style);
   font-weight: var(--action-action-s-font-weight);
+  color: lightgray;
   letter-spacing: var(--action-action-s-letter-spacing);
   line-height: var(--action-action-s-line-height);
+}
+
+.footer-thin {
+  font-weight: 200;
+}
+
+.footer-bold {
+  font-weight: 600;
 }
