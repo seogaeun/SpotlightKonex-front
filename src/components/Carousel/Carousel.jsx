@@ -20,26 +20,32 @@ export const Carousel = ({}) => {
     {
       id: 1,
       word: "이미지1",
+      link: "./../../assets/Banner/001.jpg",
     },
     {
       id: 2,
       word: "이미지2",
+      link: "./../../assets/Banner/002.jpg",
     },
     {
       id: 3,
       word: "이미지3",
+      link: "./../../assets/Banner/003.jpg",
     },
     {
       id: 4,
       word: "이미지4",
+      link: "./../../assets/Banner/001.jpg",
     },
     {
       id: 5,
       word: "이미지5",
+      link: "./../../assets/Banner/002.jpg",
     },
     {
       id: 6,
       word: "이미지6",
+      link: "./../../assets/Banner/003.jpg",
     },
   ];
 
@@ -85,8 +91,8 @@ export const Carousel = ({}) => {
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${600-(currCarousel * 600)}px)`,
-            transition: `${carouselTransition}`,
+            transform: `translateX(-${600 - currCarousel * 600}px)`,
+            // transition: `${carouselTransition}`,
           }}
         >
           {dictionaryContents.length > 0 &&
@@ -94,7 +100,14 @@ export const Carousel = ({}) => {
               <div className="carousel-wrapper" key={dictionaryContent.id}>
                 {/* 현재 인덱스가 현재 캐러셀 위치와 일치하는지 확인 */}
                 {index >= currCarousel && index < currCarousel + 3 && (
-                  <div className="image-section">{dictionaryContent.word}</div>
+                  <div
+                    className="image-section"
+                    style={{
+                      backgroundImage: `url(${dictionaryContent.link})`,
+                    }}
+                  >
+                    {dictionaryContent.word}
+                  </div>
                 )}
               </div>
             ))}
