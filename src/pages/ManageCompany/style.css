@@ -169,6 +169,7 @@
 .description{
   display: flex;
   flex-direction: row;
+  text-align: center;
 }
 
 .company .tab {
