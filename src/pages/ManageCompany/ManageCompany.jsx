@@ -484,7 +484,7 @@ export const ManageCompany = () => {
                 className="subtitile"
                 divClassName="list-title-2"
                 rightControl="none"
-                title="순위 변동"
+                title="거래대금 순위 변동"
               />
               <Graph dataList={managecompanyLinkdata} reversed="true" />
             </div>
