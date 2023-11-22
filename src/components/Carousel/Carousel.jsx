@@ -21,34 +21,37 @@ export const Carousel = ({}) => {
       id: 1,
       word: "이미지1",
       link: "./../../assets/Banner/001.jpg",
-      url: "",
+      url: "https://www.kirs.or.kr/public/newsview.html?no=1250",
     },
     {
       id: 2,
       word: "이미지2",
       link: "./../../assets/Banner/002.jpg",
-      url: "",
+      url: "/calc",
     },
     {
       id: 3,
       word: "이미지3",
       link: "./../../assets/Banner/003.jpg",
-      url: "",
+      url: "/",
     },
     {
       id: 4,
       word: "이미지4",
       link: "./../../assets/Banner/001.jpg",
+      url: "https://www.kirs.or.kr/public/newsview.html?no=1250",
     },
     {
       id: 5,
       word: "이미지5",
       link: "./../../assets/Banner/002.jpg",
+      url: "/calc",
     },
     {
       id: 6,
       word: "이미지6",
       link: "./../../assets/Banner/003.jpg",
+      url: "/",
     },
   ];
 
