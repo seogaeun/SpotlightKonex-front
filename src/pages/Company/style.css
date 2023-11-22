@@ -26,6 +26,10 @@
   align-items: center;
 }
 
+body {
+  font-family: "Pretendard Variable", Helvetica;
+  /* 기본적으로 sans-serif 폰트를 백업으로 사용합니다. */
+}
 
 /* 네비바 */
 
