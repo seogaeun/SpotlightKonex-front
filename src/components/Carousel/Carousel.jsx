@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import image1 from "./../../assets/Banner/001.jpg";
+import image2 from "./../../assets/Banner/002.jpg";
+import image3 from "./../../assets/Banner/003.jpg";
 
 export const Carousel = ({}) => {
   const [currCarousel, setCurrCarousel] = useState(1);
@@ -19,29 +22,29 @@ export const Carousel = ({}) => {
     {
       id: 1,
       word: "이미지1",
-      link: "./../../assets/Banner/001.jpg",
+      link: image1,
       url: "https://www.kirs.or.kr/public/newsview.html?no=1250",
     },
     {
       id: 2,
       word: "이미지2",
-      link: "./../../assets/Banner/002.jpg",
+      link: image2,
       url: "/calc",
     },
-    { id: 3, word: "이미지3", link: "./../../assets/Banner/003.jpg", url: "/" },
+    { id: 3, word: "이미지3", link: image3, url: "/" },
     {
       id: 4,
       word: "이미지4",
-      link: "./../../assets/Banner/001.jpg",
+      link: image1,
       url: "https://www.kirs.or.kr/public/newsview.html?no=1250",
     },
     {
       id: 5,
       word: "이미지5",
-      link: "./../../assets/Banner/002.jpg",
+      link: image2,
       url: "/calc",
     },
-    { id: 6, word: "이미지6", link: "./../../assets/Banner/003.jpg", url: "/" },
+    { id: 6, word: "이미지6", link: image3, url: "/" },
   ];
 
   const SlideNextSoulsCarousel = () => {
