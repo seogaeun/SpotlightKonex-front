@@ -31,7 +31,12 @@ export const Carousel = ({}) => {
       link: image2,
       url: "/calc",
     },
-    { id: 3, word: "이미지3", link: image3, url: "/" },
+    {
+      id: 3,
+      word: "이미지3",
+      link: image3,
+      url: "https://apply.nu-angels.com/about",
+    },
     {
       id: 4,
       word: "이미지4",
@@ -44,7 +49,12 @@ export const Carousel = ({}) => {
       link: image2,
       url: "/calc",
     },
-    { id: 6, word: "이미지6", link: image3, url: "/" },
+    {
+      id: 6,
+      word: "이미지6",
+      link: image3,
+      url: "https://apply.nu-angels.com/about",
+    },
   ];
 
   const SlideNextSoulsCarousel = () => {
