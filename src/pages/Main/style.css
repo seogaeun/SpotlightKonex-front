@@ -452,10 +452,11 @@
     justify-content: center;
     padding: 4px;
     position: relative;
-    width: 600px;
+    width: 580px;
     margin-bottom: 30px;
     flex-direction: row;
     flex-wrap: wrap;
+    box-sizing:border-box;
   }
 
   .main .pick-company-toggle {
@@ -488,9 +489,13 @@
   }
 
   .main .theme-company{
-    width: 400px;
-    display: flex;
-    overflow-y: scroll;
+    .main .theme-company {
+      width: 400px;
+      display: flex;
+      overflow-y: scroll;
+      height: fit-content;
+      overflow-y: hidden;
+  }
   }
 
   .main .theme-company .products-wrapper{
@@ -500,7 +505,8 @@
   .main .pick-company{
     width: 580px;
     display: flex;
-    overflow-y: scroll;
+    height: fit-content;
+    overflow-y: hidden;
     justify-content: flex-start;
   }
 

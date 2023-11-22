@@ -4,6 +4,12 @@
   border: 1px solid aqua;
 } */
 
+body {
+  font-family: "Pretendard Variable", Helvetica;
+  /* 기본적으로 sans-serif 폰트를 백업으로 사용합니다. */
+  word-break: keep-all;
+}
+
 .company {
   background-color: #11052e;
   display: flex;
@@ -24,11 +30,6 @@
   padding-bottom: 5%;
   display: flex;
   align-items: center;
-}
-
-body {
-  font-family: "Pretendard Variable", Helvetica;
-  /* 기본적으로 sans-serif 폰트를 백업으로 사용합니다. */
 }
 
 /* 네비바 */
@@ -229,7 +230,8 @@ body {
 .company .list-title-2 {
   color: var(--neutrallightlightest);
   flex: unset;
-  font-size: var(--action-action-l-font-size);
+  font-size: 32px;
+  word-break: keep-all;
 
 }
 

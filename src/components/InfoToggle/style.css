@@ -16,7 +16,7 @@
   height:fit-content;
   padding: 10px;
   position: relative;
-  width: 330px;
+  width: 400px;
   box-sizing: border-box;
 
 }
@@ -35,7 +35,7 @@
 
 .toggle-content{
   background-color: var(--highlightlightest);
-  width: 330px;
+  width: 400px;
   height: fit-content;
   max-height: 400px;
   overflow-y: auto;

@@ -145,7 +145,7 @@ export const Signup = () => {
           {
             email,
             password,
-            name,
+            corpName: name,
             phone,
           }
         );
