@@ -95,7 +95,7 @@ export const Carousel = ({}) => {
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${currCarousel * 600 + 600}px)`, // 초기에 300px 이동한 상태
+            transform: `translateX(-${currCarousel * 600}px)`, 
             transition: `${carouselTransition}`,
           }}
         >
