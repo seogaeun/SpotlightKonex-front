@@ -1,7 +1,6 @@
 // Chart.jsx
 import React from "react";
 import Chart from "react-apexcharts";
-
 import "./style.css";
 
 export const Graph = ({ dataList, reversed, type }) => {
@@ -22,7 +21,7 @@ export const Graph = ({ dataList, reversed, type }) => {
       type="area"
       series={[
         {
-          name: { chartName },
+          name: chartName,
           data: [...dataList],
         },
       ]}
@@ -62,7 +61,7 @@ export const Graph = ({ dataList, reversed, type }) => {
         colors: ["#A76BFF"],
         tooltip: {
           y: {
-            formatter: `${formatterText}`,
+            formatter: formatterText,
           },
           x: {
             formatter: function (value) {
