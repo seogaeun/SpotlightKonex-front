@@ -14,7 +14,7 @@
     --action-action-s-font-family: "Pretendard Variable", Helvetica;
     --action-action-s-font-size: 15px;
     --action-action-s-font-style: normal;
-    --action-action-s-font-weight: 600;
+    --action-action-s-font-weight: 200;
     --action-action-s-letter-spacing: 0px;
     --action-action-s-line-height: normal;
     --body-body-l-font-family: "Pretendard Variable", Helvetica;
@@ -72,13 +72,13 @@
     --heading-h3-letter-spacing: 0.08px;
     --heading-h3-line-height: normal;
     --heading-h4-font-family: "Pretendard Variable", Helvetica;
-    --heading-h4-font-size: 32px;
+    --heading-h4-font-size: 28px;
     --heading-h4-font-style: normal;
     --heading-h4-font-weight: 800;
     --heading-h4-letter-spacing: 0px;
     --heading-h4-line-height: normal;
     --heading-h5-font-family: "Pretendard Variable", Helvetica;
-    --heading-h5-font-size: 30px;
+    --heading-h5-font-size: 26px;
     --heading-h5-font-style: normal;
     --heading-h5-font-weight: 700;
     --heading-h5-letter-spacing: 0px;
