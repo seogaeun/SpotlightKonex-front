@@ -50,7 +50,7 @@ export const Graph = ({ dataList, reversed }) => {
         colors: ["#A76BFF"],
         tooltip: {
           y: {
-            formatter: (value) => ` ${parseInt(value.toFixed(2))} 등 `,
+            formatter: (value) => ` ${parseInt(value.toFixed(2))} 등`,
           },
           x: {
             formatter: function (value) {
