@@ -11,6 +11,8 @@ export const Carousel = ({}) => {
   const [carouselTransition, setCarouselTransition] =
     useState("200ms ease-in-out");
 
+  // 이미지의 너비를 가져와서 사용
+  const imageWidth = 600; // 이미지의 너비
   const moveToNthSlide = (n) => {
     setTimeout(() => {
       setCarouselTransition("");
@@ -95,7 +97,7 @@ export const Carousel = ({}) => {
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${currCarousel * 600}px)`,
+            transform: `translateX(-${currCarousel * imageWidth}px)`,
             transition: `${carouselTransition}`,
           }}
         >
