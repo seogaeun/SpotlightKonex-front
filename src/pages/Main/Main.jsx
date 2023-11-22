@@ -11,6 +11,7 @@ import { Image8 } from "../../icons/Image8";
 import { Company } from "../Company";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { Carousel } from "../../components/Carousel";
 import Loading from "../../components/Loading/Loading";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -49,8 +50,6 @@ export const Main = () => {
   };
   const accessToken = sessionStorage.getItem("company_user");
   const accessCorpCode = sessionStorage.getItem("corpCode");
-
-
 
   const firstData =
     RankingData && RankingData.length > 0 ? RankingData[0] : null;
@@ -164,19 +163,13 @@ export const Main = () => {
       let rankingData;
 
       if (selectedSection === "거래대금") {
-        const response = await axios.get(
-          `http://125.6.38.124/main/top/amount`
-        );
+        const response = await axios.get(`http://125.6.38.124/main/top/amount`);
         rankingData = response.data;
       } else if (selectedSection === "좋아요수") {
-        const response = await axios.get(
-          `http://125.6.38.124/main/top/like`
-        );
+        const response = await axios.get(`http://125.6.38.124/main/top/like`);
         rankingData = response.data;
       } else if (selectedSection === "조회수") {
-        const response = await axios.get(
-          `http://125.6.38.124/main/top/views`
-        );
+        const response = await axios.get(`http://125.6.38.124/main/top/views`);
         rankingData = response.data;
       }
       setRankingData(rankingData);
@@ -223,10 +216,10 @@ export const Main = () => {
       "금속 및 화학 제조업": 1,
       "식품 및 섬유 제조업": 2,
       "전자제품 및 기타 제조업": 3,
-      "도매업": 4,
-      "서비스업": 5,
+      도매업: 4,
+      서비스업: 5,
       "건설 및 공사업": 6,
-      "금융업": 7,
+      금융업: 7,
       "전기 및 전자 관련업": 8,
     };
 
@@ -268,26 +261,26 @@ export const Main = () => {
   // convert company string to numeric value
   const mapCompanyToNumber = (company) => {
     const themeMap = {
-      "유진투자증권": 1,
-      "신한투자증권": 2,
-      "하이투자증권": 3,
-      "IBK투자증권": 4,
-      "미래에셋증권": 5,
-      "SK증권": 6,
-      "상상인증권": 7,
-      "한화투자증권": 8,
-      "대신증권": 9,
-      "키움증권": 10,
-      "하나증권": 11,
-      "NH투자증권": 12,
-      "현대차증권": 13,
-      "교보증권": 14,
-      "BNK투자증권": 15,
-      "신영증권": 16,
-      "DB금융투자": 17,
-      "한국투자증권": 18,
-      "KB증권": 19,
-      "기타": 20,
+      유진투자증권: 1,
+      신한투자증권: 2,
+      하이투자증권: 3,
+      IBK투자증권: 4,
+      미래에셋증권: 5,
+      SK증권: 6,
+      상상인증권: 7,
+      한화투자증권: 8,
+      대신증권: 9,
+      키움증권: 10,
+      하나증권: 11,
+      NH투자증권: 12,
+      현대차증권: 13,
+      교보증권: 14,
+      BNK투자증권: 15,
+      신영증권: 16,
+      DB금융투자: 17,
+      한국투자증권: 18,
+      KB증권: 19,
+      기타: 20,
     };
 
     return themeMap[company] || company;
@@ -326,9 +319,7 @@ export const Main = () => {
   const fetchAllData = async () => {
     let allData;
     try {
-      const response = await axios.get(
-        'http://125.6.38.124/main/enterprise'
-      );
+      const response = await axios.get("http://125.6.38.124/main/enterprise");
       allData = response.data;
       setAllData(allData);
       console.log(allData[0]);
@@ -343,10 +334,7 @@ export const Main = () => {
   return (
     <div className="main">
       <div className="div-2">
-        <Image
-          className="main-image"
-          icon={<Image7 className="icon-instance-node" />}
-        />
+        <Carousel className="main-image" />
         <div className="home-message">
           <ListTitle
             className="home-copyright"
@@ -412,7 +400,7 @@ export const Main = () => {
                   className="products-wrapper"
                   key={1}
                   onClick={() => handleProductClick(firstData.corpCode)}
-                    >
+                >
                   <div className="products">
                     <div className="vertical-card">
                       <div className="company-image">
@@ -548,11 +536,11 @@ export const Main = () => {
         {selectedTab === "section2" && (
           <div className="ranking-content">
             <ListTitle
-                  className="home-copyright"
-                  divClassName="design-component-instance-node"
-                  rightControl="none"
-                  title="코넥스 상장 기업 전체보기"
-                />
+              className="home-copyright"
+              divClassName="design-component-instance-node"
+              rightControl="none"
+              title="코넥스 상장 기업 전체보기"
+            />
             <div className="rankin-etc-2">
               {AllData.map((item, index) => (
                 <div
@@ -702,12 +690,11 @@ export const Main = () => {
                                       : "stock-change-minus"
                                   }`}
                                 >
-                                  {item &&
-                                    typeof item.cmpprevddPrc === "string"
-                                      ? `${parseFloat(
-                                          item.cmpprevddPrc
-                                        ).toFixed(2)}%`
-                                      : "로딩 중..."}
+                                  {item && typeof item.cmpprevddPrc === "string"
+                                    ? `${parseFloat(item.cmpprevddPrc).toFixed(
+                                        2
+                                      )}%`
+                                    : "로딩 중..."}
                                 </span>
                               </p>
                             </div>
