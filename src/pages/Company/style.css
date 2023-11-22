@@ -43,7 +43,7 @@
 
 
 
-.managecompany .managecompany-profile {
+.company .company-profile {
   align-items: center;
   display: flex;
   flex: 0 0 auto;
@@ -56,7 +56,7 @@
 
 }
 
-.managecompany .profile-img {
+.company .profile-img {
   height: 100px;
   width: 100%;
   display: flex;
@@ -74,14 +74,14 @@
 
 }
 
-.managecompany .avatar-8 {
+.company .avatar-8 {
   height: 80px;
   left: 0;
   top: 0;
   width: 80px;
 }
 
-.managecompany .heart-filled {
+.company .heart-filled {
   position: relative;
   width:100px;
   height:100px;
@@ -89,7 +89,7 @@
   top:30px;
 }
 
-.managecompany .name {
+.company .name {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -99,7 +99,7 @@
   width:100%;
 }
 
-.managecompany .text-wrapper-2 {
+.company .text-wrapper-2 {
   color: var(--neutrallightlightest);
   font-family: var(--heading-h3-font-family);
   font-size: var(--heading-h3-font-size);
@@ -114,7 +114,7 @@
   width: fit-content;
 }
 
-.managecompany .text-wrapper-3 {
+.company .text-wrapper-3 {
   color: var(--neutrallightdark);
   font-family: "Inter", Helvetica;
   font-size: 12px;
@@ -127,7 +127,7 @@
   width: fit-content;
 }
 
-.managecompany .tab {
+.company .tab {
   display: flex;
   width: 100%;
   box-sizing: border-box;
@@ -142,43 +142,43 @@
 }
 
 
-.managecompany .content-switcher-2 {
+.company .content-switcher-2 {
   background-color: unset;
   width: 70%;
   background-color: var(--neutraldarkdarkest);
 
 }
 
-.managecompany .design-component-instance-node-2 {
+.company .design-component-instance-node-2 {
   color: var(--neutrallightlightest);
 }
 
-.managecompany .content-switcher-3 {
+.company .content-switcher-3 {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-color: var(--highlightlight);
   border-radius: unset;
   flex: 1;
   flex-grow: 1;
-  z-managecompany: 4;
+  z-company: 4;
 }
 
-.managecompany .content-switcher-4 {
+.company .content-switcher-4 {
   color: var(--neutrallightdark);
   margin-top: -0.7px;
 }
 
-.managecompany .content-switcher-5 {
+.company .content-switcher-5 {
   border-bottom-style: solid;
   border-bottom-width: 0.7px;
   border-color: var(--neutraldarkdark);
   border-radius: unset;
   flex: 1;
   flex-grow: 1;
-  z-managecompany: 2;
+  z-company: 2;
 }
 
-.managecompany .content-switcher-6 {
+.company .content-switcher-6 {
   background-color: unset;
   border-bottom-style: solid;
   border-bottom-width: 0.7px;
@@ -186,10 +186,10 @@
   border-radius: unset;
   flex: 1;
   flex-grow: 1;
-  z-managecompany: 0;
+  z-company: 0;
 }
 
-.managecompany-section{
+.company-section{
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -198,7 +198,7 @@
   gap: 30px;
 }
 
-.managecompany .managecompany-detailinfo {
+.company .company-detailinfo {
   align-items: center;
   display: flex;
   flex: 0 0 auto;
@@ -212,12 +212,12 @@
   gap:10px
 }
 
-.managecompany .subtitile {
+.company .subtitile {
   flex: 0 0 auto;  
   width: 100%;
 }
 
-.managecompany .list-title-2 {
+.company .list-title-2 {
   color: var(--neutrallightlightest);
   flex: unset;
   font-size: var(--action-action-l-font-size);
@@ -225,7 +225,7 @@
 }
 
 
-.managecompany-section .checkBox{
+.company-section .checkBox{
   color: var(--neutrallightlightest);
   font-family: var(--heading-h5-font-family);
   font-style: var(--heading-h5-font-style);
@@ -241,7 +241,7 @@
 }
 
 
-.managecompany .news {
+.company .news {
   height: fit-content;
   margin-bottom: 50px;
   position: relative;
@@ -254,7 +254,7 @@
   gap: 10px;
 }
 
-.managecompany .news-list-component {
+.company .news-list-component {
   align-items: center;
   display: inline-flex;
   flex-direction: column;
@@ -265,7 +265,7 @@
   top: 53px;
 }
 
-.managecompany .news-bubble {
+.company .news-bubble {
   align-items: flex-start;
   background-color: var(--neutraldarkmedium);
   border-radius: 20px;
@@ -276,7 +276,7 @@
   position: relative;
 }
 
-.managecompany .name-4 {
+.company .name-4 {
   align-self: stretch;
   color: var(--neutrallightdarkest);
   font-family: "Inter", Helvetica;
@@ -288,7 +288,7 @@
   position: relative;
 }
 
-.managecompany .message-2 {
+.company .message-2 {
   color: var(--neutrallightlightest);
   font-family: "Inter", Helvetica;
   font-size: var(--body-body-XS-line-height);
@@ -300,11 +300,11 @@
   width: fit-content;
 }
 
-.managecompany .text-wrapper-5 {
+.company .text-wrapper-5 {
   font-weight: 700;
 }
 
-.managecompany .text-wrapper-6 {
+.company .text-wrapper-6 {
   color: #ffffff;
   font-family: "Inter", Helvetica;
   font-size: 14px;
@@ -315,13 +315,13 @@
 
 
 
-.managecompany .accordion-instance {
+.company .accordion-instance {
   left: 225px;
   position: absolute;
   top: 511px;
   width: 300px;
 }
 
-.managecompany .accordion-2 {
+.company .accordion-2 {
   background-color: transparent;
 }

@@ -322,6 +322,8 @@ export const Company = () => {
               />
             </div>
           </div>
+
+          
           <div className="name">
             <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
             <div className="text-wrapper-3">{enterpriseData.description}</div>
