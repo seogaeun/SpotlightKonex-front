@@ -108,8 +108,8 @@ export const Calc = () => {
                 계산하기
               </button>
             </div>
-            <div className="rule">
-              {apiSuccess && (
+            {apiSuccess && (
+              <div className="rule">
                 <React.Fragment>
                   <p className="rule-subtitle">예상 공제액</p>
                   <p className="rule-result">
@@ -121,8 +121,8 @@ export const Calc = () => {
                     있습니다. 조합출자금액이 아닌 투자금액 기준입니다.
                   </div>
                 </React.Fragment>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
