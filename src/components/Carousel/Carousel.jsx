@@ -21,16 +21,19 @@ export const Carousel = ({}) => {
       id: 1,
       word: "이미지1",
       link: "./../../assets/Banner/001.jpg",
+      url: "",
     },
     {
       id: 2,
       word: "이미지2",
       link: "./../../assets/Banner/002.jpg",
+      url: "",
     },
     {
       id: 3,
       word: "이미지3",
       link: "./../../assets/Banner/003.jpg",
+      url: "",
     },
     {
       id: 4,
@@ -103,7 +106,7 @@ export const Carousel = ({}) => {
                   <div
                     className="image-section"
                     style={{
-                      backgroundImage: `url(${dictionaryContents.link})`,
+                      backgroundImage: `url(${dictionaryContent.link})`,
                     }}
                   >
                     {dictionaryContent.word}
