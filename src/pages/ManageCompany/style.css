@@ -59,7 +59,7 @@
 
 /* 네비바 */
 
-.company .nav-bar-instance {
+.managecompany .nav-bar-instance {
   background-color: var(--neutraldarkdarkest);
   position:sticky;
   top: 0;
@@ -67,7 +67,7 @@
 }
 
 /* 네비 타이틀 글자 */
-.company .nav-title-text {
+.managecompany .nav-title-text {
   color: var(--neutrallightlightest);
 }
 
@@ -113,7 +113,7 @@
 
 }
 
-.company .avatar-8 {
+.managecompany .avatar-8 {
   height: 80px;
   left: 0;
   top: 0;
@@ -122,13 +122,13 @@
 
 
 
-.company .heart-filled {
+.managecompany .heart-filled {
   position: relative;
   left: -15px;
   top: 30px;
 }
 
-.company .name {
+.managecompany .name {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -138,7 +138,7 @@
   width:100%;
 }
 
-.company .text-wrapper-2 {
+.managecompany .text-wrapper-2 {
   color: var(--neutrallightlightest);
   font-family: var(--heading-h3-font-family);
   font-size: var(--heading-h3-font-size);
@@ -153,7 +153,7 @@
   width: fit-content;
 }
 
-.company .text-wrapper-3 {
+.managecompany .text-wrapper-3 {
   color: var(--neutrallightdark);
   font-family: "Inter", Helvetica;
   font-size: 12px;
@@ -172,7 +172,7 @@
   text-align: center;
 }
 
-.company .tab {
+.managecompany .tab {
   display: flex;
   width: 100%;
   box-sizing: border-box;
@@ -187,18 +187,18 @@
 }
 
 
-.company .content-switcher-2 {
+.managecompany .content-switcher-2 {
   background-color: unset;
   width: 70%;
   background-color: var(--neutraldarkdarkest);
 
 }
 
-.company .design-component-instance-node-2 {
+.managecompany .design-component-instance-node-2 {
   color: var(--neutrallightlightest);
 }
 
-.company .content-switcher-3 {
+.managecompany .content-switcher-3 {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-color: var(--highlightlight);
@@ -208,12 +208,12 @@
   z-company: 4;
 }
 
-.company .content-switcher-4 {
+.managecompany .content-switcher-4 {
   color: var(--neutrallightdark);
   margin-top: -0.7px;
 }
 
-.company .content-switcher-5 {
+.managecompany .content-switcher-5 {
   border-bottom-style: solid;
   border-bottom-width: 0.7px;
   border-color: var(--neutraldarkdark);
@@ -223,7 +223,7 @@
   z-company: 2;
 }
 
-.company .content-switcher-6 {
+.managecompany .content-switcher-6 {
   background-color: unset;
   border-bottom-style: solid;
   border-bottom-width: 0.7px;
@@ -243,7 +243,7 @@
   gap: 30px;
 }
 
-.company .company-detailinfo {
+.managecompany .company-detailinfo {
   align-items: center;
   display: flex;
   flex: 0 0 auto;
@@ -257,12 +257,12 @@
   gap:10px
 }
 
-.company .subtitile {
+.managecompany .subtitile {
   flex: 0 0 auto;  
   width: 100%;
 }
 
-.company .list-title-2 {
+.managecompany-detailinfo .list-title-2 {
   color: var(--neutrallightlightest);
   flex: unset;
   font-size: var(--action-action-l-font-size);
@@ -286,42 +286,11 @@
 }
 
 
-.company .news {
-  height: fit-content;
-  margin-bottom: 50px;
-  position: relative;
-  width: 375px;
-}
 
-.newsContents{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-.company .news-list-component {
-  align-items: center;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 30px;
-  justify-content: center;
-  left: 32px;
-  position: absolute;
-  top: 53px;
-}
 
-.company .news-bubble {
-  align-items: flex-start;
-  background-color: var(--neutraldarkmedium);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 12px 16px;
-  position: relative;
-}
 
-.company .name-4 {
+.managecompany .name-4 {
   align-self: stretch;
   color: var(--neutrallightdarkest);
   font-family: "Inter", Helvetica;
@@ -333,7 +302,7 @@
   position: relative;
 }
 
-.company .message-2 {
+.managecompany .message-2 {
   color: var(--neutrallightlightest);
   font-family: "Inter", Helvetica;
   font-size: var(--body-body-XS-line-height);
@@ -345,11 +314,11 @@
   width: fit-content;
 }
 
-.company .text-wrapper-5 {
+.managecompany .text-wrapper-5 {
   font-weight: 700;
 }
 
-.company .text-wrapper-6 {
+.managecompany .text-wrapper-6 {
   color: #ffffff;
   font-family: "Inter", Helvetica;
   font-size: 14px;
@@ -360,14 +329,14 @@
 
 
 
-.company .accordion-instance {
+.managecompany .accordion-instance {
   left: 225px;
   position: absolute;
   top: 511px;
   width: 300px;
 }
 
-.company .accordion-2 {
+.managecompany .accordion-2 {
   background-color: transparent;
 }
 
