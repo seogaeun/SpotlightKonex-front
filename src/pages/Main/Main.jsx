@@ -430,7 +430,9 @@ export const Main = () => {
                               className={`stock-price ${
                                 firstData && firstData.cmpprevddPrc > 0
                                   ? "stock-price-plus"
-                                  : "stock-price-minus"
+                                  : firstData && firstData.cmpprevddPrc < 0
+                                  ? "stock-price-minus"
+                                  : "stock-price-zero"
                               }`}
                             >
                               {firstData
@@ -579,7 +581,9 @@ export const Main = () => {
                               className={`stock-price ${
                                 item && item.cmpprevddPrc > 0
                                   ? "stock-price-plus"
-                                  : "stock-price-minus"
+                                  : item && item.cmpprevddPrc < 0
+                                  ? "stock-price-minus"
+                                  : "stock-price-zero"
                               }`}
                             >
                               {item
