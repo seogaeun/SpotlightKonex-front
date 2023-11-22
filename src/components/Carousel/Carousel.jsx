@@ -95,7 +95,7 @@ export const Carousel = ({}) => {
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${currCarousel * 600}px)`,
+            transform: `translateX(-${currCarousel * 600 + 300}px)`, // 초기에 300px 이동한 상태
             transition: `${carouselTransition}`,
           }}
         >
@@ -113,9 +113,7 @@ export const Carousel = ({}) => {
                       style={{
                         backgroundImage: `url(${dictionaryContent.link})`,
                       }}
-                    >
-                      {dictionaryContent.word}
-                    </div>
+                    ></div>
                   </a>
                 )}
               </div>
