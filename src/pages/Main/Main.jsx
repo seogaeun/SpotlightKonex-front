@@ -442,7 +442,9 @@ export const Main = () => {
                               className={`stock-change ${
                                 firstData && firstData.cmpprevddPrc > 0
                                   ? "stock-change-plus"
-                                  : "stock-change-minus"
+                                  : firstData && firstData.cmpprevddPrc < 0
+                                  ? "stock-change-minus"
+                                  : "stock-change-zero"
                               }`}
                             >
                               {firstData &&
@@ -512,7 +514,9 @@ export const Main = () => {
                                   className={`stock-change ${
                                     item && item.cmpprevddPrc > 0
                                       ? "stock-change-plus"
-                                      : "stock-change-minus"
+                                      : item && item.cmpprevddPrc < 0
+                                      ? "stock-change-minus"
+                                      : "stock-change-zero"
                                   }`}
                                 >
                                   {item && typeof item.cmpprevddPrc === "string"
@@ -585,7 +589,9 @@ export const Main = () => {
                               className={`stock-change ${
                                 item && item.cmpprevddPrc > 0
                                   ? "stock-change-plus"
-                                  : "stock-change-minus"
+                                  : item && item.cmpprevddPrc < 0
+                                  ? "stock-change-minus"
+                                  : "stock-change-zero"
                               }`}
                             >
                               {item && typeof item.cmpprevddPrc === "string"
@@ -687,7 +693,9 @@ export const Main = () => {
                                   className={`stock-change ${
                                     item && item.cmpprevddPrc > 0
                                       ? "stock-change-plus"
-                                      : "stock-change-minus"
+                                      : item && item.cmpprevddPrc < 0
+                                      ? "stock-change-minus"
+                                      : "stock-change-zero"
                                   }`}
                                 >
                                   {item && typeof item.cmpprevddPrc === "string"
@@ -776,7 +784,9 @@ export const Main = () => {
                                     className={`stock-change ${
                                       item && item.cmpprevddPrc > 0
                                         ? "stock-change-plus"
-                                        : "stock-change-minus"
+                                        : item && item.cmpprevddPrc < 0
+                                        ? "stock-change-minus"
+                                        : "stock-change-zero"
                                     }`}
                                   >
                                     {item &&
@@ -876,7 +886,9 @@ export const Main = () => {
                                       className={`stock-change ${
                                         item && item.cmpprevddPrc > 0
                                           ? "stock-change-plus"
-                                          : "stock-change-minus"
+                                          : item && item.cmpprevddPrc < 0
+                                          ? "stock-change-minus"
+                                          : "stock-change-zero"
                                       }`}
                                     >
                                       {item &&

@@ -355,6 +355,21 @@
     margin-left: 5px;
   }
 
+
+  .main .stock-change-zero {
+    font-family: var(--heading-h5-font-family);
+    font-size: 14px;
+    font-style: var(--heading-h5-font-style);
+    font-weight: var(--heading-h5-font-weight);
+    letter-spacing: var(--heading-h5-letter-spacing);
+    line-height: var(--heading-h5-line-height);
+    color: var(--neutraldarklight);
+    background-color: var(--neutrallightdark);
+    padding: 5px 2px;
+    border-radius: 5px;
+    margin-left: 5px;
+  }
+
   .main .stock-change-minus {
     font-family: var(--heading-h5-font-family);
     font-size: 14px;
@@ -395,6 +410,7 @@
     padding: 16px 8px;
     position: relative;
     width: 575px;
+    background-color: var(--neutraldarkdarkest);
   }
   
   .main .products-wrapper {
@@ -488,15 +504,13 @@
     font-size: 14px
   }
 
-  .main .theme-company{
     .main .theme-company {
       width: 400px;
       display: flex;
       overflow-y: scroll;
-      height: fit-content;
-      overflow-y: hidden;
+
   }
-  }
+
 
   .main .theme-company .products-wrapper{
     margin-right: 8px;
