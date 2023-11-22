@@ -106,7 +106,7 @@ export const ManageCompany = () => {
         `${apiEndpoint}/enterprise/descriptions`,
         {
           corpCode,
-          description:newDescription,
+          description: newDescription,
         }
       );
 
@@ -172,8 +172,8 @@ export const ManageCompany = () => {
     };
 
     console.log(accessEmail);
-      console.log(accessToken);
-      console.log("test");
+    console.log(accessToken);
+    console.log("test");
 
     fetchData();
   }, [corpCode]);
@@ -338,32 +338,26 @@ export const ManageCompany = () => {
     fetchBoardData();
   }, [corpCode]);
 
-
   const accessEmail = sessionStorage.getItem("corpEmail");
-
 
   // nav bar
   const handleLeftIconClick = (link) => {
     navigate("/");
   };
 
-
   // logout 처리
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `http://125.6.38.124/auth/signout`,
-        {
-          email: accessEmail,
-          accessToken: accessToken,
-        }
-      );
+      const response = await axios.post(`http://125.6.38.124/auth/signout`, {
+        email: accessEmail,
+        accessToken: accessToken,
+      });
       console.log(accessEmail);
       console.log(accessToken);
       if (response.status === 200) {
-        sessionStorage.removeItem('company_user');
-        navigate("/")
+        sessionStorage.removeItem("company_user");
+        navigate("/");
       } else {
         console.error("로그아웃 실패");
         Swal.fire({
@@ -403,24 +397,23 @@ export const ManageCompany = () => {
         />
         {/*기업 기본 정보(프로필, 이름, 좋아요) */}
         <div className="managecompany-profile">
-        <div className="company-profile">
-          <div className="profile-img">
-            <div className="overlap-group">
-              <img
-                className="logo-img"
-                alt="test"
-                src={`img/${corpCode}.png`}
-              ></img>
-              <HeartFilled1
-                className="heart-filled"
-                count={heartCount}
-              />
+          <div className="company-profile">
+            <div className="profile-img">
+              <div className="overlap-group">
+                <img
+                  className="logo-img"
+                  alt="test"
+                  src={`img/${corpCode}.png`}
+                ></img>
+                <HeartFilled1 className="heart-filled" count={heartCount} />
+              </div>
             </div>
           </div>
-        </div>
           <div className="name">
             <div className="text-wrapper-2">{enterpriseData.corp_name}</div>
-            <div className="log-out" onClick={handleLogout}>logout</div>
+            <div className="log-out" onClick={handleLogout}>
+              logout
+            </div>
             {editingDescription && (
               <div className="description">
                 <input
@@ -467,7 +460,7 @@ export const ManageCompany = () => {
                 rightControl="none"
                 title="응원수"
               />
-              <Graph dataList={corplikedata} />
+              <Graph dataList={corplikedata} type="like" />
             </div>
             <div className="managecompany-detailinfo">
               <ListTitle
@@ -476,7 +469,7 @@ export const ManageCompany = () => {
                 rightControl="none"
                 title="거래량"
               />
-              <Graph dataList={corptransdata} />
+              <Graph dataList={corptransdata} type="trans" />
             </div>
 
             <div className="managecompany-detailinfo">

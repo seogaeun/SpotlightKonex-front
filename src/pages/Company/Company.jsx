@@ -357,7 +357,7 @@ export const Company = () => {
                 rightControl="none"
                 title="거래대금 순위 변동"
               />
-              <Graph dataList={companyLinkdata} reversed="true" />
+              <Graph dataList={companyLinkdata} reversed="true"  />
             </div>
           </div>
         )}
