@@ -91,8 +91,8 @@ export const Carousel = ({}) => {
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${600 - currCarousel * 600}px)`,
-            // transition: `${carouselTransition}`,
+            transform: `translateX(-${currCarousel * 600}px)`,
+            transition: `${carouselTransition}`,
           }}
         >
           {dictionaryContents.length > 0 &&
@@ -103,7 +103,7 @@ export const Carousel = ({}) => {
                   <div
                     className="image-section"
                     style={{
-                      backgroundImage: `url(${dictionaryContent.link})`,
+                      backgroundImage: `url(${dictionaryContents.link})`,
                     }}
                   >
                     {dictionaryContent.word}
