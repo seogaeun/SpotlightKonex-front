@@ -74,7 +74,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
+
+
 
   .calc .login-btn {
     width: 370px;
@@ -87,10 +90,12 @@
     letter-spacing: var(--heading-h5-letter-spacing);
     line-height: var(--heading-h5-line-height);
     color: var(--neutrallightlight);
+    cursor: pointer;
+
   }
 
   .calc .login-btn-div .calc-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 
   .calc .rule {
