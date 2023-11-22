@@ -145,3 +145,14 @@
     font-size: 14px;
     line-height: 140%;
 }
+
+
+.rule {
+  text-align: left;
+}
+
+.rule-subtitle,
+.rule-result,
+.result-desc {
+  text-align: left;
+}
