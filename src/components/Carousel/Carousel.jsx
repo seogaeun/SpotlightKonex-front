@@ -75,7 +75,7 @@ export const Carousel = ({}) => {
     const soulSliderLength = DictionaryContents.length;
     const newCurr = currCarousel + 1;
 
-    if (newCurr === soulSliderLength - 2) {
+    if (newCurr === soulSliderLength - 4) {
       moveToNthSlide(1);
     } else {
       setCurrCarousel(newCurr);
@@ -97,7 +97,7 @@ export const Carousel = ({}) => {
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${currCarousel * imageWidth}px)`,
+            transform: `translateX(-${600-(currCarousel * imageWidth)}px)`,
             transition: `${carouselTransition}`,
           }}
         >
